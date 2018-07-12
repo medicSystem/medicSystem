@@ -26,15 +26,7 @@ class CreatePatientTable extends Migration
             $table->integer('users_idUsers');
             $table->timestamps();
 
-            $table->index(["users_idUsers"], 'fk_Patient_users1_idx');
-
             $table->unique(["idPatient"], 'idPatient_UNIQUE');
-
-
-            $table->foreign('users_idUsers', 'fk_Patient_users1_idx')
-                ->references('idUsers')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 

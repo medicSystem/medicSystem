@@ -26,15 +26,7 @@ class CreateBanListTable extends Migration
             $table->integer('users_idUsers');
             $table->timestamps();
 
-            $table->index(["users_idUsers"], 'fk_Ban_list_users1_idx');
-
             $table->unique(["idBan_list"], 'idBan_list_UNIQUE');
-
-
-            $table->foreign('users_idUsers', 'fk_Ban_list_users1_idx')
-                ->references('idUsers')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 

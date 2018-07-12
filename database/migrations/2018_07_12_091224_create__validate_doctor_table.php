@@ -38,15 +38,7 @@ class CreateValidateDoctorTable extends Migration
             $table->integer('Doctor_type_idDoctor_type');
             $table->timestamps();
 
-            $table->index(["Doctor_type_idDoctor_type"], 'fk_Validate_doctor_Doctor_type1_idx');
-
             $table->unique(["idValidate_doctor"], 'idValidate_doctor_UNIQUE');
-
-
-            $table->foreign('Doctor_type_idDoctor_type', 'fk_Validate_doctor_Doctor_type1_idx')
-                ->references('idDoctor_type')->on('Doctor_type')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 

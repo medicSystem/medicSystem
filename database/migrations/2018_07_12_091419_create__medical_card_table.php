@@ -28,18 +28,9 @@ class CreateMedicalCardTable extends Migration
             $table->text('chronic_disease');
             $table->text('allergy');
             $table->integer('Patient_idPatient');
-            $table->integer('Patient_users_idUsers');
             $table->timestamps();
 
-            $table->index(["Patient_idPatient", "Patient_users_idUsers"], 'fk_Medical_card_Patient1_idx');
-
             $table->unique(["idMedical_card"], 'idMedical_card_UNIQUE');
-
-
-            $table->foreign('Patient_idPatient', 'fk_Medical_card_Patient1_idx')
-                ->references('idPatient')->on('Patient')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 

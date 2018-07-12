@@ -28,15 +28,7 @@ class CreateMessageTable extends Migration
             $table->integer('Messanger_idMessanger');
             $table->timestamps();
 
-            $table->index(["Messanger_idMessanger"], 'fk_Message_Messanger1_idx');
-
             $table->unique(["idMessage"], 'idMessage_UNIQUE');
-
-
-            $table->foreign('Messanger_idMessanger', 'fk_Message_Messanger1_idx')
-                ->references('idMessanger')->on('Messanger')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 

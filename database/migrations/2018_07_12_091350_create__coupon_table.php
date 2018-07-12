@@ -26,28 +26,10 @@ class CreateCouponTable extends Migration
             $table->dateTime('date');
             $table->string('status', 10);
             $table->integer('Patient_idPatient');
-            $table->integer('Patient_users_idUsers');
             $table->integer('Doctor_idDoctor');
-            $table->integer('Doctor_users_idUsers');
-            $table->integer('Doctor_Doctor_type_idDoctor_type');
             $table->timestamps();
 
-            $table->index(["Patient_idPatient", "Patient_users_idUsers"], 'fk_Coupon_Patient1_idx');
-
-            $table->index(["Doctor_idDoctor", "Doctor_users_idUsers", "Doctor_Doctor_type_idDoctor_type"], 'fk_Coupon_Doctor1_idx');
-
             $table->unique(["idCoupon"], 'idCoupon_UNIQUE');
-
-
-            $table->foreign('Patient_idPatient', 'fk_Coupon_Patient1_idx')
-                ->references('idPatient')->on('Patient')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->foreign('Doctor_idDoctor', 'fk_Coupon_Doctor1_idx')
-                ->references('idDoctor')->on('Doctor')
-                ->onDelete('no action')
-                ->onUpdate('no action');
         });
     }
 
