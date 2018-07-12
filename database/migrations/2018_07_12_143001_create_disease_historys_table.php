@@ -4,34 +4,33 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoctorTable extends Migration
+class CreateDiseaseHistorysTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'Doctor';
+    public $set_schema_table = 'disease_historys';
 
     /**
      * Run the migrations.
-     * @table Doctor
+     * @table disease_historys
      *
      * @return void
      */
     public function up()
     {
-        if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDoctor');
-            $table->string('patent', 100);
-            $table->integer('experience');
-            $table->string('work_time', 20);
-            $table->integer('users_idUsers');
-            $table->integer('Doctor_type_idDoctor_type');
+            $table->increments('idDisease_history');
+            $table->string('disease_name', 60);
+            $table->string('analyzes', 100);
+            $table->integer('directorys_idDirectory');
+            $table->integer('medical_cards_idMedical_card');
+            $table->integer('doctors_idDoctor');
             $table->timestamps();
 
-            $table->unique(["idDoctor"], 'idDoctor_UNIQUE');
+            $table->unique(["idDisease_history"], 'idDisease_history_UNIQUE');
         });
     }
 

@@ -10,11 +10,11 @@ class CreateNewsTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'News';
+    public $set_schema_table = 'news';
 
     /**
      * Run the migrations.
-     * @table News
+     * @table news
      *
      * @return void
      */

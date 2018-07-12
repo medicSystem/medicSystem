@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateValidateDoctorTable extends Migration
+class CreateValidateDoctorsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'Validate_doctor';
+    public $set_schema_table = 'validate_doctors';
 
     /**
      * Run the migrations.
-     * @table Validate_doctor
+     * @table validate_doctors
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class CreateValidateDoctorTable extends Migration
             $table->integer('experience');
             $table->date('send_date');
             $table->string('status', 10);
-            $table->integer('Doctor_type_idDoctor_type');
+            $table->integer('doctor_types_idDoctor_type');
             $table->timestamps();
 
             $table->unique(["idValidate_doctor"], 'idValidate_doctor_UNIQUE');

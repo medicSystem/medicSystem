@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMedicalCardTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'Medical_card';
+    public $set_schema_table = 'messages';
 
     /**
      * Run the migrations.
-     * @table Medical_card
+     * @table messages
      *
      * @return void
      */
@@ -22,15 +22,13 @@ class CreateMedicalCardTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idMedical_card');
-            $table->string('postal_address', 60);
-            $table->string('sex', 1);
-            $table->text('chronic_disease');
-            $table->text('allergy');
-            $table->integer('Patient_idPatient');
+            $table->increments('idMessage');
+            $table->text('message');
+            $table->dateTime('send_datetime');
+            $table->integer('messangers_idMessanger');
             $table->timestamps();
 
-            $table->unique(["idMedical_card"], 'idMedical_card_UNIQUE');
+            $table->unique(["idMessage"], 'idMessage_UNIQUE');
         });
     }
 

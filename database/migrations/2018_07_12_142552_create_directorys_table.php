@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCouponTable extends Migration
+class CreateDirectorysTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'Coupon';
+    public $set_schema_table = 'directorуs';
 
     /**
      * Run the migrations.
-     * @table Coupon
+     * @table directorys
      *
      * @return void
      */
@@ -22,14 +22,18 @@ class CreateCouponTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idCoupon');
-            $table->dateTime('date');
-            $table->string('status', 10);
-            $table->integer('Patient_idPatient');
-            $table->integer('Doctor_idDoctor');
+            $table->increments('idDirectory');
+            $table->string('disease_name', 60);
+            $table->string('category', 60);
+            $table->string('subcategory', 60);
+            $table->text('treatment');
+            $table->text('symptoms');
+            $table->string('picture', 100);
             $table->timestamps();
 
-            $table->unique(["idCoupon"], 'idCoupon_UNIQUE');
+            $table->unique(["idDirectory"], 'idDirectory_UNIQUE');
+
+            $table->unique(["disease_name"], 'disease_name_UNIQUE');
         });
     }
 

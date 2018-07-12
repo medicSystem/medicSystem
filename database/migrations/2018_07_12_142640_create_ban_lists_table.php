@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMessageTable extends Migration
+class CreateBanListsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'Message';
+    public $set_schema_table = 'ban_lists';
 
     /**
      * Run the migrations.
-     * @table Message
+     * @table ban_lists
      *
      * @return void
      */
@@ -22,13 +22,11 @@ class CreateMessageTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idMessage');
-            $table->text('message');
-            $table->dateTime('send_datetime');
-            $table->integer('Messanger_idMessanger');
+            $table->increments('idBan_list');
+            $table->integer('users_idUsers');
             $table->timestamps();
 
-            $table->unique(["idMessage"], 'idMessage_UNIQUE');
+            $table->unique(["idBan_list"], 'idBan_list_UNIQUE');
         });
     }
 
