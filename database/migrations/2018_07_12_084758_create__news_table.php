@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'users';
+    public $set_schema_table = 'News';
 
     /**
      * Run the migrations.
-     * @table users
+     * @table News
      *
      * @return void
      */
@@ -22,21 +22,15 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idUsers');
-            $table->string('first_name', 50);
-            $table->string('last_name', 50);
-            $table->string('email', 60);
-            $table->string('password', 12);
-            $table->string('type', 10);
-            $table->date('birthday');
-            $table->integer('phone_number');
-            $table->string('avatar', 100);
-            $table->rememberToken();
+            $table->increments('idNews');
+            $table->string('photo', 100);
+            $table->string('news_name', 60);
+            $table->text('content');
             $table->timestamps();
 
-            $table->unique(["email"], 'email_UNIQUE');
+            $table->unique(["news_name"], 'news_name_UNIQUE');
 
-            $table->unique(["idUsers"], 'idUsers_UNIQUE');
+            $table->unique(["idNews"], 'idNews_UNIQUE');
         });
     }
 

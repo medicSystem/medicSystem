@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateDirectoryTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'users';
+    public $set_schema_table = 'Directory';
 
     /**
      * Run the migrations.
-     * @table users
+     * @table Directory
      *
      * @return void
      */
@@ -22,21 +22,18 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idUsers');
-            $table->string('first_name', 50);
-            $table->string('last_name', 50);
-            $table->string('email', 60);
-            $table->string('password', 12);
-            $table->string('type', 10);
-            $table->date('birthday');
-            $table->integer('phone_number');
-            $table->string('avatar', 100);
-            $table->rememberToken();
+            $table->increments('idDirectory');
+            $table->string('disease_name', 60);
+            $table->string('category', 60);
+            $table->string('subcategory', 60);
+            $table->text('treatment');
+            $table->text('symptoms');
+            $table->string('picture', 100);
             $table->timestamps();
 
-            $table->unique(["email"], 'email_UNIQUE');
+            $table->unique(["idDirectory"], 'idDirectory_UNIQUE');
 
-            $table->unique(["idUsers"], 'idUsers_UNIQUE');
+            $table->unique(["disease_name"], 'disease_name_UNIQUE');
         });
     }
 
