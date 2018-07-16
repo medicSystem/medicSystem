@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model
+class Messenger extends Model
 {
-    protected $table = 'messages';
+    protected $table = 'messengers';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'message', 'send_datetime', 'messengers_id',
+        'doctors_id', 'patients_id',
     ];
 }

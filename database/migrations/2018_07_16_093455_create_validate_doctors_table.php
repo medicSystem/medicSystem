@@ -22,7 +22,7 @@ class CreateValidateDoctorsTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idValidate_doctor');
+            $table->increments('id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email', 60);
@@ -35,10 +35,12 @@ class CreateValidateDoctorsTable extends Migration
             $table->integer('experience');
             $table->date('send_date');
             $table->string('status', 10);
-            $table->integer('doctor_types_idDoctor_type');
+            $table->string('doctor_type', 60);
+            $table->unsignedInteger('doctor_types_id');
             $table->timestamps();
-
-            $table->unique(["idValidate_doctor"], 'idValidate_doctor_UNIQUE');
+            $table->foreign('doctor_types_id')->references('id')-> on('doctor_types');
+            //DB::unprepared('ALTER TABLE `validate_doctors` ADD FOREIGN KEY ( `doctor_types_id`) REFERENCES `doctor_types`(`id`)');
+            //$table->unique(["id"], 'id_UNIQUE');
         });
     }
 

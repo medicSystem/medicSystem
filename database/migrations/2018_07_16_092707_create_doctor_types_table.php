@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDirectorysTable extends Migration
+class CreateDoctorTypesTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'directorуs';
+    public $set_schema_table = 'doctor_types';
 
     /**
      * Run the migrations.
-     * @table directorys
+     * @table doctor_types
      *
      * @return void
      */
@@ -22,18 +22,13 @@ class CreateDirectorysTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDirectory');
-            $table->string('disease_name', 60);
-            $table->string('category', 60);
-            $table->string('subcategory', 60);
-            $table->text('treatment');
-            $table->text('symptoms');
-            $table->string('picture', 100);
+            $table->increments('id');
+            $table->string('type_name', 60);
             $table->timestamps();
 
-            $table->unique(["idDirectory"], 'idDirectory_UNIQUE');
+            $table->unique(["type_name"], 'type_name_UNIQUE');
 
-            $table->unique(["disease_name"], 'disease_name_UNIQUE');
+            //$table->unique(["id"], 'id_UNIQUE');
         });
     }
 

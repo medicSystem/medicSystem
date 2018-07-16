@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $table = 'doctors';
-    protected $primaryKey = 'idDoctor';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'patent', 'experience', 'work_time', 'users_idUsers', 'doctors_type_idDoctor_type',
+        'patent', 'experience', 'work_time', 'users_id', 'doctor_types_id',
     ];
 }

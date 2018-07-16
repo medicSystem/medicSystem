@@ -22,15 +22,15 @@ class CreateMedicalCardsTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idMedical_card');
+            $table->increments('id');
             $table->string('postal_address', 60);
             $table->string('sex', 1);
             $table->text('chronic_disease');
             $table->text('allergy');
-            $table->integer('patients_idPatient');
+            $table->unsignedInteger('patients_id');
             $table->timestamps();
-
-            $table->unique(["idMedical_card"], 'idMedical_card_UNIQUE');
+            $table->foreign('patients_id')->references('id')-> on('patients');
+            $table->unique(["patients_id"], 'patients_id_UNIQUE');
         });
     }
 

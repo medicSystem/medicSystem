@@ -4,34 +4,36 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoctorsTable extends Migration
+class CreateDirectoriesTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'doctors';
+    public $set_schema_table = 'directories';
 
     /**
      * Run the migrations.
-     * @table doctors
+     * @table directories
      *
      * @return void
      */
     public function up()
     {
-        if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDoctor');
-            $table->string('patent', 100);
-            $table->integer('experience');
-            $table->string('work_time', 20);
-            $table->integer('users_idUsers');
-            $table->integer('doctors_type_idDoctor_type');
+            $table->increments('id');
+            $table->string('disease_name', 60);
+            $table->string('category', 60);
+            $table->string('subcategory', 60);
+            $table->text('treatment');
+            $table->text('symptoms');
+            $table->string('picture', 100);
             $table->timestamps();
 
-            $table->unique(["idDoctor"], 'idDoctor_UNIQUE');
+            //$table->unique(["id"], 'id_UNIQUE');
+
+            $table->unique(["disease_name"], 'disease_name_UNIQUE');
         });
     }
 

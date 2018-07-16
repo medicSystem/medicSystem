@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoctorTypesTable extends Migration
+class CreateMessengersTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'doctor_types';
+    public $set_schema_table = 'messengers';
 
     /**
      * Run the migrations.
-     * @table doctor_types
+     * @table messengers
      *
      * @return void
      */
@@ -22,13 +22,13 @@ class CreateDoctorTypesTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idDoctor_type');
-            $table->string('type_name', 60);
+            $table->increments('id');
+            $table->unsignedInteger('doctors_id');
+            $table->unsignedInteger('patients_id');
             $table->timestamps();
-
-            $table->unique(["type_name"], 'type_name_UNIQUE');
-
-            $table->unique(["idDoctor_type"], 'idDoctor_type_UNIQUE');
+            $table->foreign('patients_id')->references('id')-> on('patients');
+            $table->foreign('doctors_id')->references('id')-> on('doctors');
+            // $table->unique(["id"], 'id_UNIQUE');
         });
     }
 

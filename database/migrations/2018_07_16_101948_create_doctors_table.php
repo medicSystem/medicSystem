@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNewsTable extends Migration
+class CreateDoctorsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'news';
+    public $set_schema_table = 'doctors';
 
     /**
      * Run the migrations.
-     * @table news
+     * @table doctors
      *
      * @return void
      */
@@ -23,12 +23,16 @@ class CreateNewsTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('photo', 100);
-            $table->string('news_name', 60);
-            $table->text('content');
+            $table->string('patent', 100);
+            $table->integer('experience');
+            $table->string('work_time', 20);
+            $table->unsignedInteger('users_id');
+            $table->unsignedInteger('doctor_types_id');
             $table->timestamps();
-
-            $table->unique(["news_name"], 'news_name_UNIQUE');
+            $table->foreign('users_id')->references('id')-> on('users');
+            //DB::unprepared('ALTER TABLE `doctors` ADD FOREIGN KEY ( `doctor_types_id`) REFERENCES `doctor_types`(`id`)');
+            $table->foreign('doctor_types_id')->references('id')-> on('doctor_types');
+            //$table->unique(["id"], 'id_UNIQUE');
         });
     }
 

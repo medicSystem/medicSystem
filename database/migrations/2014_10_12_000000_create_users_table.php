@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idUsers');
+            $table->increments('id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email', 60);
@@ -35,8 +35,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->unique(["email"], 'email_UNIQUE');
-
-            $table->unique(["idUsers"], 'idUsers_UNIQUE');
         });
     }
 

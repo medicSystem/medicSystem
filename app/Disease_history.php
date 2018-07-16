@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Disease_history extends Model
 {
-    protected $table = 'disease_historys';
-    protected $primaryKey = 'idDisease_history';
+    protected $table = 'disease_histories';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'disease_name', 'analyzes', 'directorys_idDirectory', 'medical_cards_idMedical_card', 'doctors_idDoctor'
+        'disease_name', 'analyzes', 'directories_id', 'medical_cards_id', 'doctors_id'
     ];
 }

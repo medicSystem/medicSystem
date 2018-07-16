@@ -22,11 +22,11 @@ class CreatePatientsTable extends Migration
     {
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('idPatient');
-            $table->integer('users_idUsers');
+            $table->increments('id');
+            $table->unsignedInteger('users_id');
             $table->timestamps();
-
-            $table->unique(["idPatient"], 'idPatient_UNIQUE');
+            $table->foreign('users_id')->references('id')-> on('users');
+            //$table->unique(["id"], 'id_UNIQUE');
         });
     }
 
