@@ -11,4 +11,12 @@ class Coupon extends Model
     protected $fillable = [
         'date', 'status', 'patients_id', 'doctors_id',
     ];
+
+    public function patient(){
+        return $this->belongsTo('App\Patient');
+    }
+
+    public function doctor(){
+        return $this->belongsTo('App\Doctor');
+    }
 }

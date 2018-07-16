@@ -11,4 +11,8 @@ class Ban_list extends Model
     protected $fillable = [
         'users_id'
     ];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

@@ -11,4 +11,8 @@ class Message extends Model
     protected $fillable = [
         'message', 'send_datetime', 'messengers_id',
     ];
+
+    public function messenger(){
+        return $this->belongsTo('App\Messenger');
+    }
 }

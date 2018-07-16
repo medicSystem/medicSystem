@@ -11,4 +11,12 @@ class Medical_card extends Model
     protected $fillable = [
         'postal_address', 'sex', 'chronic_disease', 'allergy', 'patients_id',
     ];
+
+    public function patient(){
+        return $this->belongsTo('App\Patient');
+    }
+
+    public function diseaseHistory(){
+        return $this->hasMany('App\Disease_history', 'medical_cards_id', 'id');
+    }
 }

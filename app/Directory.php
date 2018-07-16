@@ -11,4 +11,8 @@ class Directory extends Model
     protected $fillable = [
         'disease_name', 'category', 'subcategory', 'treatment', 'symptoms', 'picture',
     ];
+
+    public function diseaseHistory(){
+        return $this->hasMany('App\Disease_history', 'directories_id', 'id');
+    }
 }

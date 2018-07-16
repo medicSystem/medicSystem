@@ -28,4 +28,16 @@ class User extends Authenticatable
     ];
     protected $primaryKey = 'id';
     protected $table = 'users';
+
+    public function doctor(){
+        return $this->hasOne('App\Doctor', 'users_id', 'id');
+    }
+
+    public function patient(){
+        return $this->hasOne('App\Patient', 'users_id', 'id');
+    }
+
+    public function banList(){
+        return $this->hasOne('App\Ban_list', 'users_id', 'id');
+    }
 }

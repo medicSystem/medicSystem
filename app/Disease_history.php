@@ -11,4 +11,16 @@ class Disease_history extends Model
     protected $fillable = [
         'disease_name', 'analyzes', 'directories_id', 'medical_cards_id', 'doctors_id'
     ];
+
+    public function medicalCard(){
+        return $this->belongsTo('App\Medical_card');
+    }
+
+    public function directory(){
+        return $this->belongsTo('App\Directory');
+    }
+
+    public function doctor(){
+        return $this->belongsTo('App\Doctor');
+    }
 }

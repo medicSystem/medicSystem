@@ -23,4 +23,8 @@ class Validate_doctor extends Model
     protected $hidden = [
         'password',
     ];
+
+    public function doctorType(){
+        return $this->belongsTo('App\Doctor_type');
+    }
 }
