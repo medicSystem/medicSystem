@@ -1,0 +1,101 @@
+#country_type {
+    width: 71%;
+    padding-left: 2%;
+    margin-left: 18%;
+}
+
+#conditions {
+    display: inline-block;
+    padding-left: 3%;
+}
+
+#agree {
+    width: max-content;
+    display: inline-block;
+    height: max-content;
+}
+
+#country_type_div {
+    display: inline-block;
+}
+
+#phone_number_div {
+    display: inline-block;
+}
+
+#conditions_div {
+    padding-left: 36%;
+}
+
+#conditions a:hover {
+    color: #84161e;
+}
+
+#conditions a:link {
+    color: #840c0d;
+}
+
+#conditions a {
+    text-decoration: none;
+}
+
+#modal_form {
+    width: 30%;
+    height: 30%;
+    border-radius: 5px;
+    border: 3px #000 solid;
+    top: 45%;
+    margin-top: -7%;
+    margin-left: -15%;
+    opacity: 0;
+    z-index: 5;
+    padding: 20px 10px;
+    position: fixed;
+    left: 50%;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#modal_form #modal_close {
+    float: right;
+    width: 8%;
+    height: 15%;
+    line-height: 46%;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 62px;
+    margin-top: -3%;
+}
+
+#overlay {
+    z-index: 3;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=80);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+}
+
+#modal_close:hover {
+    background: #ddd;
+    color: #fff;
+}
+
+#modal_name {
+    display: inline-block;
+    font-size: 20px;
+}
+
+#modal_content {
+    text-align: center;
+    padding: 25px;
+    font-size: 16px;
+}

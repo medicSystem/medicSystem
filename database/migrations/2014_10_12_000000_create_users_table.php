@@ -26,10 +26,10 @@ class CreateUsersTable extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email', 60);
-            $table->string('password', 12);
+            $table->string('password', 255);
             $table->string('type', 10);
             $table->date('birthday');
-            $table->integer('phone_number');
+            $table->string('phone_number', 14);
             $table->string('avatar', 100);
             $table->rememberToken();
             $table->timestamps();
