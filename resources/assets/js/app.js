@@ -7,10 +7,13 @@
 
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+/*import 'bootstrap/dist/css/bootstrap.css';*/
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './Apps';
+import registerServiceWorker from './registerServiceWorker';
+import { Router, Route, browserHistory } from 'react-router';
 
-require('./components/Example');
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();

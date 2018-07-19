@@ -1,0 +1,16 @@
+.news-container {
+    text-align: center;
+}
+
+.news-box {
+    margin: 1rem 0;
+    display: flex;
+}
+
+.news-card {
+    width: 250px;
+}
+
+.news-card:hover {
+    background-color: #e8ffed;
+}

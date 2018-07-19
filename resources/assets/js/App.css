@@ -1,0 +1,14 @@
+* {
+    margin: 0 auto;
+    user-select: none;
+}
+body {
+    background-color: gainsboro;
+}
+
+.content {
+    max-width: 900px;
+}
+.transparent {
+    background-color: transparent !important;
+}
