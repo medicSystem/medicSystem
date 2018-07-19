@@ -19,7 +19,6 @@
 // // Components
 @import "mixins/alert";
 @import "mixins/buttons";
-@import "mixins/caret";
 @import "mixins/pagination";
 @import "mixins/lists";
 @import "mixins/list-group";
@@ -36,6 +35,7 @@
 
 // // Layout
 @import "mixins/clearfix";
+// @import "mixins/navbar-align";
 @import "mixins/grid-framework";
 @import "mixins/grid";
 @import "mixins/float";

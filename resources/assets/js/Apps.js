@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import { BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Home from './components/Home';
 import Therapeutic from "./components/directory/Therapeutic";
 import Dental from "./components/directory/Dental";
@@ -14,13 +14,13 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Header />
+                    <Header/>
                     <Route exact path='/' component={Home}/>
                     <Route path='/therapeutic' component={Therapeutic}/>
                     <Route path='/dental' component={Dental}/>
-                    <Route path='/infection' component={Infection} />
-                    <Route path='/news' component={News} />
-                    <Footer />
+                    <Route path='/infection' component={Infection}/>
+                    <Route path='/news' component={News}/>
+                    <Footer/>
                 </div>
             </BrowserRouter>
         );

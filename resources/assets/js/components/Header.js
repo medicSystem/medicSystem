@@ -8,18 +8,18 @@ export default class Header extends Component {
     render() {
         var header = $(".navbar")
         $(window).scroll(
-            function() {
+            function () {
                 var top = $(this).scrollTop();
                 if (top >= 100) {
                     $('.navbar').removeClass("navbar-dark bg-dark");
                     $('.navbar').addClass("navbar-light bg-light");
-                } else if (top<=200) {
+                } else if (top <= 200) {
                     $('.navbar').removeClass("navbar-light bg-light");
                     $('.navbar').addClass("navbar-dark bg-dark");
                 }
-                $(document).ready(function(){
-                    $('.collapse ul li Link').click(function(){
-                        if($(this).parent().hasClass('active')){
+                $(document).ready(function () {
+                    $('.collapse ul li Link').click(function () {
+                        if ($(this).parent().hasClass('active')) {
                             return false;
                         }
                         $('.collapse ul li Link').removeClass('active');
@@ -37,9 +37,11 @@ export default class Header extends Component {
                 location.reload();
             })
         })
-        return(
+        return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="#"><img className="logo" height="40px" width="40px" src="https://api.icons8.com/download/08733e130578dfd047d6a49bdda07b37746510ac/Color/PNG/512/Very_Basic/plus-512.png"/>Medic Social</a>
+                <Link to='/' className="navbar-brand"><img className="logo" height="40px" width="40px"
+                                                           src="https://api.icons8.com/download/08733e130578dfd047d6a49bdda07b37746510ac/Color/PNG/512/Very_Basic/plus-512.png"/>Medic
+                    Social</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -47,7 +49,7 @@ export default class Header extends Component {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to='/' className="nav-link" >Home <span className="sr-only">(current)</span></Link>
+                            <Link to='/' className="nav-link">Home <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -67,10 +69,10 @@ export default class Header extends Component {
                         </li>
                         <li className="nav-item">
                             {/*<a className="nav-link" href="#">Profile</a>*/}
-                            <Link to = '/home' id='home' className='nav-link'>Profile</Link>
+                            <Link to='/home' id='home' className='nav-link'>Profile</Link>
                         </li>
                     </ul>
-                    <Link to = '/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>
+                    <Link to='/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>
                 </div>
             </nav>
         )
