@@ -3,10 +3,10 @@ import React, {Component} from 'react'
 import './style/header.css'
 import {Link} from 'react-router-dom';
 import $ from 'jquery';
+import axios from 'axios';
 
 export default class Header extends Component {
     render() {
-        var header = $(".navbar")
         $(window).scroll(
             function () {
                 var top = $(this).scrollTop();
@@ -57,9 +57,9 @@ export default class Header extends Component {
                                 Directory
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link to='/therapeutic' className="dropdown-item">Therapeutic department</Link>
-                                <Link to='/dental' className="dropdown-item">Dental department</Link>
-                                <Link to='/infection' className="dropdown-item">Infection department</Link>
+                                <Link to='/directory/therapeutic' className="dropdown-item">Therapeutic department</Link>
+                                <Link to='/directory/dental' className="dropdown-item">Dental department</Link>
+                                <Link to='/directory/infection' className="dropdown-item">Infection department</Link>
                                 <a className="dropdown-item">Department of ultrasound diagnostics</a>
                                 <a className="dropdown-item">Neurological department</a>
                                 <a className="dropdown-item">Ophthalmology department</a>
@@ -72,7 +72,7 @@ export default class Header extends Component {
                             <Link to='/home' id='home' className='nav-link'>Profile</Link>
                         </li>
                     </ul>
-                    <Link to='/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>
+                    {/*<Link to='/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>*/}
                 </div>
             </nav>
         )

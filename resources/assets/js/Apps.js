@@ -16,10 +16,10 @@ class App extends Component {
                 <div>
                     <Header/>
                     <Route exact path='/' component={Home}/>
-                    <Route path='/therapeutic' component={Therapeutic}/>
-                    <Route path='/dental' component={Dental}/>
-                    <Route path='/infection' component={Infection}/>
-                    <Route path='/news' component={News}/>
+                    <Route path='/directory/therapeutic' component={Therapeutic}/>
+                    <Route path='/directory/dental' component={Dental}/>
+                    <Route path='/directory/infection' component={Infection}/>
+                    <Route path='/directory/news' component={News}/>
                     <Footer/>
                 </div>
             </BrowserRouter>
