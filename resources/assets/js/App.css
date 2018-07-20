@@ -12,3 +12,6 @@ body {
 .transparent {
     background-color: transparent !important;
 }
+.carousel {
+    margin-top: 4.5rem;
+}
