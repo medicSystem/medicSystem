@@ -92,7 +92,7 @@
 @media screen and (max-width: 2560px) {
     #modal_close {
         float: right;
-        width: 7%;
+        width: 9%;
         height: max-content;
         line-height: 75%;
         border-radius: 50%;
@@ -326,6 +326,8 @@
     margin-bottom: 2%;
     padding-bottom: 1%;
     background-color: #343a40;
+    position: fixed;
+    width: 100%;
 }
 
 .title {
@@ -396,6 +398,8 @@
     margin-bottom: 2%;
     padding-bottom: 1%;
     background-color: #fefefe;
+    position: fixed;
+    width: 100%;
 }
 .title-scroll{
     display: inline-block;
@@ -404,4 +408,7 @@
 }
 .footer-title-scroll{
     color: rgba(0,0,0,.9);
+}
+.container{
+    padding-top: 7%;
 }
