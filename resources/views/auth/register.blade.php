@@ -145,7 +145,7 @@
 
                                 <div class="col-md-6">
                                     <input id="avatar" type="file" class="form-control" name="avatar"
-                                           value="{{ old('avatar') }}" required>
+                                           value="{{ old('avatar') }}" accept="image/*" required>
 
                                     @if ($errors->has('avatar'))
                                         <span class="help-block">
