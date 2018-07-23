@@ -24,6 +24,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="095fa27e-de85-447b-aaa5-e81a12ae1104" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,7 +58,11 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -354,7 +359,7 @@
     </factor>
     <factor id="completionFinishedType">
       <dailyData date="23-07-2018">
-        <observation name="cancelled" value="253,0" />
+        <observation name="cancelled" value="289,0" />
         <observation name="explicitSelect" value="41,0" />
         <observation name="typedSelect" value="6,0" />
       </dailyData>
@@ -366,7 +371,7 @@
     </factor>
     <factor id="completionUsage">
       <dailyData date="23-07-2018">
-        <observation name="count" value="300,0" />
+        <observation name="count" value="336,0" />
       </dailyData>
     </factor>
     <factor id="doubleFeature:explicitProximity">
@@ -689,7 +694,7 @@
       <workItem from="1532081293436" duration="191000" />
       <workItem from="1532081796740" duration="675000" />
       <workItem from="1532082498787" duration="15997000" />
-      <workItem from="1532333988322" duration="8054000" />
+      <workItem from="1532333988322" duration="8386000" />
     </task>
     <task id="LOCAL-00001" summary="create project with react">
       <created>1530197108328</created>
@@ -824,11 +829,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532346125631</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add node_modules to gitignore">
+      <created>1532348306255</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1532348306255</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141778000" />
+    <option name="totallyTimeSpent" value="142110000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -949,7 +961,8 @@
     <MESSAGE value="create footer for auth and other, amended error update the page" />
     <MESSAGE value="add white color if scroll window" />
     <MESSAGE value="fixed bugs in style.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bugs in style.js" />
+    <MESSAGE value="add node_modules to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="add node_modules to gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -957,13 +970,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/_variables.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="534">
@@ -1271,8 +1277,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
