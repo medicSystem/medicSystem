@@ -16,23 +16,23 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-static-top" id="header">
+    <nav class="navbar navbar-static-top header" id="header">
         <a class="navbar-brand" href="{{ url('/') }}"><img id="logo" height="40px" width="40px"
                                                            src="https://api.icons8.com/download/08733e130578dfd047d6a49bdda07b37746510ac/Color/PNG/512/Very_Basic/plus-512.png"/><span
-                    id="title">Medic
+                    id="title" class="title">Medic
                 Social</span></a>
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="nav navbar-nav navbar-right ul-nav">
                 <!-- Authentication Links -->
                 @guest
                     <div class="btn-group" role="group">
-                        <li class="li-nav"><a href="{{ route('login') }}" class="btn btn-secondary log-button"
+                        <li class="li-nav nav-item"><a href="{{ route('login') }}" class="btn btn-secondary log-button"
                                               id="login">Login</a></li>
-                        <li class="li-nav"><a href="{{ route('register') }}" class="btn btn-secondary log-button"
+                        <li class="li-nav nav-item"><a href="{{ route('register') }}" class="btn btn-secondary log-button"
                                               id="register">Register</a></li>
                     </div>
                 @else
-                    <li class="dropdown">
+                    <li class="dropdown nav-item">
                         <a href="#" class="dropdown-toggle log-button drop-btn" data-toggle="dropdown" role="button"
                            aria-expanded="false" aria-haspopup="true" v-pre>
                             {{ Auth::user()->last_name }} <span class="caret"></span>
@@ -60,12 +60,12 @@
 
     @yield('content')
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="footer-element navbar-brand"><a href="callto:000000000" style="color: #007bff;">+000000000</a>
             <br>
             <a href="mailto:example@example.example" style="color: #007bff;">example@example.example</a>
         </div>
-        <div class="footer-element navbar-brand" style="color: #fff;"><p>©MEDIC SOCIAL 2018</p></div>
+        <div class="footer-element navbar-brand footer-title" id="footer-title"><p>©MEDIC SOCIAL 2018</p></div>
     </footer>
 </div>
 
