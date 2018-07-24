@@ -58395,7 +58395,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 900px;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n.carousel {\r\n    margin-top: 4.5rem;\r\n}", ""]);
+exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 900px;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n.carousel {\r\n    margin-top: 4.5rem;\r\n}\r\n\r\n.bg-light {\r\n    transition: .6s;\r\n}\r\n\r\n.bg-dark {\r\n    transition: .6s;\r\n}\r\n", ""]);
 
 // exports
 

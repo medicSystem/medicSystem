@@ -15,3 +15,11 @@ body {
 .carousel {
     margin-top: 4.5rem;
 }
+
+.bg-light {
+    transition: .6s;
+}
+
+.bg-dark {
+    transition: .6s;
+}
