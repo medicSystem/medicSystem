@@ -8358,8 +8358,11 @@ button.close {
         margin-top: 4rem;
     }
     .footer-element {
-        padding: 0;
-        width: 100%;
+        padding: 0 !important;
+        width: 60% !important;
+    }
+    .footer {
+        height: 11%;
     }
 }
 
@@ -8371,6 +8374,7 @@ button.close {
 @media screen and (max-width: 366px) {
     .row {
         margin-top: 8rem;
+        margin-bottom: 12rem;
     }
     .btn-group {
         left: 25%;
@@ -8378,4 +8382,11 @@ button.close {
     .navbar-brand {
         padding: 1px 50px;
     }
+    .footer {
+        height: 15% !important;
+    }
+    .footer-scroll {
+        height: 15% !important;
+    }
 }
+

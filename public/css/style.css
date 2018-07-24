@@ -328,6 +328,7 @@
     background-color: #343a40;
     position: fixed;
     width: 100%;
+    transition: .6s;
 }
 
 .title {
@@ -372,6 +373,7 @@
     bottom: 0;
     left: 0;
     z-index: 1030;
+    transition: .6s;
 }
 .footer-element{
     display: inline-block;
@@ -393,6 +395,7 @@
     bottom: 0;
     left: 0;
     z-index: 1030;
+    transition: .6s;
 }
 .header-scroll{
     margin-bottom: 2%;
@@ -400,6 +403,7 @@
     background-color: #fefefe;
     position: fixed;
     width: 100%;
+    transition: .6s;
 }
 .title-scroll{
     display: inline-block;
