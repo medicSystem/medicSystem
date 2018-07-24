@@ -61,11 +61,11 @@
     @yield('content')
 
     <footer class="footer" id="footer">
-        <div class="footer-element navbar-brand"><a href="callto:000000000" style="color: #007bff;">+000000000</a>
+        <div class="footer-element navbar-brand"><a href="callto:000000000" class="link fl-right num">+000000000</a>
             <br>
-            <a href="mailto:example@example.example" style="color: #007bff;">example@example.example</a>
+            <a href="mailto:example@example.example" class="link fl-right">example@example.example</a>
         </div>
-        <div class="footer-element navbar-brand footer-title" id="footer-title"><p>©MEDIC SOCIAL 2018</p></div>
+        <div class="footer-element navbar-brand footer-title" id="footer-title"><p class="fl-right">©MEDIC SOCIAL 2018</p></div>
     </footer>
 </div>
 
