@@ -45,7 +45,7 @@ $(document).ready(function () {
                 function () {
                     $(this).css('display', 'none');
                     $('#overlay').fadeOut(400);
-                }
+                    }
             );
     });
     $('#country_type').on('click', function (e) {
@@ -56,5 +56,16 @@ $(document).ready(function () {
                 $('#phone_number').attr('disabled', false).val('+7').attr('pattern', "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$").attr('maxlength', 12)
             }
         }
+    })
+    $('.drop-btn').on('click', function () {
+        var display = $('.dropdown-menu').css("display")
+        if (display == 'none'){
+            $('.dropdown-menu').css({"display": "block"})
+        }else{
+            $('.dropdown-menu').css({"display": "none"})
+        }
+    })
+    $('.drop-btn').on('blur', function () {
+            $('.dropdown-menu').css({"display": "none"})
     })
 });
