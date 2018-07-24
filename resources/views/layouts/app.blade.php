@@ -21,7 +21,7 @@
                                                            src="https://api.icons8.com/download/08733e130578dfd047d6a49bdda07b37746510ac/Color/PNG/512/Very_Basic/plus-512.png"/><span
                     id="title" class="title">Medic
                 Social</span></a>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="navbar-collapse" id="navbarNavDropdown">
             <ul class="nav navbar-nav navbar-right ul-nav">
                 <!-- Authentication Links -->
                 @guest
