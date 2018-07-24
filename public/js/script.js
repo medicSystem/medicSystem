@@ -44,7 +44,7 @@ $(document).ready(function () {
                 function () {
                     $(this).css('display', 'none');
                     $('#overlay').fadeOut(400);
-                }
+                    }
             );
     });
     $('#country_type').on('click', function (e) {
