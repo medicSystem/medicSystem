@@ -75,4 +75,16 @@ $(document).ready(function () {
             $('.dropdown-menu').css({"display": "none"})
         })
     })
+    $(window).on('load resize', function() {
+        var width = $(window).width();
+        if (width >= 525){
+            $('#footer-title').addClass("fl-right").css({"padding-right": "1.6%;"})
+            $('#footer-email').addClass("fl-right").css({"padding-right": "1.6%;"})
+            $('#footer-num').addClass("fl-right")
+        }else{
+            $('#footer-title').removeClass("fl-right")
+            $('#footer-email').removeClass("fl-right")
+            $('#footer-num').removeClass("fl-right")
+        }
+    })
 });
