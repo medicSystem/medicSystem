@@ -5,6 +5,7 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Intervention\Image\Facades\Image as ImageInt;
 
 trait RegistersUsers
 {
@@ -23,19 +24,47 @@ trait RegistersUsers
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        try {
+            $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
+            if (file_exists($dirName) && is_dir($dirName)) {
+                $file = $request->file('avatar');
+                $path = $file->store('upload');
+                $img = ImageInt::make($file);
+                $img->resize(200, 200)->save($path);
+            } else {
+                mkdir($dirName);
+                $file = $request->file('avatar');
+                $path = $file->store('upload');
+                $img = ImageInt::make($file);
+                $img->resize(200, 200)->save($path);
+            }
+        } catch (Exception $exception) {
+            echo $exception->getMessage();
+            die();
+        }
+        $name = substr($path, strpos($path, '/') + 1);
+
+        event(new Registered($user = $this->create($request->all(), $name)));
+
+        $bool = $this->check($request->all());
+
+        if (!$bool) {
+            $delete = public_path() . "/" . $path;
+            unlink($delete);
+        }
 
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath());
+
     }
 
     /**
@@ -51,8 +80,8 @@ trait RegistersUsers
     /**
      * The user has been registered.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param  \Illuminate\Http\Request $request
+     * @param  mixed $user
      * @return mixed
      */
     protected function registered(Request $request, $user)

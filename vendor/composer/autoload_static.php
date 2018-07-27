@@ -9,9 +9,9 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -52,6 +52,7 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Spatie\\Glide\\' => 13,
         ),
         'R' => 
         array (
@@ -72,6 +73,7 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         ),
         'L' => 
         array (
+            'League\\Glide\\' => 13,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
@@ -99,6 +101,7 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'DeepCopy\\' => 9,
+            'Dan\\UploadImage\\' => 16,
         ),
         'C' => 
         array (
@@ -189,6 +192,10 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Spatie\\Glide\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-glide/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -220,6 +227,10 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'League\\Glide\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/glide/src',
         ),
         'League\\Flysystem\\' => 
         array (
@@ -268,6 +279,10 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Dan\\UploadImage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kirill-dan/uploadimage/src',
         ),
         'Cron\\' => 
         array (
@@ -375,6 +390,12 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'Cron\\MinutesField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
+        'Dan\\UploadImage\\Controllers\\UploadImageController' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/Controllers/UploadImageController.php',
+        'Dan\\UploadImage\\Exceptions\\UploadImageException' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/Exceptions/UploadImageException.php',
+        'Dan\\UploadImage\\UploadImage' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/UploadImage.php',
+        'Dan\\UploadImage\\UploadImageFacade' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/UploadImageFacade.php',
+        'Dan\\UploadImage\\UploadImageGet' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/UploadImageGet.php',
+        'Dan\\UploadImage\\UploadImageServiceProvider' => __DIR__ . '/..' . '/kirill-dan/uploadimage/src/UploadImageServiceProvider.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -1955,6 +1976,39 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'League\\Glide\\Api\\Api' => __DIR__ . '/..' . '/league/glide/src/Api/Api.php',
+        'League\\Glide\\Api\\ApiInterface' => __DIR__ . '/..' . '/league/glide/src/Api/ApiInterface.php',
+        'League\\Glide\\Filesystem\\FileNotFoundException' => __DIR__ . '/..' . '/league/glide/src/Filesystem/FileNotFoundException.php',
+        'League\\Glide\\Filesystem\\FilesystemException' => __DIR__ . '/..' . '/league/glide/src/Filesystem/FilesystemException.php',
+        'League\\Glide\\Manipulators\\Background' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Background.php',
+        'League\\Glide\\Manipulators\\BaseManipulator' => __DIR__ . '/..' . '/league/glide/src/Manipulators/BaseManipulator.php',
+        'League\\Glide\\Manipulators\\Blur' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Blur.php',
+        'League\\Glide\\Manipulators\\Border' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Border.php',
+        'League\\Glide\\Manipulators\\Brightness' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Brightness.php',
+        'League\\Glide\\Manipulators\\Contrast' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Contrast.php',
+        'League\\Glide\\Manipulators\\Crop' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Crop.php',
+        'League\\Glide\\Manipulators\\Encode' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Encode.php',
+        'League\\Glide\\Manipulators\\Filter' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Filter.php',
+        'League\\Glide\\Manipulators\\Flip' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Flip.php',
+        'League\\Glide\\Manipulators\\Gamma' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Gamma.php',
+        'League\\Glide\\Manipulators\\Helpers\\Color' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Helpers/Color.php',
+        'League\\Glide\\Manipulators\\Helpers\\Dimension' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Helpers/Dimension.php',
+        'League\\Glide\\Manipulators\\ManipulatorInterface' => __DIR__ . '/..' . '/league/glide/src/Manipulators/ManipulatorInterface.php',
+        'League\\Glide\\Manipulators\\Orientation' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Orientation.php',
+        'League\\Glide\\Manipulators\\Pixelate' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Pixelate.php',
+        'League\\Glide\\Manipulators\\Sharpen' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Sharpen.php',
+        'League\\Glide\\Manipulators\\Size' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Size.php',
+        'League\\Glide\\Manipulators\\Watermark' => __DIR__ . '/..' . '/league/glide/src/Manipulators/Watermark.php',
+        'League\\Glide\\Responses\\PsrResponseFactory' => __DIR__ . '/..' . '/league/glide/src/Responses/PsrResponseFactory.php',
+        'League\\Glide\\Responses\\ResponseFactoryInterface' => __DIR__ . '/..' . '/league/glide/src/Responses/ResponseFactoryInterface.php',
+        'League\\Glide\\Server' => __DIR__ . '/..' . '/league/glide/src/Server.php',
+        'League\\Glide\\ServerFactory' => __DIR__ . '/..' . '/league/glide/src/ServerFactory.php',
+        'League\\Glide\\Signatures\\Signature' => __DIR__ . '/..' . '/league/glide/src/Signatures/Signature.php',
+        'League\\Glide\\Signatures\\SignatureException' => __DIR__ . '/..' . '/league/glide/src/Signatures/SignatureException.php',
+        'League\\Glide\\Signatures\\SignatureFactory' => __DIR__ . '/..' . '/league/glide/src/Signatures/SignatureFactory.php',
+        'League\\Glide\\Signatures\\SignatureInterface' => __DIR__ . '/..' . '/league/glide/src/Signatures/SignatureInterface.php',
+        'League\\Glide\\Urls\\UrlBuilder' => __DIR__ . '/..' . '/league/glide/src/Urls/UrlBuilder.php',
+        'League\\Glide\\Urls\\UrlBuilderFactory' => __DIR__ . '/..' . '/league/glide/src/Urls/UrlBuilderFactory.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -3161,6 +3215,10 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Spatie\\Glide\\Exceptions\\SourceFileDoesNotExist' => __DIR__ . '/..' . '/spatie/laravel-glide/src/Exceptions/SourceFileDoesNotExist.php',
+        'Spatie\\Glide\\GlideImage' => __DIR__ . '/..' . '/spatie/laravel-glide/src/GlideImage.php',
+        'Spatie\\Glide\\GlideImageFacade' => __DIR__ . '/..' . '/spatie/laravel-glide/src/GlideImageFacade.php',
+        'Spatie\\Glide\\GlideServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-glide/src/GlideServiceProvider.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Command\\Command' => __DIR__ . '/..' . '/symfony/console/Command/Command.php',
         'Symfony\\Component\\Console\\Command\\HelpCommand' => __DIR__ . '/..' . '/symfony/console/Command/HelpCommand.php',

@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+/*use Intervention\Image\Facades\Image as ImageInt;
+use UploadImage;
+use Dan\UploadImage\Exceptions\UploadImageException;
+use Illuminate\Support\Facades\Storage;*/
 
 class RegisterController extends Controller
 {
@@ -42,7 +46,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -63,10 +67,10 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data, string $photoName)
     {
         return User::create([
             'first_name' => $data['first_name'],
@@ -76,7 +80,39 @@ class RegisterController extends Controller
             'type' => $data['type'],
             'birthday' => $data['birthday'],
             'phone_number' => $data['phone_number'],
-            'avatar' => $data['avatar'],
+            'avatar' => $photoName,
         ]);
     }
+
+    protected function check(array $data){
+       $users = User::where('email', $data['email'])->get();
+       $bool = false;
+       foreach ($users as $user){
+           if ($user->id == null){
+               $bool = false;
+           } else{
+               $bool = true;
+           }
+       }
+       return $bool;
+    }
+/*    protected function uploadImage(array $file, array $data)
+    {
+        $dirName = public_path()."\upload";
+        if (file_exists($dirName) && is_dir($dirName)) {
+            $filename = $data['avatar'];
+            $img = ImageInt::make($file['avatar']);
+            $img->resize(200, 200)->save($dirName. "/". $filename);
+            Storage::putFileAs($dirName, $file, $filename);
+            die();
+        } else {
+            mkdir($dirName);
+            die();
+            $dirNameUpload = "/public/upload";
+            $file = $request->file('avatar');
+            $filename = $file->getFilename();
+            $filenameOriginal = $file->getClientOriginalName() . $file->getClientOriginalExtension();
+            Storage::putFileAs($dirNameUpload, $file, $filenameOriginal);
+        }
+    }*/
 }

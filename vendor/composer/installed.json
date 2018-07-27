@@ -777,6 +777,46 @@
         ]
     },
     {
+        "name": "kirill-dan/uploadimage",
+        "version": "v2.0.1",
+        "version_normalized": "2.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kirill-dan/uploadimage.git",
+            "reference": "24587b7e2f50b91031ae62ed4132023624671c1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kirill-dan/uploadimage/zipball/24587b7e2f50b91031ae62ed4132023624671c1c",
+            "reference": "24587b7e2f50b91031ae62ed4132023624671c1c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.0",
+            "spatie/laravel-glide": "^3.0"
+        },
+        "time": "2017-09-15T12:49:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Dan\\UploadImage\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kirill Danilevsky",
+                "email": "k.danilevsky@gmail.com"
+            }
+        ],
+        "description": "Upload images to the content type folder.",
+        "homepage": "https://github.com/kirill-dan/uploadimage"
+    },
+    {
         "name": "laravel/framework",
         "version": "v5.5.40",
         "version_normalized": "5.5.40.0",
@@ -1061,6 +1101,69 @@
             "s3",
             "sftp",
             "storage"
+        ]
+    },
+    {
+        "name": "league/glide",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/thephpleague/glide.git",
+            "reference": "bd29f65c9666abd72e66916e0573801e435ca878"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thephpleague/glide/zipball/bd29f65c9666abd72e66916e0573801e435ca878",
+            "reference": "bd29f65c9666abd72e66916e0573801e435ca878",
+            "shasum": ""
+        },
+        "require": {
+            "intervention/image": "^2.1",
+            "league/flysystem": "^1.0",
+            "php": "^5.4 | ^7.0",
+            "psr/http-message": "^1.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9",
+            "phpunit/php-token-stream": "^1.4",
+            "phpunit/phpunit": "~4.4"
+        },
+        "time": "2018-02-12T23:28:25+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "League\\Glide\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jonathan Reinink",
+                "email": "jonathan@reinink.ca",
+                "homepage": "http://reinink.ca"
+            }
+        ],
+        "description": "Wonderfully easy on-demand image manipulation library with an HTTP based API.",
+        "homepage": "http://glide.thephpleague.com",
+        "keywords": [
+            "ImageMagick",
+            "editing",
+            "gd",
+            "image",
+            "imagick",
+            "league",
+            "manipulation",
+            "processing"
         ]
     },
     {
@@ -3138,6 +3241,61 @@
         ],
         "description": "Library that helps with managing the version number of Git-hosted PHP projects",
         "homepage": "https://github.com/sebastianbergmann/version"
+    },
+    {
+        "name": "spatie/laravel-glide",
+        "version": "3.2.1",
+        "version_normalized": "3.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/laravel-glide.git",
+            "reference": "261800d0cbb650ff2c74f7c2f921582fdba24847"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/laravel-glide/zipball/261800d0cbb650ff2c74f7c2f921582fdba24847",
+            "reference": "261800d0cbb650ff2c74f7c2f921582fdba24847",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.3.0|~5.4.0|~5.5.0|~5.6.0",
+            "league/glide": "^1.0",
+            "php": "^7.0"
+        },
+        "require-dev": {
+            "orchestra/testbench": "~3.3.0|~3.4.0|~5.5.0|~5.6.0",
+            "phpunit/phpunit": "6.*|7.*"
+        },
+        "time": "2018-02-08T13:50:04+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Spatie\\Glide\\GlideServiceProvider"
+                ],
+                "aliases": {
+                    "GlideImage": "Spatie\\Glide\\GlideImageFacade"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\Glide\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be"
+            }
+        ],
+        "description": "Easily convert images with Glide",
+        "homepage": "https://github.com/spatie/laravel-glide"
     },
     {
         "name": "swiftmailer/swiftmailer",
