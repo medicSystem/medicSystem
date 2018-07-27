@@ -15,4 +15,5 @@ class Directory extends Model
     public function diseaseHistory(){
         return $this->hasMany('App\Disease_history', 'directories_id', 'id');
     }
+
 }
