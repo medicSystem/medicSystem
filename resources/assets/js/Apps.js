@@ -19,7 +19,7 @@ class App extends Component {
                     <Route path='/directory/therapeutic' component={Therapeutic}/>
                     <Route path='/directory/dental' component={Dental}/>
                     <Route path='/directory/infection' component={Infection}/>
-                    <Route path='/directory/news' component={News}/>
+                    <Route path='/main/news' component={News}/>
                     <Footer/>
                 </div>
             </BrowserRouter>
