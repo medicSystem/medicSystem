@@ -13,8 +13,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        $this->call(UsersSeeder::class);
         $this->call(NewsTableSeeder::class);
+        $this->call(BanListSeeder::class);
+        $this->call(MedicalCardsSeeder::class);
         $this->call(DirectoriesTableSeeder::class);
+        $this->call(DoctorTypesSeeder::class);
+        $this->call(DoctorsSeeder::class);
+        $this->call(CouponsSeeder::class);
+        $this->call(MessagesSeeder::class);
+        $this->call(DiseaseHistoriesSeeder::class);
         Model::reguard();
     }
 }
