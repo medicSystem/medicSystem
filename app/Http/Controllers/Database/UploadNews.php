@@ -15,7 +15,7 @@ class UploadNews
 {
     public function getNews()
     {
-        $news = News::all();
+        $news = News::orderByDesc('updated_at')->get();
         $encodeNews = json_encode($news);
         return $encodeNews;
     }
