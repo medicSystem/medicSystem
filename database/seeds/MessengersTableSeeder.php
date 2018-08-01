@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Doctor;
 use App\Patient;
 
-class CouponsSeeder extends Seeder
+class MessengersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +16,9 @@ class CouponsSeeder extends Seeder
         $patient = Patient::all();
         $doctor = Doctor::find(1)->id;
         foreach ($patient as $patients) {
-            DB::table('coupons')->insert([
-                'doctors_id'=> $doctor,
+            DB::table('messengers')->insert([
+                'doctors_id' => $doctor,
                 'patients_id' => $patients->id,
-                'date' => $this->rendDate(),
-                'status' => str_random(10),
                 'created_at' => $this->rendDateTime(),
                 'updated_at' => $this->rendDateTime(),
             ]);

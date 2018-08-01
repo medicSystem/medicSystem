@@ -29,10 +29,10 @@ class CreateDiseaseHistoriesTable extends Migration
             $table->unsignedInteger('medical_cards_id');
             $table->unsignedInteger('doctors_id');
             $table->timestamps();
-            $table->foreign('medical_cards_id')->references('id')-> on('medical_cards');
-            $table->foreign('doctors_id')->references('id')-> on('doctors');
+            $table->foreign('medical_cards_id')->references('id')-> on('medical_cards')->onDelete('cascade');
+            $table->foreign('doctors_id')->references('id')-> on('doctors')->onDelete('cascade');
             //DB::unprepared('ALTER TABLE `disease_histories` ADD FOREIGN KEY ( `doctors_id`) REFERENCES `doctors`(`id`)');
-            $table->foreign('directories_id')->references('id')-> on('directories');
+            $table->foreign('directories_id')->references('id')-> on('directories')->onDelete('cascade');
             //$table->unique(["id"], 'id_UNIQUE');
         });
     }

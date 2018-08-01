@@ -25,7 +25,7 @@ class CreatePatientsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('users_id');
             $table->timestamps();
-            $table->foreign('users_id')->references('id')-> on('users');
+            $table->foreign('users_id')->references('id')-> on('users')->onDelete('cascade');
             //$table->unique(["id"], 'id_UNIQUE');
         });
     }

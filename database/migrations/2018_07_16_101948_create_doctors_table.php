@@ -29,9 +29,9 @@ class CreateDoctorsTable extends Migration
             $table->unsignedInteger('users_id');
             $table->unsignedInteger('doctor_types_id');
             $table->timestamps();
-            $table->foreign('users_id')->references('id')-> on('users');
+            $table->foreign('users_id')->references('id')-> on('users')->onDelete('cascade');
             //DB::unprepared('ALTER TABLE `doctors` ADD FOREIGN KEY ( `doctor_types_id`) REFERENCES `doctor_types`(`id`)');
-            $table->foreign('doctor_types_id')->references('id')-> on('doctor_types');
+            $table->foreign('doctor_types_id')->references('id')-> on('doctor_types')->onDelete('cascade');
             //$table->unique(["id"], 'id_UNIQUE');
         });
     }

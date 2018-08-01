@@ -26,8 +26,8 @@ class CreateMessengersTable extends Migration
             $table->unsignedInteger('doctors_id');
             $table->unsignedInteger('patients_id');
             $table->timestamps();
-            $table->foreign('patients_id')->references('id')-> on('patients');
-            $table->foreign('doctors_id')->references('id')-> on('doctors');
+            $table->foreign('patients_id')->references('id')-> on('patients')->onDelete('cascade');
+            $table->foreign('doctors_id')->references('id')-> on('doctors')->onDelete('cascade');
             // $table->unique(["id"], 'id_UNIQUE');
         });
     }

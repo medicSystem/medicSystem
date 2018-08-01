@@ -29,7 +29,7 @@ class CreateMedicalCardsTable extends Migration
             $table->text('allergy');
             $table->unsignedInteger('patients_id');
             $table->timestamps();
-            $table->foreign('patients_id')->references('id')-> on('patients');
+            $table->foreign('patients_id')->references('id')-> on('patients')->onDelete('cascade');
             $table->unique(["patients_id"], 'patients_id_UNIQUE');
         });
     }

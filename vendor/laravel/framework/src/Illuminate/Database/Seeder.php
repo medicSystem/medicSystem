@@ -127,7 +127,15 @@ abstract class Seeder
     {
         $start = mktime(0, 0, 0, 2006, 1, 1);
         $end = time();
-        $randomStamp = rand($start, $end);
+        $randomStamp = mt_rand($start, $end);
+        return date('Y-m-d H:i:s', $randomStamp);
+    }
+
+    public function rendDate()
+    {
+        $start = mktime(0, 0, 0, 2006, 1, 1);
+        $end = time();
+        $randomStamp = mt_rand($start, $end);
         return date('Y-m-d', $randomStamp);
     }
 }

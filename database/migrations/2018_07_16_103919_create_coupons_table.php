@@ -28,8 +28,8 @@ class CreateCouponsTable extends Migration
             $table->unsignedInteger('patients_id');
             $table->unsignedInteger('doctors_id');
             $table->timestamps();
-            $table->foreign('doctors_id')->references('id')-> on('doctors');
-            $table->foreign('patients_id')->references('id')-> on('patients');
+            $table->foreign('doctors_id')->references('id')-> on('doctors')->onDelete('cascade');
+            $table->foreign('patients_id')->references('id')-> on('patients')->onDelete('cascade');
             //$table->unique(["id"], 'id_UNIQUE');
 
             $table->unique(["date"], 'date_UNIQUE');

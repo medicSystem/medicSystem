@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Messenger;
 
 class MessagesSeeder extends Seeder
 {
@@ -11,11 +12,15 @@ class MessagesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('messages')->insert([
-            'message' => str_random(100),
-            'send_datetime' => $this->rendDateTime(),
-            'created_at' => $this->rendDateTime(),
-            'updated_at' => $this->rendDateTime(),
-        ]);
+        $messenger = Messenger::all();
+        foreach ($messenger as $messengers) {
+            DB::table('messages')->insert([
+                'messengers_id' => $messengers->id,
+                'message' => str_random(100),
+                'send_datetime' => $this->rendDateTime(),
+                'created_at' => $this->rendDateTime(),
+                'updated_at' => $this->rendDateTime(),
+            ]);
+        }
     }
 }
