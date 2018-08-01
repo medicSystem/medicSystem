@@ -42,12 +42,8 @@ export default class NewsBox extends Component {
                         </div>
                     </div>
                 </div>
-                <button className='btn btn-success'>Learn more</button>
-                <div className='btn btn-success'>
-                    <Link to='/main/news'>news</Link>
-                </div>
+                    <Link className='btn btn-success' to='/main/news'>Read more</Link>
             </div>
-
         )
     }
 }

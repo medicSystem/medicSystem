@@ -1,5 +1,8 @@
-.directory-nav {
-    margin-top: 4rem;
-    position: absolute;
-
+/*.directory-nav {*/
+    /*position: absolute;*/
+/*}*/
+@media screen and (max-width: 1023px){
+    .directory-nav {
+        display: none;
+    }
 }

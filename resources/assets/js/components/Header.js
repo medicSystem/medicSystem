@@ -37,6 +37,13 @@ export default class Header extends Component {
                 location.reload();
             })
         })
+        //hide collapce
+        $(window).scroll(function() {
+            $('.show').collapse('hide');
+        });
+        $('#navbarNavDropdown .hiden').click(function() {
+            $('#navbarNavDropdown').collapse('hide');
+        });
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <Link to='/' className="navbar-brand"><img className="logo" height="40px" width="40px"
@@ -49,7 +56,7 @@ export default class Header extends Component {
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link to='/' className="nav-link">Home <span className="sr-only">(current)</span></Link>
+                            <Link to='/' className="nav-link hiden">Home <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -57,9 +64,9 @@ export default class Header extends Component {
                                 Directory
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link to='/directory/therapeutic' className="dropdown-item">Therapeutic department</Link>
-                                <Link to='/directory/dental' className="dropdown-item">Dental department</Link>
-                                <Link to='/directory/infection' className="dropdown-item">Infection department</Link>
+                                <Link to='/directory/therapeutic' className="dropdown-item hiden">Therapeutic department</Link>
+                                <Link to='/directory/dental' className="dropdown-item hiden">Dental department</Link>
+                                <Link to='/directory/infection' className="dropdown-item hiden">Infection department</Link>
                                 <a className="dropdown-item">Department of ultrasound diagnostics</a>
                                 <a className="dropdown-item">Neurological department</a>
                                 <a className="dropdown-item">Ophthalmology department</a>
@@ -69,7 +76,7 @@ export default class Header extends Component {
                         </li>
                         <li className="nav-item">
                             {/*<a className="nav-link" href="#">Profile</a>*/}
-                            <Link to='/home' id='home' className='nav-link'>Profile</Link>
+                            <Link to='/home' id='home' className='nav-link hiden'>Profile</Link>
                         </li>
                     </ul>
                     {/*<Link to='/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>*/}

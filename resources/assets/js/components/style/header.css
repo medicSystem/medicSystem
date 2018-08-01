@@ -28,6 +28,13 @@
 .foot-elm{
     float: left;
 }
+
+@media screen and (max-width: 374px){
+    .dropdown-menu {
+        max-width: 290px;
+        border: none;
+    }
+}
 /*@media screen and (max-width: 767px) {*/
     /*.sign-in {*/
         /*position: relative !important;*/

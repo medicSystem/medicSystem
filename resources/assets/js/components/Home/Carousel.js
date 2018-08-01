@@ -13,16 +13,28 @@ export default class Carousel extends Component {
                 </ol>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img className="d-block w-100" src="http://www.apsaidal.com/wp-content/uploads/2017/08/12.jpg"
+                        <img className="d-block w-100" src="https://images.adsttc.com/media/images/594a/2a4a/b22e/38e9/2900/00a6/large_jpg/Cherry_Hospital-1.jpg?1498032701"
                              alt="First slide" />
+                        <div className="carousel-caption d-none d-md-block">
+                            <h1>У нас очень красиво</h1>
+                            <p>Вам будет очень комфортно у нас</p>
+                        </div>
                     </div>
                     <div className="carousel-item">
-                        <img className="d-block w-100" src="http://www.apsaidal.com/wp-content/uploads/2017/08/12.jpg"
+                        <img className="d-block w-100" src="https://i.ytimg.com/vi/nII0EiAdylA/maxresdefault.jpg"
                              alt="Second slide" />
+                        <div className="carousel-caption d-none d-md-block">
+                            <h1>Мы вырежем ваши почки</h1>
+                            <p>И продадим их по лучшей цене</p>
+                        </div>
                     </div>
                     <div className="carousel-item">
-                        <img className="d-block w-100" src="http://www.apsaidal.com/wp-content/uploads/2017/08/12.jpg"
+                        <img className="d-block w-100" src="https://www.advancecairns.com/wp-content/uploads/2017/05/cairns-hospital.jpg"
                              alt="Third slide" />
+                        <div className="carousel-caption d-none d-md-block">
+                            <h1>У нас очень уютно</h1>
+                            <p>Но у нас нет сердца...</p>
+                        </div>
                     </div>
                 </div>
                 <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
