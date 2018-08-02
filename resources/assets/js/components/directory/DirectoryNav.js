@@ -12,22 +12,21 @@ export default class DirectoryNav extends Component {
         };
     }
     componentDidMount() {
-        axios.get('/directories/category')
-            .then(response =>
-            this.setState({categories: response.data}))
+        axios.get('/dictionary/categoryName')
+            .then((response) => {
+                this.setState({categories: response.data})
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
     }
     render(){
         return (
             <div className='navigation-panel'>
                 <div className='list-group directory-nav'>
-                    <Link className="list-group-item list-group-item-action" to='/directory/therapeutic'>Therapeutic Department</Link>
-                    <Link className="list-group-item list-group-item-action" to='/directory/dental'>Dental department</Link>
-                    <Link className="list-group-item list-group-item-action" to='/directory/infection'>Infection department</Link>
                     {this.state.categories.map( categories =>
                         <div>
-                            <Link className="list-group-item list-group-item-action" to='/directory/therapeutic'>{category.category}</Link>
-                            <Link className="list-group-item list-group-item-action" to='/directory/dental'>{category.category}</Link>
-                            <Link className="list-group-item list-group-item-action" to='/directory/infection'>{category.category}</Link>
+                            <Link className="list-group-item list-group-item-action" to={/directory/+categories}>{categories}</Link>
                         </div>
                     )}
                 </div>
