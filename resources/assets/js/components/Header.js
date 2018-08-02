@@ -39,7 +39,7 @@ export default class Header extends Component {
         })
         //hide collapce
         $(window).scroll(function() {
-            $('.show').collapse('hide');
+            $('.navbar-collapse').collapse('hide');
         });
         $('#navbarNavDropdown .hiden').click(function() {
             $('#navbarNavDropdown').collapse('hide');

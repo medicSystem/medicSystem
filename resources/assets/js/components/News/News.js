@@ -23,8 +23,6 @@ export default class News extends Component {
             });
     }
     render() {
-        let newsContent = $('#1');
-
         return(
             <div>
                 <div className='content'>
