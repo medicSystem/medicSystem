@@ -18692,7 +18692,8 @@ var DirectoryNav = function (_Component) {
         var _this = _possibleConstructorReturn(this, (DirectoryNav.__proto__ || Object.getPrototypeOf(DirectoryNav)).call(this, props));
 
         _this.state = {
-            categories: []
+            categories: [],
+            dictionary: []
         };
         return _this;
     }
@@ -18708,7 +18709,9 @@ var DirectoryNav = function (_Component) {
                 var newUrl = url.split('/');
                 var string = ['/dictionary/' + newUrl[2]];
                 __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(string.join()).then(function (response) {
-                    alert(response.data);
+                    _this2.setState({ dictionary: response.data });
+                }).catch(function (error) {
+                    console.log(error);
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -18718,8 +18721,11 @@ var DirectoryNav = function (_Component) {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'navigation-panel' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'list-group directory-nav' }, this.state.categories.map(function (categories) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { className: 'list-group-item list-group-item-action', to: /directory/ + categories }, categories));
-            })));
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { className: 'list-group-item list-group-item-action',
+                    to: /directory/ + categories }, categories));
+            })), this.state.dictionary.map(function (dictionary) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, dictionary.disease_name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, dictionary.treatment), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, dictionary.symptoms));
+            }));
         }
     }]);
 

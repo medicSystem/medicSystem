@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 /*import 'bootstrap/dist/css/bootstrap.css';*/
 import '../style/directorynav.css'
@@ -9,34 +9,47 @@ export default class DirectoryNav extends Component {
         super(props);
         this.state = {
             categories: [],
+            dictionary: [],
         };
     }
+
     componentDidMount() {
         axios.get('/dictionary/categoryName')
             .then((response) => {
                 this.setState({categories: response.data});
                 let url = window.location.pathname;
                 let newUrl = url.split('/');
-                let string = ['/dictionary/'+ newUrl[2]];
+                let string = ['/dictionary/' + newUrl[2]];
                 axios.get(string.join())
-                    .then((response)=>{
-                        alert(response.data)
-                    });
+                    .then((response) => {
+                        this.setState({dictionary: response.data});
+                    }).catch((error) => {
+                            console.log(error);
+                });
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error);
             });
     }
-    render(){
+
+    render() {
         return (
             <div className='navigation-panel'>
                 <div className='list-group directory-nav'>
-                    {this.state.categories.map( categories =>
+                    {this.state.categories.map(categories =>
                         <div>
-                            <Link className="list-group-item list-group-item-action" to={/directory/+categories}>{categories}</Link>
+                            <Link className="list-group-item list-group-item-action"
+                                  to={/directory/ + categories}>{categories}</Link>
                         </div>
                     )}
                 </div>
+                {this.state.dictionary.map(dictionary =>
+                    <div>
+                       <li>{dictionary.disease_name}</li>
+                        <li>{dictionary.treatment}</li>
+                        <li>{dictionary.symptoms}</li>
+                    </div>
+                )}
             </div>
         )
     }

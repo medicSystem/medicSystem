@@ -25,7 +25,6 @@ class CreateDirectoriesTable extends Migration
             $table->increments('id');
             $table->string('disease_name', 60);
             $table->string('category', 60);
-            $table->string('subcategory', 60);
             $table->text('treatment');
             $table->text('symptoms');
             $table->string('picture', 100);

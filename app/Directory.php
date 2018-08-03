@@ -9,7 +9,7 @@ class Directory extends Model
     protected $table = 'directories';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'disease_name', 'category', 'subcategory', 'treatment', 'symptoms', 'picture',
+        'disease_name', 'category', 'treatment', 'symptoms', 'picture',
     ];
 
     public function diseaseHistory(){
