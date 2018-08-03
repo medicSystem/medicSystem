@@ -60223,7 +60223,9 @@ var News = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/news').then(function (response) {
+            var parameter = 'long';
+            var string = ['/news/' + parameter];
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(string.join()).then(function (response) {
                 _this2.setState({ news: response.data });
             }).catch(function (error) {
                 console.log(error);

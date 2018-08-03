@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/directory/{path?}', ['uses' => 'ReactController@index', 'as' => 'react', 'where' => ['path' => '.*']]);
 Route::get('/dictionary/categoryName', 'Database\UploadDictionary@uniqueCategoryName')->name('categoryName');
 Route::get('/dictionary/{category}', 'Database\UploadDictionary@getDirectories')->name('dictionary');
-Route::get('/news', 'Database\UploadNews@getNews')->name('news');
+Route::get('/news/{type}', 'Database\UploadNews@getNews')->name('news');
 Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMain', 'where' => ['path' => '.*']]);
 
 Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);

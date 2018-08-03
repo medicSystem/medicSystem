@@ -13,9 +13,15 @@ use App\News;
 
 class UploadNews
 {
-    public function getNews()
+    public function getNews($type)
     {
-        $news = News::orderByDesc('updated_at')->get();
+        if ($type == 'short'){
+            $news = News::orderByDesc('updated_at')->take(3)->get();
+        } elseif ($type == 'long'){
+            $news = News::orderByDesc('updated_at')->get();
+        }else{
+            $news = 'Input invalid parameter';
+        }
         $encodeNews = json_encode($news);
         return $encodeNews;
     }

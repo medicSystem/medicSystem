@@ -14,7 +14,9 @@ export default class News extends Component {
     }
     componentDidMount()
     {
-        axios.get('/news')
+        let parameter = 'long';
+        let string = ['/news/' + parameter];
+        axios.get(string.join())
             .then((response) => {
                 this.setState({news: response.data})
             })
