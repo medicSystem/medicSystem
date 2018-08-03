@@ -62,7 +62,7 @@ export default class Header extends Component {
             $('.navbar-collapse').collapse('hide');
         });
         $('#navbarNavDropdown .hiden').click(function() {
-            $('#navbarNavDropdown .hide').collapse('hide');
+            $('#navbarNavDropdown').collapse('hide');
         });
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -86,7 +86,7 @@ export default class Header extends Component {
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 {this.state.categories.map(categories =>
                                     <div>
-                                        <Link className="dropdown-item hide"
+                                        <Link className="dropdown-item hiden"
                                               to={/directory/ + categories}>{categories}</Link>
                                     </div>
                                 )}
