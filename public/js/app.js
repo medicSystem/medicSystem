@@ -58289,7 +58289,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 1024px;\r\n    margin-top: 4.5rem;\r\n    margin-bottom: 4.5rem;\r\n}\r\n.content img {\r\n    width: 100%;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n\r\n.bg-light {\r\n    transition: .6s;\r\n}\r\n\r\n.bg-dark {\r\n    transition: .6s;\r\n}\r\n.directory-content {\r\n    display: inline-flex;\r\n}\r\n.directory-content img {\r\n    max-width: 800px;\r\n}\r\n.carousel img {\r\n    max-height: 575px;\r\n}\r\n.carousel-caption {\r\n    /*background-color: rgba(0, 0, 0, 0.5);*/\r\n}\r\n.mb-3 {\r\n    width: 100%;\r\n    word-break: break-word;\r\n    max-width: 850px;\r\n}\r\n@media screen and (max-width: 1023px){\r\n    .directory-nav {\r\n        display: none;\r\n    }\r\n}", ""]);
+exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 1024px;\r\n    margin-top: 4.5rem;\r\n    margin-bottom: 4.5rem;\r\n}\r\n.content img {\r\n    width: 100%;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n\r\n.bg-light {\r\n    transition: .6s;\r\n}\r\n\r\n.bg-dark {\r\n    transition: .6s;\r\n}\r\n.directory-content {\r\n    display: inline-flex;\r\n}\r\n.directory-content img {\r\n    max-width: 800px;\r\n}\r\n.carousel img {\r\n    max-height: 575px;\r\n}\r\n.carousel-caption {\r\n    /*background-color: rgba(0, 0, 0, 0.5);*/\r\n}\r\n.mb-3 {\r\n    width: 100%;\r\n    word-break: break-word;\r\n    max-width: 850px;\r\n}\r\n@media screen and (max-width: 1023px){\r\n    .directory-nav {\r\n        display: none;\r\n    }\r\n}\r\n.card-body {\r\n    word-break: break-word;\r\n}", ""]);
 
 // exports
 
@@ -59735,6 +59735,8 @@ var Carousel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_news_css__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_news_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__style_news_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios_index__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios_index__);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () {
@@ -59770,25 +59772,43 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var NewsBox = function (_Component) {
     _inherits(NewsBox, _Component);
 
-    function NewsBox() {
+    function NewsBox(props) {
         _classCallCheck(this, NewsBox);
 
-        return _possibleConstructorReturn(this, (NewsBox.__proto__ || Object.getPrototypeOf(NewsBox)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (NewsBox.__proto__ || Object.getPrototypeOf(NewsBox)).call(this, props));
+
+        _this.state = {
+            news: []
+        };
+
+        return _this;
     }
 
     _createClass(NewsBox, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            var parameter = 'short';
+            var string = ['/news/' + parameter];
+            __WEBPACK_IMPORTED_MODULE_3_axios_index___default.a.get(string.join()).then(function (response) {
+                _this2.setState({ news: response.data });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-box' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: '1', className: 'card  news-card' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top',
-                src: 'https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971',
-                alt: 'Card image cap' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, 'Card title'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', className: 'btn btn-success' }, 'Go somewhere'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: '2', className: 'card news-card' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top',
-                src: 'https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971',
-                alt: 'Card image cap' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, 'Card title'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', className: 'btn btn-success' }, 'Go somewhere'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: '3', className: 'card news-card' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top',
-                src: 'https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971',
-                alt: 'Card image cap' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, 'Card title'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', className: 'btn btn-success' }, 'Go somewhere')))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { className: 'btn btn-success', to: '/main/news' }, 'Read more'));
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-box' }, this.state.news.map(function (news) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: news.id, className: 'card  news-card' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top',
+                    src: 'https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971',
+                    alt: 'Card image cap' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, news.news_name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, news.content), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text text-muted' }, news.created_at), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', className: 'btn btn-success' }, 'Go somewhere')));
+            })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { className: 'btn btn-success', to: '/main/news' }, 'Read more'));
         }
     }]);
 
@@ -59837,7 +59857,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, ".news-container {\r\n    text-align: center;\r\n    padding-bottom: 4rem;\r\n}\r\n\r\n.news-box {\r\n    margin: 1rem 0;\r\n    /*display: flex;*/\r\n}\r\n\r\n.news-card {\r\n    width: 250px;\r\n    margin: .1rem;\r\n    display: inline-grid;\r\n}\r\n@media screen and (max-width: 767px) {\r\n    .news-card {\r\n        width: 100%;\r\n        margin: .1rem 0;\r\n    }\r\n    .card-body a {\r\n        width: 100%;\r\n    }\r\n    .news-container button {\r\n        width: 90%;\r\n    }\r\n}\r\n@media screen and (max-width: 424px){\r\n    .news-container {\r\n        margin-bottom: 3rem;\r\n    }\r\n}\r\n\r\n.news-card:hover {\r\n    background-color: #e8ffed;\r\n}", ""]);
+exports.push([module.i, ".news-container {\r\n    text-align: center;\r\n    padding-bottom: 4rem;\r\n}\r\n\r\n.news-box {\r\n    margin: 1rem 0;\r\n    /*display: inline-flex;*/\r\n}\r\n\r\n.news-card {\r\n    width: 250px;\r\n    margin: .1rem;\r\n    display: inline-flex;\r\n}\r\n@media screen and (max-width: 767px) {\r\n    .news-card {\r\n        width: 100%;\r\n        margin: .1rem 0;\r\n    }\r\n    .card-body a {\r\n        width: 100%;\r\n    }\r\n    .news-container button {\r\n        width: 90%;\r\n    }\r\n}\r\n@media screen and (max-width: 424px){\r\n    .news-container {\r\n        margin-bottom: 3rem;\r\n    }\r\n}\r\n\r\n.news-card:hover {\r\n    background-color: #e8ffed;\r\n}", ""]);
 
 // exports
 

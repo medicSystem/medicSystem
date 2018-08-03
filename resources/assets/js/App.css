@@ -47,3 +47,6 @@ body {
         display: none;
     }
 }
+.card-body {
+    word-break: break-word;
+}

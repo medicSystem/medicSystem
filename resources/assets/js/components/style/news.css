@@ -5,13 +5,13 @@
 
 .news-box {
     margin: 1rem 0;
-    /*display: flex;*/
+    /*display: inline-flex;*/
 }
 
 .news-card {
     width: 250px;
     margin: .1rem;
-    display: inline-grid;
+    display: inline-flex;
 }
 @media screen and (max-width: 767px) {
     .news-card {
