@@ -23942,16 +23942,33 @@ function _inherits(subClass, superClass) {
 var Header = function (_Component) {
     _inherits(Header, _Component);
 
-    function Header() {
+    function Header(props) {
         _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+        _this.state = {
+            categories: []
+        };
+        return _this;
     }
 
     _createClass(Header, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_4_axios___default.a.get('/dictionary/categoryName').then(function (response) {
+                _this2.setState({ categories: response.data });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             __WEBPACK_IMPORTED_MODULE_3_jquery___default()(window).scroll(function () {
+                //chagne bg color navbars
                 var top = __WEBPACK_IMPORTED_MODULE_3_jquery___default()(this).scrollTop();
                 if (top >= 100) {
                     __WEBPACK_IMPORTED_MODULE_3_jquery___default()('.navbar').removeClass("navbar-dark bg-dark");
@@ -23984,12 +24001,15 @@ var Header = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_3_jquery___default()('.navbar-collapse').collapse('hide');
             });
             __WEBPACK_IMPORTED_MODULE_3_jquery___default()('#navbarNavDropdown .hiden').click(function () {
-                __WEBPACK_IMPORTED_MODULE_3_jquery___default()('#navbarNavDropdown').collapse('hide');
+                __WEBPACK_IMPORTED_MODULE_3_jquery___default()('#navbarNavDropdown .hide').collapse('hide');
             });
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('nav', { className: 'navbar fixed-top navbar-expand-lg navbar-dark bg-dark' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/', className: 'navbar-brand' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'logo', height: '40px', width: '40px',
                 src: 'https://api.icons8.com/download/08733e130578dfd047d6a49bdda07b37746510ac/Color/PNG/512/Very_Basic/plus-512.png' }), 'Medic Social'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { className: 'navbar-toggler', type: 'button', 'data-toggle': 'collapse', 'data-target': '#navbarNavDropdown',
                 'aria-controls': 'navbarNavDropdown', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'navbar-toggler-icon' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'collapse navbar-collapse', id: 'navbarNavDropdown' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { className: 'navbar-nav' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { className: 'nav-item' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/', className: 'nav-link hiden' }, 'Home ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'sr-only' }, '(current)'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { className: 'nav-item dropdown' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink',
-                'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' }, 'Directory'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu', 'aria-labelledby': 'navbarDropdownMenuLink' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/directory/therapeutic', className: 'dropdown-item hiden' }, 'Therapeutic department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/directory/dental', className: 'dropdown-item hiden' }, 'Dental department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/directory/infection', className: 'dropdown-item hiden' }, 'Infection department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'dropdown-item' }, 'Department of ultrasound diagnostics'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'dropdown-item' }, 'Neurological department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'dropdown-item' }, 'Ophthalmology department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'dropdown-item' }, 'Otorhinolaryngological department'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'dropdown-item' }, 'Surgery department'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { className: 'nav-item' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/home', id: 'home', className: 'nav-link hiden' }, 'Profile')))));
+                'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' }, 'Directory'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'dropdown-menu', 'aria-labelledby': 'navbarDropdownMenuLink' }, this.state.categories.map(function (categories) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { className: 'dropdown-item hide',
+                    to: /directory/ + categories }, categories));
+            }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { className: 'nav-item' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */], { to: '/home', id: 'home', className: 'nav-link hiden' }, 'Profile')))));
         }
     }]);
 

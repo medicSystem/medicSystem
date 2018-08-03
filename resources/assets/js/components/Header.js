@@ -6,9 +6,29 @@ import $ from 'jquery';
 import axios from 'axios';
 
 export default class Header extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            categories: []
+        };
+    }
+
+    componentDidMount() {
+        axios.get('/dictionary/categoryName')
+            .then((response) => {
+                this.setState({categories: response.data});
+    })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+
     render() {
         $(window).scroll(
             function () {
+                //chagne bg color navbars
                 var top = $(this).scrollTop();
                 if (top >= 100) {
                     $('.navbar').removeClass("navbar-dark bg-dark");
@@ -42,7 +62,7 @@ export default class Header extends Component {
             $('.navbar-collapse').collapse('hide');
         });
         $('#navbarNavDropdown .hiden').click(function() {
-            $('#navbarNavDropdown').collapse('hide');
+            $('#navbarNavDropdown .hide').collapse('hide');
         });
         return (
             <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -64,14 +84,12 @@ export default class Header extends Component {
                                 Directory
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link to='/directory/therapeutic' className="dropdown-item hiden">Therapeutic department</Link>
-                                <Link to='/directory/dental' className="dropdown-item hiden">Dental department</Link>
-                                <Link to='/directory/infection' className="dropdown-item hiden">Infection department</Link>
-                                <a className="dropdown-item">Department of ultrasound diagnostics</a>
-                                <a className="dropdown-item">Neurological department</a>
-                                <a className="dropdown-item">Ophthalmology department</a>
-                                <a className="dropdown-item">Otorhinolaryngological department</a>
-                                <a className="dropdown-item">Surgery department</a>
+                                {this.state.categories.map(categories =>
+                                    <div>
+                                        <Link className="dropdown-item hide"
+                                              to={/directory/ + categories}>{categories}</Link>
+                                    </div>
+                                )}
                             </div>
                         </li>
                         <li className="nav-item">
