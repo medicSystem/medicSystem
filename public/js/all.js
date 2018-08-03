@@ -18704,6 +18704,12 @@ var DirectoryNav = function (_Component) {
 
             __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get('/dictionary/categoryName').then(function (response) {
                 _this2.setState({ categories: response.data });
+                var url = window.location.pathname;
+                var newUrl = url.split('/');
+                var string = ['/dictionary/' + newUrl[2]];
+                __WEBPACK_IMPORTED_MODULE_3_axios___default.a.get(string.join()).then(function (response) {
+                    alert(response.data);
+                });
             }).catch(function (error) {
                 console.log(error);
             });

@@ -14,9 +14,9 @@ use App\Directory;
 class UploadDictionary
 
 {
-    public function getDirectories()
+    public function getDirectories($category)
     {
-        $directories = Directory::all();
+        $directories = Directory::where('category',$category)->get();
         $encodeDirectory = json_encode($directories);
         return $encodeDirectory;
     }
