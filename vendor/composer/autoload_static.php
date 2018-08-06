@@ -100,6 +100,7 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
+            'Dlnsk\\HierarchicalRBAC\\' => 23,
             'DeepCopy\\' => 9,
             'Dan\\UploadImage\\' => 16,
         ),
@@ -276,6 +277,10 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         array (
             0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
         ),
+        'Dlnsk\\HierarchicalRBAC\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC',
+        ),
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
@@ -426,6 +431,9 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
         'DirectoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DirectoriesTableSeeder.php',
         'DiseaseHistoriesSeeder' => __DIR__ . '/../..' . '/database/seeds/DiseaseHistoriesSeeder.php',
+        'Dlnsk\\HierarchicalRBAC\\ArrayAuthorization' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/ArrayAuthorization.php',
+        'Dlnsk\\HierarchicalRBAC\\Authorization' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/Authorization.php',
+        'Dlnsk\\HierarchicalRBAC\\HRBACServiceProvider' => __DIR__ . '/..' . '/dlnsk/h-rbac/src/HierarchicalRBAC/HRBACServiceProvider.php',
         'DoctorTypesSeeder' => __DIR__ . '/../..' . '/database/seeds/DoctorTypesSeeder.php',
         'DoctorsSeeder' => __DIR__ . '/../..' . '/database/seeds/DoctorsSeeder.php',
         'Doctrine\\Common\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php',

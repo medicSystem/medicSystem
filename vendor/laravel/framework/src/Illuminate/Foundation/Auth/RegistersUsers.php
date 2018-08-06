@@ -34,14 +34,26 @@ trait RegistersUsers
         try {
             $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
             if (file_exists($dirName) && is_dir($dirName)) {
-                $file = $request->file('avatar');
-                $path = $file->store('upload');
-                $img = ImageInt::make($file);
-                $img->resize(200, 200)->save($path);
+                $dirName = $dirName . '/user';
+                if (file_exists($dirName) && is_dir($dirName)){
+                    $file = $request->file('avatar');
+                    $path = $file->store('upload/user');
+                    $img = ImageInt::make($file);
+                    $img->resize(200, 200)->save($path);
+                }
+                else{
+                    mkdir($dirName);
+                    $file = $request->file('avatar');
+                    $path = $file->store('upload/user');
+                    $img = ImageInt::make($file);
+                    $img->resize(200, 200)->save($path);
+                }
             } else {
                 mkdir($dirName);
+                $dirName = $dirName . '/user';
+                mkdir($dirName);
                 $file = $request->file('avatar');
-                $path = $file->store('upload');
+                $path = $file->store('upload/user');
                 $img = ImageInt::make($file);
                 $img->resize(200, 200)->save($path);
             }
@@ -49,7 +61,7 @@ trait RegistersUsers
             echo $exception->getMessage();
             die();
         }
-        $name = substr($path, strpos($path, '/') + 1);
+        $name = substr($path, strpos($path, '/') + 6);
 
         event(new Registered($user = $this->create($request->all(), $name)));
 
@@ -61,6 +73,8 @@ trait RegistersUsers
         }
 
         $this->guard()->login($user);
+
+        $this->session($request->all());
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

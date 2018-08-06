@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:50',
             'email' => 'required|string|email|max:60|unique:users',
             'password' => 'required|string|min:6|max:12|confirmed',
-            'type' => 'required',
+            'role' => 'required',
             'birthday' => 'required|date|before:tomorrow',
             'phone_number' => 'required',
             'avatar' => 'required',
@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'type' => $data['type'],
+            'role' => $data['role'],
             'birthday' => $data['birthday'],
             'phone_number' => $data['phone_number'],
             'avatar' => $photoName,
@@ -96,23 +96,11 @@ class RegisterController extends Controller
        }
        return $bool;
     }
-/*    protected function uploadImage(array $file, array $data)
-    {
-        $dirName = public_path()."\upload";
-        if (file_exists($dirName) && is_dir($dirName)) {
-            $filename = $data['avatar'];
-            $img = ImageInt::make($file['avatar']);
-            $img->resize(200, 200)->save($dirName. "/". $filename);
-            Storage::putFileAs($dirName, $file, $filename);
-            die();
-        } else {
-            mkdir($dirName);
-            die();
-            $dirNameUpload = "/public/upload";
-            $file = $request->file('avatar');
-            $filename = $file->getFilename();
-            $filenameOriginal = $file->getClientOriginalName() . $file->getClientOriginalExtension();
-            Storage::putFileAs($dirNameUpload, $file, $filenameOriginal);
-        }
-    }*/
+
+    protected function session(array $data){
+        session(['email' => $data['email']]);
+        session(['role' => $data['role']]);
+/*        var_dump(session('email'));
+        die();*/
+    }
 }

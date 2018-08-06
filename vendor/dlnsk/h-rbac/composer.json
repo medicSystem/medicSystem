@@ -1,0 +1,24 @@
+{
+    "name": "dlnsk/h-rbac",
+    "description": "Based on native Laravel's abilities. Hierarchical RBAC with callbacks.",
+    "license": "MIT",
+    "keywords": ["laravel", "rbac", "hierarchical", "ability", "role", "permission"],
+    "homepage": "https://github.com/dlnsk/h-rbac",
+    "authors": [
+        {
+            "name": "Dmitry Pupinin",
+            "email": "dlnsk@mail.ru"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload": {
+       "psr-4": {
+         "Dlnsk\\HierarchicalRBAC\\": "src/HierarchicalRBAC/"
+        }
+    }
+}

@@ -46,6 +46,7 @@ return array(
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Common/Inflector'),
+    'Dlnsk\\HierarchicalRBAC\\' => array($vendorDir . '/dlnsk/h-rbac/src/HierarchicalRBAC'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Dan\\UploadImage\\' => array($vendorDir . '/kirill-dan/uploadimage/src'),
     'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),

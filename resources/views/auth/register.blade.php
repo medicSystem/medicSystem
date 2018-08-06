@@ -79,12 +79,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                                <label for="type" class="col-md-4 control-label">User Type</label>
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                                <label for="role" class="col-md-4 control-label">User Type</label>
 
                                 <div class="col-md-6">
-                                    <select id="type" name="type" class="form-control" required>
-                                        @if(old('type') == 'doctor')
+                                    <select id="role" name="role" class="form-control" required>
+                                        @if(old('role') == 'doctor')
                                             <option value="patient" class="form-control">Patient</option>
                                             <option value="doctor" class="form-control" selected>Doctor</option>
                                         @else
@@ -93,9 +93,9 @@
                                         @endif
                                     </select>
 
-                                    @if ($errors->has('type'))
+                                    @if ($errors->has('role'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('type') }}</strong>
+                                        <strong>{{ $errors->first('role') }}</strong>
                                     </span>
                                     @endif
                                 </div>

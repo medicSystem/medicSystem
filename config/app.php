@@ -166,6 +166,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Glide\GlideServiceProvider::class,
         Dan\UploadImage\UploadImageServiceProvider::class,
+        Dlnsk\HierarchicalRBAC\HRBACServiceProvider::class,
 
         /*
          * Package Service Providers...
