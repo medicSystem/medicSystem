@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
 
+
 export default class Header extends Component {
 
     constructor(props) {
@@ -96,6 +97,7 @@ export default class Header extends Component {
                             {/*<a className="nav-link" href="#">Profile</a>*/}
                             <Link to='/home' id='home' className='nav-link hiden'>Profile</Link>
                         </li>
+
                     </ul>
                     {/*<Link to='/login' id='login' className='btn btn-success sign-in'>Sign-in</Link>*/}
                 </div>

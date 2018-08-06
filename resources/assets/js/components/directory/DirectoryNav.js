@@ -37,19 +37,17 @@ export default class DirectoryNav extends Component {
             <div className='navigation-panel'>
                 <div className='list-group directory-nav'>
                     {this.state.categories.map(categories =>
-                        <div>
-                            <Link className="list-group-item list-group-item-action"
-                                  to={/directory/ + categories}>{categories}</Link>
-                        </div>
+                        <Link className="list-group-item list-group-item-action"
+                              to={/directory/ + categories}>{categories}</Link>
                     )}
                 </div>
-                {this.state.dictionary.map(dictionary =>
-                    <div>
-                       <li>{dictionary.disease_name}</li>
-                        <li>{dictionary.treatment}</li>
-                        <li>{dictionary.symptoms}</li>
-                    </div>
-                )}
+                {/*{this.state.dictionary.map(dictionary =>*/}
+                    {/*<div>*/}
+                       {/*<li>{dictionary.disease_name}</li>*/}
+                        {/*<li>{dictionary.treatment}</li>*/}
+                        {/*<li>{dictionary.symptoms}</li>*/}
+                    {/*</div>*/}
+                {/*)}*/}
             </div>
         )
     }
