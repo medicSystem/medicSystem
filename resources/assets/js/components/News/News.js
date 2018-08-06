@@ -3,32 +3,36 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 // import NewsBox from "../Home/NewsBox";
 import axios from "axios";
+import Loader from 'react-loader-spinner';
 
 export default class News extends Component {
     constructor(props) {
         super(props);
         this.state = {
             news: [],
+            loading: false,
         };
 
     }
-    componentDidMount()
-    {
+    componentDidMount() {
         let parameter = 'long';
         let string = ['/news/' + parameter];
-        axios.get(string.join())
-            .then((response) => {
-                this.setState({news: response.data})
-            })
-            .catch((error)=>{
-                console.log(error);
-            });
+        this.setState({loading: true}, () => {
+                axios.get(string.join())
+                    .then((response) => {this.setState({loading: false, news: response.data,});
+                    })
+                    .catch((error)=>{
+                        console.log(error);
+                    });
+        })
+        console.log(this)
     }
     render() {
+        const {news, loading} = this.state;
         return(
             <div>
                 <div className='content'>
-                    {this.state.news.map( news =>
+                    {loading ? <div className='loader-container'><Loader id='loader' type="TailSpin" color="#4caf50" height={80} width={80}/></div> : this.state.news.map(news =>
                         <div className='card mb-3'>
                             <div className='card-body'>
                                 <h5 className='card-title'>{news.news_name}</h5>

@@ -58318,7 +58318,7 @@ exports = module.exports = __webpack_require__(31)(false);
 
 
 // module
-exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 1024px;\r\n    margin-top: 4.5rem;\r\n    margin-bottom: 4.5rem;\r\n}\r\n.content img {\r\n    width: 100%;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n\r\n.bg-light {\r\n    transition: .6s;\r\n}\r\n\r\n.bg-dark {\r\n    transition: .6s;\r\n}\r\n.directory-content {\r\n    display: inline-flex;\r\n}\r\n.directory-content img {\r\n    max-width: 800px;\r\n}\r\n.carousel img {\r\n    max-height: 575px;\r\n}\r\n.carousel-caption {\r\n    /*background-color: rgba(0, 0, 0, 0.5);*/\r\n}\r\n.mb-3 {\r\n    width: 100%;\r\n    word-break: break-word;\r\n    max-width: 850px;\r\n}\r\n@media screen and (max-width: 1023px){\r\n    .directory-nav {\r\n        display: none;\r\n    }\r\n}\r\n.card-body {\r\n    word-break: break-word;\r\n}\r\n", ""]);
+exports.push([module.i, "* {\r\n    margin: 0 auto;\r\n    user-select: none;\r\n}\r\nbody {\r\n    background-color: gainsboro;\r\n}\r\n\r\n.content {\r\n    max-width: 1024px;\r\n    margin-top: 4.5rem;\r\n    margin-bottom: 4.5rem;\r\n}\r\n.content img {\r\n    width: 100%;\r\n}\r\n.transparent {\r\n    background-color: transparent !important;\r\n}\r\n\r\n.bg-light {\r\n    transition: .6s;\r\n}\r\n\r\n.bg-dark {\r\n    transition: .6s;\r\n}\r\n.directory-content {\r\n    display: inline-flex;\r\n}\r\n.directory-content img {\r\n    max-width: 800px;\r\n}\r\n.carousel img {\r\n    max-height: 575px;\r\n}\r\n.carousel-caption {\r\n    /*background-color: rgba(0, 0, 0, 0.5);*/\r\n}\r\n.mb-3 {\r\n    width: 100%;\r\n    word-break: break-word;\r\n    max-width: 850px;\r\n}\r\n@media screen and (max-width: 1023px){\r\n    .directory-nav {\r\n        display: none;\r\n    }\r\n}\r\n.card-body {\r\n    word-break: break-word;\r\n}\r\n.loader-container {\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    top: -10%;\r\n    left: 0;\r\n    display: flex;\r\n    align-items: center;\r\n    align-content: center;\r\n    justify-content: center;\r\n    overflow: auto;\r\n    z-index: 9999999;\r\n    background-color: rgba(0 0 0 .6);\r\n}\r\n.news-box-loader {\r\n    top: 30%;\r\n}", ""]);
 
 // exports
 
@@ -59766,6 +59766,8 @@ var Carousel = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios_index__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios_index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loader_spinner__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_loader_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_loader_spinner__);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () {
@@ -59802,6 +59804,7 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var NewsBox = function (_Component) {
     _inherits(NewsBox, _Component);
 
@@ -59811,7 +59814,8 @@ var NewsBox = function (_Component) {
         var _this = _possibleConstructorReturn(this, (NewsBox.__proto__ || Object.getPrototypeOf(NewsBox)).call(this, props));
 
         _this.state = {
-            news: []
+            news: [],
+            loading: false
         };
 
         return _this;
@@ -59822,18 +59826,24 @@ var NewsBox = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            var parameter = 'short';
-            var string = ['/news/' + parameter];
-            __WEBPACK_IMPORTED_MODULE_3_axios_index___default.a.get(string.join()).then(function (response) {
-                _this2.setState({ news: response.data });
-            }).catch(function (error) {
-                console.log(error);
+            this.setState({ loading: true }, function () {
+                var parameter = 'short';
+                var string = ['/news/' + parameter];
+                __WEBPACK_IMPORTED_MODULE_3_axios_index___default.a.get(string.join()).then(function (response) {
+                    _this2.setState({ loading: false, news: response.data });
+                }).catch(function (error) {
+                    console.log(error);
+                });
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-box' }, this.state.news.map(function (news) {
+            var _state = this.state,
+                news = _state.news,
+                loading = _state.loading;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'news-box' }, loading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'loader-container news-box-loader' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_loader_spinner___default.a, { id: 'loader', type: 'TailSpin', color: '#4caf50', height: 80, width: 80 })) : this.state.news.map(function (news) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: news.id, className: 'card  news-card' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { className: 'card-img-top',
                     src: 'https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971',
                     alt: 'Card image cap' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, news.news_name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, news.content), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text text-muted' }, news.created_at), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', className: 'btn btn-success' }, 'Go somewhere')));
@@ -60185,6 +60195,8 @@ var Footer = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_loader_spinner__ = __webpack_require__(413);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_loader_spinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_loader_spinner__);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () {
@@ -60221,6 +60233,7 @@ function _inherits(subClass, superClass) {
 // import NewsBox from "../Home/NewsBox";
 
 
+
 var News = function (_Component) {
     _inherits(News, _Component);
 
@@ -60230,7 +60243,8 @@ var News = function (_Component) {
         var _this = _possibleConstructorReturn(this, (News.__proto__ || Object.getPrototypeOf(News)).call(this, props));
 
         _this.state = {
-            news: []
+            news: [],
+            loading: false
         };
 
         return _this;
@@ -60243,16 +60257,23 @@ var News = function (_Component) {
 
             var parameter = 'long';
             var string = ['/news/' + parameter];
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(string.join()).then(function (response) {
-                _this2.setState({ news: response.data });
-            }).catch(function (error) {
-                console.log(error);
+            this.setState({ loading: true }, function () {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(string.join()).then(function (response) {
+                    _this2.setState({ loading: false, news: response.data });
+                }).catch(function (error) {
+                    console.log(error);
+                });
             });
+            console.log(this);
         }
     }, {
         key: 'render',
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'content' }, this.state.news.map(function (news) {
+            var _state = this.state,
+                news = _state.news,
+                loading = _state.loading;
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'content' }, loading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'loader-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_loader_spinner___default.a, { id: 'loader', type: 'TailSpin', color: '#4caf50', height: 80, width: 80 })) : this.state.news.map(function (news) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card mb-3' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, news.news_name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, news.content), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text text-muted' }, news.created_at)));
             })));
         }
@@ -60363,7 +60384,7 @@ var Directory = function (_Component) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'directory-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'navigation-panel' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'list-group directory-nav' }, this.state.categories.map(function (categories) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["b" /* Link */], { className: 'list-group-item list-group-item-action',
                     to: /directory/ + categories }, categories);
-            }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, loading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_loader_spinner___default.a, { id: 'loader', type: 'Bars', color: '#4caf50', height: 80, width: 80 }) : this.state.dictionary.map(function (dictionary) {
+            }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, loading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'loader-container' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_loader_spinner___default.a, { id: 'loader', type: 'TailSpin', color: '#4caf50', height: 80, width: 80 })) : this.state.dictionary.map(function (dictionary) {
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card mb-3' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'card-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h5', { className: 'card-title' }, dictionary.disease_name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text' }, dictionary.treatment), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'card-text text-muted' }, dictionary.symptoms)));
             }))));
         }

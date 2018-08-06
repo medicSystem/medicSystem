@@ -50,3 +50,20 @@ body {
 .card-body {
     word-break: break-word;
 }
+.loader-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: -10%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    overflow: auto;
+    z-index: 9999999;
+    background-color: rgba(0 0 0 .6);
+}
+.news-box-loader {
+    top: 30%;
+}
