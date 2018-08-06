@@ -4,6 +4,7 @@ import '../style/news.css';
 import {Link} from 'react-router-dom';
 import axios from "axios/index";
 import Loader from 'react-loader-spinner';
+import Button from '@material-ui/core/Button'
 
 export default class NewsBox extends Component {
     constructor(props) {
@@ -47,7 +48,8 @@ export default class NewsBox extends Component {
                         </div>
                 )}
                 </div>
-                    <Link className='btn btn-success' to='/main/news'>Read more</Link>
+
+                <Link className='btn-link' to='/main/news'><Button color='primary' variant="contained">Read more</Button></Link>
             </div>
         )
     }

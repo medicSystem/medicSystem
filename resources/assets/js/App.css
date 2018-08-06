@@ -67,3 +67,6 @@ body {
 .news-box-loader {
     top: 30%;
 }
+.btn-link {
+    text-decoration: none;
+}
