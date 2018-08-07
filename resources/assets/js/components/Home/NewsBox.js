@@ -43,13 +43,13 @@ export default class NewsBox extends Component {
                                 <h5 className='card-title'>{news.news_name}</h5>
                                 <p className='card-text'>{news.content}</p>
                                 <p className='card-text text-muted'>{news.created_at}</p>
-                                <a href="#" className="btn btn-success">Go somewhere</a>
+                                <Button variant='contained' color='primary'><Link className='btn-link' to={'/main/news#' + news.id}>Go somevere</Link></Button>
                             </div>
                         </div>
                 )}
                 </div>
 
-                <Link className='btn-link' to='/main/news'><Button color='primary' variant="contained">Read more</Button></Link>
+                <Button color='primary' variant="contained"><Link className='btn-link' to='/main/news'>Read more</Link></Button>
             </div>
         )
     }

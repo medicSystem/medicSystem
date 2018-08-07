@@ -13,7 +13,25 @@ import './index.css';
 import App from './Apps';
 import registerServiceWorker from './registerServiceWorker';
 import {Router, Route, browserHistory} from 'react-router';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#4caf50',
+            contrastText: '#ffffff',
+        }
+    },
+});
+
+function Apps() {
+    return (
+        <MuiThemeProvider theme={theme}>
+            <App/>
+        </MuiThemeProvider>
+    );
+}
+
+ReactDOM.render(<Apps/>, document.getElementById('root'));
 registerServiceWorker();

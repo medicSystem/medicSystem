@@ -68,5 +68,9 @@ body {
     top: 30%;
 }
 .btn-link {
+    color: white;
+}
+.btn-link:hover {
     text-decoration: none;
+    color: white;
 }
