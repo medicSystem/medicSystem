@@ -29,15 +29,31 @@ class User extends Authenticatable
     protected $primaryKey = 'id';
     protected $table = 'users';
 
-    public function doctor(){
+    public function doctor()
+    {
         return $this->hasOne('App\Doctor', 'users_id', 'id');
     }
 
-    public function patient(){
+    public function patient()
+    {
         return $this->hasOne('App\Patient', 'users_id', 'id');
     }
 
-    public function banList(){
+    public function banList()
+    {
         return $this->hasOne('App\Ban_list', 'users_id', 'id');
+    }
+
+    public function hasRole($id, $role)
+    {
+        $user = User::where('id', $id)->get();
+        foreach ($user as $item) {
+            $user = $item->role;
+        }
+        if ($user == $role) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

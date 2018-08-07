@@ -23,8 +23,12 @@ Route::get('/dictionary/{category}', 'Database\UploadDictionary@getDirectories')
 Route::get('/news/{type}', 'Database\UploadNews@getNews')->name('news');
 Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMain', 'where' => ['path' => '.*']]);
 
-Route::group(['middleware' => 'auth'], function (){
-    Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => 'role:admin'], function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+    });
+
+    Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
+
     Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
 });
-

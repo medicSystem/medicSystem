@@ -37,6 +37,31 @@ class AuthorizationClass extends Authorization
             'updateNews' => [
                 'description' => 'update news',
             ],
+            'addDisease' => [
+                'description' => 'add new information to directory',
+                'next' => 'deleteDisease',
+            ],
+            'deleteDisease' => [
+                'description' => 'delete information from directory',
+                'next' => 'updateDisease',
+            ],
+            'updateDisease' => [
+                'description' => 'update information from directory',
+            ],
+            'putNotifications' => [
+                'description' => 'put notifications to users',
+            ],
+            'updateCoupon' => [
+                'description' => 'update coupon before date of register',
+                'next' => 'addCoupon',
+            ],
+            'addCoupon' => [
+                'description' => 'add coupon before now date',
+                'next' => 'deleteCoupon',
+            ],
+            'deleteCoupon' => [
+                'description' => 'delete coupon',
+            ],
         ];
     }
 
@@ -47,9 +72,14 @@ class AuthorizationClass extends Authorization
                 'deleteUsers',
                 'validateDoctors',
                 'addNews',
+                'addDisease',
+                'putNotifications',
+                'updateCoupon',
             ],
             'patient' => [
                 'sendMessage',
+                'addCoupon',
+                'deleteCoupon',
             ],
             'doctor' => [
                 'sendMessage',
@@ -63,11 +93,11 @@ class AuthorizationClass extends Authorization
      * Methods should be present only if additional checking needs.
      */
 
-    public function editOwnPost($user, $post)
+/*    public function editOwnPost($user, $post)
     {
         $post = $this->getModel(\App\Post::class, $post);  // helper method for geting model
 
         return $user->id === $post->user_id;
-    }
+    }*/
 
 }

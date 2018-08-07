@@ -517,3 +517,9 @@
 .num {
     color: #007bff;
 }
+
+.error-role {
+    color: red;
+    font-size: 260%;
+    padding-top: 5%;
+}

@@ -35,13 +35,12 @@ trait RegistersUsers
             $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
             if (file_exists($dirName) && is_dir($dirName)) {
                 $dirName = $dirName . '/user';
-                if (file_exists($dirName) && is_dir($dirName)){
+                if (file_exists($dirName) && is_dir($dirName)) {
                     $file = $request->file('avatar');
                     $path = $file->store('upload/user');
                     $img = ImageInt::make($file);
                     $img->resize(200, 200)->save($path);
-                }
-                else{
+                } else {
                     mkdir($dirName);
                     $file = $request->file('avatar');
                     $path = $file->store('upload/user');

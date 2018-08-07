@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
 /*use Intervention\Image\Facades\Image as ImageInt;
 use UploadImage;
 use Dan\UploadImage\Exceptions\UploadImageException;
@@ -84,23 +85,24 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function check(array $data){
-       $users = User::where('email', $data['email'])->get();
-       $bool = false;
-       foreach ($users as $user){
-           if ($user->id == null){
-               $bool = false;
-           } else{
-               $bool = true;
-           }
-       }
-       return $bool;
+    protected function check(array $data)
+    {
+        $users = User::where('email', $data['email'])->get();
+        $bool = false;
+        foreach ($users as $user) {
+            if ($user->id == null) {
+                $bool = false;
+            } else {
+                $bool = true;
+            }
+        }
+        return $bool;
     }
 
-    protected function session(array $data){
+    protected function session(array $data)
+    {
         session(['email' => $data['email']]);
         session(['role' => $data['role']]);
-/*        var_dump(session('email'));
-        die();*/
+        session(['first_name' => $data['first_name']]);
     }
 }
