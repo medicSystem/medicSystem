@@ -145,7 +145,8 @@
                                 <label for="avatar" class="col-md-4 control-label">Profile Photo</label>
 
                                 <div class="col-md-6">
-                                    <input id="avatar" type="file" onchange="preview(this.value)" class="form-control" name="avatar"
+                                    <input id="avatar" type="file" onchange="preview(this.value)" class="form-control"
+                                           name="avatar"
                                            value="{{ old('avatar') }}" accept="image/*" required>
 
                                     @if ($errors->has('avatar'))
@@ -154,11 +155,10 @@
                                     </span>
                                     @endif
                                 </div>
-
                             </div>
 
                             <div class="preview">
-                                <img id="previewImg" />
+                                <img id="previewImg"/>
                             </div>
 
                             <div class="form-group{{ $errors->has('agree') ? ' has-error' : '' }}">

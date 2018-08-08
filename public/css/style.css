@@ -39,7 +39,7 @@
     text-decoration: none;
 }
 
-.row{
+.row {
     margin-bottom: 10%;
 }
 
@@ -146,6 +146,7 @@
         margin-top: -7%;
         margin-left: -15%;
     }
+
     .row {
         margin-top: 2%;
         margin-bottom: 10%;
@@ -175,6 +176,7 @@
         margin-top: -7%;
         margin-left: -15%;
     }
+
     .row {
         margin-top: 2%;
         margin-bottom: 10%;
@@ -537,18 +539,22 @@
     font-size: 260%;
     padding-top: 5%;
 }
-#previewImg{
+
+#previewImg {
     width: 48%;
     border-radius: 20%;
 }
-.preview{
+
+.preview {
     margin-left: 35%;
- }
-@media screen and (max-width: 990px){
-    .preview{
+}
+
+@media screen and (max-width: 990px) {
+    .preview {
         margin-left: 0;
     }
-    #conditions_div{
+
+    #conditions_div {
         padding-left: 2%;
     }
 }
