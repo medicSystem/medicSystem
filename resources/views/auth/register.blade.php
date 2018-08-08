@@ -153,7 +153,13 @@
                                     </span>
                                     @endif
                                 </div>
+                                <div class="row">
+                                    <span id="output"></span>
+                                </div>
+
                             </div>
+
+
 
                             <div class="form-group{{ $errors->has('agree') ? ' has-error' : '' }}">
                                 <div class="col-md-10" id="conditions_div">

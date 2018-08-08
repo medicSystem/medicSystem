@@ -74,5 +74,6 @@
 {{--<script src="{{ asset('js/phone_number.js') }}"></script>
 <script src="{{ asset('js/modal.js') }}"></script>--}}
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/photo_preview.js') }}"></script>
 </body>
 </html>
