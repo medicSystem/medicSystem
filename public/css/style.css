@@ -537,10 +537,9 @@
     font-size: 260%;
     padding-top: 5%;
 }
-#preview{
+#previewImg{
     width: 48%;
     border-radius: 20%;
-    border: 5px solid #216a94;
 }
 .preview{
     margin-left: 35%;

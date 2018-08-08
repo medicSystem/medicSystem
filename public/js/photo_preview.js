@@ -1,18 +1,17 @@
-function handleFileSelect(evt) {
-    var file = evt.target.files; // FileList object
-    var f = file[0];
-    if (!f.type.match('image.*')) {
-        alert("Image only please....");
-    }
-    var reader = new FileReader();
-    reader.onload = (function (theFile) {
-        return function (e) {
-            var span = document.createElement('span');
-            span.innerHTML = ['<img class="thumb" id="preview" title="', escape(theFile.name), '" src="', e.target.result, '" />'].join('');
-            document.getElementById('output').insertBefore(span, null);
-        };
-    })(f);
+function onFileSelect(e) {
+    var
+        f = e.target.files[0], // Первый выбранный файл
+        reader = new FileReader,
+        place = document.getElementById("previewImg") // Сюда покажем картинку
+    ;
     reader.readAsDataURL(f);
+    reader.onload = function(e) { // Как только картинка загрузится
+        place.src = e.target.result;
+    }
 }
 
-document.getElementById('avatar').addEventListener('change', handleFileSelect, false);
+if(window.File && window.FileReader && window.FileList && window.Blob) {
+    document.querySelector("input[type=file]").addEventListener("change", onFileSelect, false);
+} else {
+    console.warn( "Ваш браузер не поддерживает FileAPI")
+}
