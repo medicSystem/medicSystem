@@ -16,7 +16,3 @@ function handleFileSelect(evt) {
 }
 
 document.getElementById('avatar').addEventListener('change', handleFileSelect, false);
-
-/*$(document).ready(function () {
-    $('#preview').css('width","10%')
-});*/

@@ -39,6 +39,10 @@
     text-decoration: none;
 }
 
+.row{
+    margin-bottom: 10%;
+}
+
 #modal_form {
     border-radius: 5px;
     border: 3px #000 solid;
@@ -116,6 +120,7 @@
         margin-top: -7%;
         margin-left: -15%;
     }
+
 }
 
 @media screen and (max-width: 1900px) {
@@ -140,6 +145,10 @@
         height: 30%;
         margin-top: -7%;
         margin-left: -15%;
+    }
+    .row {
+        margin-top: 2%;
+        margin-bottom: 10%;
     }
 }
 
@@ -166,6 +175,10 @@
         margin-top: -7%;
         margin-left: -15%;
     }
+    .row {
+        margin-top: 2%;
+        margin-bottom: 10%;
+    }
 }
 
 @media screen and (max-width: 1450px) {
@@ -186,6 +199,7 @@
 
     .row {
         margin-top: 2%;
+        margin-bottom: 10%;
     }
 
     .num {
@@ -522,4 +536,20 @@
     color: red;
     font-size: 260%;
     padding-top: 5%;
+}
+#preview{
+    width: 48%;
+    border-radius: 20%;
+    border: 5px solid #216a94;
+}
+.preview{
+    margin-left: 35%;
+ }
+@media screen and (max-width: 990px){
+    .preview{
+        margin-left: 0;
+    }
+    #conditions_div{
+        padding-left: 2%;
+    }
 }

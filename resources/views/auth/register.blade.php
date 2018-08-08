@@ -8,7 +8,8 @@
                     <div class="panel-heading">Register</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('register') }}"
+                              enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
@@ -153,12 +154,9 @@
                                     </span>
                                     @endif
                                 </div>
-                                <div class="row">
-                                    <span id="output"></span>
-                                </div>
-
                             </div>
 
+                            <span class="preview" id="output"></span>
 
 
                             <div class="form-group{{ $errors->has('agree') ? ' has-error' : '' }}">
