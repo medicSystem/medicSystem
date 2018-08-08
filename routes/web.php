@@ -25,10 +25,18 @@ Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMa
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:admin'], function () {
-        Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/admin', ['uses' => 'AdminController@index'])->name('admin');
     });
 
-    Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
+    Route::group(['middleware' => 'role:doctor'], function () {
+        Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
+    });
 
+    Route::group(['middleware' => 'role:patient'], function () {
+        Route::get('/patient', ['uses' => 'PatientController@index'])->name('patient');
+    });
+
+    Route::get('/home', 'UserTypeController@control')->name('control');
+    Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
 });

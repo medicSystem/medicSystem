@@ -8,6 +8,11 @@ use Intervention\Image\Facades\Image as ImageInt;
 
 class UploadImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function upload(Request $request)
     {
         try {

@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-5 error-role">
-                you is not {{$role}}
+            <div class="error-role">
+                To access this page you need {{ $role }} rights. You is {{ $yourRole }}.<br> Go to your <a href="{{ route($yourRole) }}">profile</a>.
             </div>
         </div>
     </div>

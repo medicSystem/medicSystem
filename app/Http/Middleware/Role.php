@@ -18,8 +18,8 @@ class Role
     {
         $id = Auth::user()->getAuthIdentifier();
         if (!Auth::user()->hasRole($id, $role)) {
-            $request->session()->put('wantOpen', $role);
-            return redirect()->route('errorRole',['role'=>$role]);
+            /*$request->session()->put('wantOpen', $role);*/
+            return redirect()->route('errorRole', ['role' => $role]);
         }
         return $next($request);
     }

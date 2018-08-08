@@ -56,4 +56,13 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function getRole($id)
+    {
+        $user = User::where('id', $id)->get();
+        foreach ($user as $item) {
+            $role = $item->role;
+        }
+        return $role;
+    }
 }
