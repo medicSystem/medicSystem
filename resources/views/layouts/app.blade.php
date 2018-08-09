@@ -13,6 +13,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 </head>
 <body>
 <div id="app">
@@ -27,9 +29,10 @@
                 @guest
                     <div class="btn-group" role="group">
                         <li class="li-nav nav-item"><a href="{{ route('login') }}" class="btn btn-secondary log-button"
-                                              id="login">Login</a></li>
-                        <li class="li-nav nav-item"><a href="{{ route('register') }}" class="btn btn-secondary log-button"
-                                              id="register">Register</a></li>
+                                                       id="login">Login</a></li>
+                        <li class="li-nav nav-item"><a href="{{ route('register') }}"
+                                                       class="btn btn-secondary log-button"
+                                                       id="register">Register</a></li>
                     </div>
                 @else
                     <li class="dropdown nav-item">
@@ -61,16 +64,20 @@
     @yield('content')
 
     <footer class="footer" id="footer">
-        <div class="footer-element navbar-brand"><a href="callto:000000000" class="link num" id="footer-num">+000000000</a>
-            <br>
-            <a href="mailto:example@example.example" class="link" id="footer-email">example@example.example</a>
+        <div>
+            <div class="footer-element navbar-brand"><a href="callto:000000000" class="link num" id="footer-num">+000000000</a>
+                <br>
+                <a href="mailto:example@example.example" class="link" id="footer-email">example@example.example</a>
+            </div>
+            <div class="footer-element navbar-brand footer-title" id="footer-title"><span class="fl-right">©MEDIC SOCIAL 2018</span>
+            </div>
         </div>
-        <div class="footer-element navbar-brand footer-title" id="footer-title"><p class="fl-right">©MEDIC SOCIAL 2018</p></div>
     </footer>
 </div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 {{--<script src="{{ asset('js/phone_number.js') }}"></script>
 <script src="{{ asset('js/modal.js') }}"></script>--}}
 <script src="{{ asset('js/script.js') }}"></script>

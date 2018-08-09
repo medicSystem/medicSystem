@@ -43,6 +43,10 @@
     margin-bottom: 10%;
 }
 
+.num {
+    color: #007bff;
+}
+
 #modal_form {
     border-radius: 5px;
     border: 3px #000 solid;
@@ -111,7 +115,7 @@
     }
 
     .num {
-        padding-right: 12%;
+        padding-right: 15%;
     }
 
     #modal_form {
@@ -200,7 +204,7 @@
     }
 
     .row {
-        margin-top: 2%;
+        margin-top: 3%;
         margin-bottom: 10%;
     }
 
@@ -230,7 +234,7 @@
     }
 
     .row {
-        margin-top: 2%;
+        margin-top: 4%;
         margin-bottom: 10%;
     }
 
@@ -260,7 +264,7 @@
     }
 
     .row {
-        margin-top: 5%;
+        margin-top: 8%;
         margin-bottom: 12%;
     }
 
@@ -304,6 +308,9 @@
         width: max-content;
         float: right;
     }
+    .row{
+        margin-top: 18%;
+    }
 }
 
 @media screen and (max-width: 375px) {
@@ -323,7 +330,7 @@
     }
 
     .row {
-        margin-top: 15%;
+        margin-top: 20%;
         margin-bottom: 20%;
     }
 
@@ -335,7 +342,7 @@
 
 @media screen and (max-width: 365px) {
     .row {
-        margin-top: 35%;
+        margin-top: 40%;
         margin-bottom: 25%;
     }
 
@@ -361,7 +368,7 @@
     }
 
     .row {
-        margin-top: 35%;
+        margin-top: 45%;
         margin-bottom: 25%;
     }
 
@@ -411,7 +418,7 @@
 @media screen and (max-width: 1023px) {
     .sign-in {
         position: relative !important;
-        left: 0%;
+        left: 0;
         /*left: 45%;*/
         width: 100%;
     }
@@ -470,7 +477,6 @@
     width: 100%;
     height: 9%;
     right: 0;
-    bottom: 0;
     left: 0;
     z-index: 1030;
     transition: .6s;
@@ -493,7 +499,6 @@
     width: 100%;
     height: 9%;
     right: 0;
-    bottom: 0;
     left: 0;
     z-index: 1030;
     transition: .6s;
@@ -530,15 +535,12 @@
     float: right;
 }
 
-.num {
-    color: #007bff;
-}
-
 .error-role {
-    color: red;
-    font-size: 260%;
-    padding-top: 5%;
+    color: #636b6f;
+    font-size: 200%;
     text-align: center;
+    padding-top: 2%;
+    padding-bottom: 4%;
 }
 
 #previewImg {
@@ -557,5 +559,75 @@
 
     #conditions_div {
         padding-left: 2%;
+    }
+}
+
+.return-profile {
+    width: max-content;
+    display: inherit;
+    padding-top: 2%;
+}
+
+.user-role{
+    width: max-content;
+}
+
+.access-role{
+    width: max-content;
+}
+
+@media screen and (max-width: 1230px){
+    .user-role{
+        display: inherit;
+        padding-top: 2%;
+    }
+}
+
+@media screen and (max-width: 930px){
+    .access-role{
+        line-height: 35px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .return-profile{
+        padding-top: 3%;
+    }
+    .user-role{
+        padding-top: 3%;
+    }
+}
+@media screen {
+    .dropdown{
+        float: right;
+    }
+}
+.access-title{
+    color: darkred;
+    font-size: 200%;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 2%;
+}
+
+.panel-default > .panel-heading{
+    padding-top: 5%;
+}
+@media screen and (max-height: 850px){
+    .footer{
+        height: 11%;
+    }
+}
+
+@media screen and (max-height: 700px){
+    .footer{
+        height: 14%;
+    }
+}
+@media screen and (max-height: 500px){
+    .footer{
+        height: 18%;
     }
 }
