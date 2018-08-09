@@ -15,6 +15,7 @@ class DirectoriesTableSeeder extends Seeder
         DB::table('directories')->insert([
             'disease_name' => str_random(10),
             'category' => str_random(10),
+            'subcategory' => str_random(10),
             'treatment' => str_random(60),
             'symptoms' => str_random(60),
             'picture' => str_random(10) . '.png',
