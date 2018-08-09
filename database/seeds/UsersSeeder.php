@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             'last_name' => str_random(10),
             'email' => str_random(10) . '@mail.ru',
             'password' => bcrypt(str_random(10)),
-            'type' => $role[$randRole],
+            'role' => $role[$randRole],
             'birthday' => $this->rendDate(),
             'phone_number' => str_random(10),
             'avatar' => str_random(10),
