@@ -25,4 +25,10 @@ class UploadNews
         $encodeNews = json_encode($news);
         return $encodeNews;
     }
+
+    public function getId($id){
+        $newsId = News::where('id', $id)->get();
+        $encodeNewsId = json_encode($newsId);
+        return $encodeNewsId;
+    }
 }
