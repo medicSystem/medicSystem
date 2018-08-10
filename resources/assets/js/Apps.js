@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Home from './components/Home';
-import Therapeutic from "./components/directory/Therapeutic";
-import Dental from "./components/directory/Dental";
 import Header from "./components/Header";
-import Infection from "./components/directory/Infection";
 import Footer from "./components/Footer";
 import News from "./components/News/News";
 import Directory from "./components/directory/Directory";
 import axios from "axios/index";
+import AdminApp from "./AdminApp";
+import DoctorApp from "./DoctorApp";
+import PatientApp from "./PatientApp";
+
 
 class App extends Component {
     constructor(props) {
@@ -38,24 +39,56 @@ class App extends Component {
                 console.log(error);
             });
     }
+
     render() {
-        return (
-            <BrowserRouter>
-                <div>
-                    <Header/>
-                    <Route exact path='/' component={Home}/>
-                    {/*<Route path='/directory/therapeutic' component={Therapeutic}/>*/}
-                    {/*<Route path='/directory/dental' component={Dental}/>*/}
-                    {/*<Route path='/directory/infection' component={Infection}/>*/}
-                    <Route path='/main/news' component={News}/>
-                    {/*<Route path='/directory/' component={Directory}/>*/}
-                    {this.state.categories.map(categories =>
-                        <Route path={'/directory/' + categories} component={Directory}/>
-                    )}
-                    <Footer/>
-                </div>
-            </BrowserRouter>
-        );
+        let pathName = window.location.pathname;
+        let url = pathName.split('/')
+        switch (url[1]) {
+            case 'admin':
+                return (
+                    <BrowserRouter>
+                        <div>
+                            <Route path='/admin' component={AdminApp}/>
+                        </div>
+                    </BrowserRouter>
+                );
+                break;
+            case 'doctor':
+                return (
+                    <BrowserRouter>
+                        <div>
+                            <Route path='/doctor' component={DoctorApp}/>
+                        </div>
+                    </BrowserRouter>
+                );
+                break;
+            case 'patient':
+                return (
+                    <BrowserRouter>
+                        <div>
+                            <Route path='/patient' component={PatientApp}/>
+                        </div>
+                    </BrowserRouter>
+                );
+                break;
+            default:
+                return (
+                    <BrowserRouter>
+                        <div>
+                            <div>
+                                <Header/>
+                                <Route exact path='/' component={Home}/>
+                                <Route path='/main/news' component={News}/>
+                                {this.state.categories.map(categories =>
+                                    <Route path={'/directory/' + categories} component={Directory}/>
+                                )}
+                                <Footer/>
+                            </div>
+                        </div>
+                    </BrowserRouter>
+                );
+                break;
+        }
     }
 }
 

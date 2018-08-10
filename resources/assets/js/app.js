@@ -14,7 +14,7 @@ import App from './Apps';
 import registerServiceWorker from './registerServiceWorker';
 import {Router, Route, browserHistory} from 'react-router';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
+import Admin from './Admin';
 
 const theme = createMuiTheme({
     palette: {
