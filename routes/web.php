@@ -21,7 +21,6 @@ Route::get('/directory/{path?}', ['uses' => 'ReactController@index', 'as' => 're
 Route::get('/dictionary/categoryName', 'Database\UploadDictionary@uniqueCategoryName')->name('categoryName');
 Route::get('/dictionary/{category}', 'Database\UploadDictionary@getDirectories')->name('dictionary');
 Route::get('/news/{type}', 'Database\UploadNews@getNews')->name('news');
-Route::get('/oneNews/{id}', 'Database\UploadNews@getId')->name('oneNews');
 Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMain', 'where' => ['path' => '.*']]);
 
 Route::group(['middleware' => 'auth'], function () {
