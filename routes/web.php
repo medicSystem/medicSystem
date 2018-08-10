@@ -26,14 +26,17 @@ Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMa
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:admin'], function () {
         Route::get('/admin', ['uses' => 'AdminController@index'])->name('admin');
+        Route::get('/admin/{path?}', ['uses' => 'ReactAdminController@index', 'as' => 'reactAdmin', 'where' => ['path' => '.*']]);
     });
 
     Route::group(['middleware' => 'role:doctor'], function () {
         Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
+        Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
     });
 
     Route::group(['middleware' => 'role:patient'], function () {
         Route::get('/patient', ['uses' => 'PatientController@index'])->name('patient');
+        Route::get('/patient/{path?}', ['uses' => 'ReactPatientController@index', 'as' => 'reactPatient', 'where' => ['path' => '.*']]);
     });
 
     Route::get('/home', 'UserTypeController@control')->name('control');
