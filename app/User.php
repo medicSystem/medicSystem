@@ -65,4 +65,12 @@ class User extends Authenticatable
         }
         return $role;
     }
+
+    public function getColumn($columnName, $id){
+        $user = User::where('id', $id)->get();
+        foreach ($user as $item){
+            $columnValue = $item->$columnName;
+        }
+        return $columnValue;
+    }
 }
