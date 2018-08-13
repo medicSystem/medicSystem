@@ -42,6 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'ban_list'], function () {
         Route::get('/home', 'UserTypeController@control')->name('control');
         Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
+        Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
+        Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
+        Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
