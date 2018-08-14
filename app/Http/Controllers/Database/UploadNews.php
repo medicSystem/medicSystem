@@ -23,9 +23,24 @@ class UploadNews
         }elseif ( preg_match($pattern, $type)){
             $news = News::where('id', $type)->get();
         } else{
-            $news = 'Input invalid parameter';
+            $news = News::all();
         }
         $encodeNews = json_encode($news);
         return $encodeNews;
+    }
+
+    public function list(){
+        $news = News::all();
+        $encodeNews = json_encode($news);
+        return $encodeNews;
+    }
+
+    public function addNews(){
+    }
+
+    public function updateNews(){
+    }
+
+    public function deleteNews(){
     }
 }

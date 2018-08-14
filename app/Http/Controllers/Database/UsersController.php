@@ -16,7 +16,8 @@ class UsersController extends Controller
         return $encodeUsers;
     }
 
-    public function hasUser($id){
+    public function hasUser($id)
+    {
         $users = User::where('id', $id)->get();
         $bool = false;
         foreach ($users as $item) {
@@ -27,7 +28,8 @@ class UsersController extends Controller
         return $bool;
     }
 
-    public function hasBan($id){
+    public function hasBan($id)
+    {
         $users = Ban_list::where('users_id', $id)->get();
         $bool = false;
         foreach ($users as $item) {
@@ -42,30 +44,37 @@ class UsersController extends Controller
     {
         $hasUser = $this->hasUser($id);
         $hasBan = $this->hasBan($id);
+        $msg = '';
         if (!$hasUser) {
             echo 'Haven`t got user with id ' . $id;
         } else {
-            if ($hasBan){
-                echo 'User with id '.$id.' is banned';
-            }else{
+            if ($hasBan) {
+                echo 'User with id ' . $id . ' is banned';
+            } else {
                 $ban_list = new Ban_list();
                 $ban_list->users_id = $id;
                 $ban_list->save();
+                $msg = 'User banned successfully';
             }
         }
+        return $msg;
     }
 
-    public function returnUser($id){
+    public function returnUser($id)
+    {
         $hasUser = $this->hasUser($id);
         $hasBan = $this->hasBan($id);
+        $msg = '';
         if (!$hasUser) {
-            echo 'Haven`t got user with id ' . $id;
+            $msg = 'Haven`t got user with id ' . $id;
         } else {
-            if (!$hasBan){
-                echo 'User with id '.$id.' isn`t banned';
-            }else{
+            if (!$hasBan) {
+                $msg = 'User with id ' . $id . ' isn`t banned';
+            } else {
                 $ban_list = Ban_list::where('users_id', $id)->delete();
+                $msg = 'User return successfully';
             }
         }
+        return $msg;
     }
 }
