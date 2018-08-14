@@ -3,6 +3,8 @@ import './App.css';
 import { Route, Link } from 'react-router-dom';
 import Users from './components-admin/Users';
 import News from './components-admin/News';
+import Coupons from "./components-admin/Coupons";
+import Doctors from "./components-admin/Doctors";
 
 class AdminApp extends Component {
     render() {
@@ -19,12 +21,12 @@ class AdminApp extends Component {
                         <Link to='/admin/support' className="mdl-navigation__link" href="">Support</Link>
                     </nav>
                 </div>
-                <main className="mdl-layout__content">
-                    <div className="page-content">
+                <main className="mdl-layout__content page-content">
+                    <div>
                         <Route exact path='/admin/users' component={Users}/>
-                        <Route exact path='/admin/doctors'/>
+                        <Route exact path='/admin/doctors' component={Doctors}/>
                         <Route path='/admin/news' component={News}/>
-                        <Route path='/admin/coupons'/>
+                        <Route path='/admin/coupons' component={Coupons}/>
                         <Route path='/admin/notifications'/>
                         <Route path='/admin/support'/>
                     </div>

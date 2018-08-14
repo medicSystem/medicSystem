@@ -74,3 +74,16 @@ body {
     text-decoration: none;
     color: white;
 }
+.page-content {
+    width: calc(100% - 240px);
+}
+.deck {
+    min-width: 100%;
+    min-height: 100vh !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .page-content {
+        width: 100%;
+    }
+}
