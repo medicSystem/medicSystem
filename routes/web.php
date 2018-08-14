@@ -42,7 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'ban_list'], function () {
         Route::get('/home', 'UserTypeController@control')->name('control');
-        Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
+        Route::get('/uploadImage/{dir}/{divName}', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
+        Route::get('/deleteImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
+        Route::get('/viewImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
         Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
@@ -51,3 +53,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
 });
+
