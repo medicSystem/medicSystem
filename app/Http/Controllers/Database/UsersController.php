@@ -16,6 +16,13 @@ class UsersController extends Controller
         return $encodeUsers;
     }
 
+    public function banList()
+    {
+        $banUsers = Ban_list::all();
+        $encodeBanUsers = json_encode($banUsers);
+        return $encodeBanUsers;
+    }
+
     public function hasUser($id)
     {
         $users = User::where('id', $id)->get();

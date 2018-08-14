@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/uploadImage/{dir}/{divName}', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
         Route::get('/deleteImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
         Route::get('/viewImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
+        Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
         Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
