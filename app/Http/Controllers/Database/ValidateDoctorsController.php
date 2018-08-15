@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Database;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Validate_doctor;
@@ -25,12 +26,18 @@ class ValidateDoctorsController extends Controller
     public function confirmation($id){
         $doctor = new DoctorsController();
         $doctor->addDoctor($id);
-        Validate_doctor::where('id', $id)->delete();
+        $users = User::where('id', $id)->get();
+        foreach ($users as $user){
+            Validate_doctor::where('email', $user->email)->delete();
+        }
     }
 
     public function confutation($id){
-        $doctorValidate = Validate_doctor::where('id',$id)->update('status', 'refuted');
         $ban = new UsersController();
         $ban->banUser($id);
+        $users = User::where('id', $id)->get();
+        foreach ($users as $user){
+            Validate_doctor::where('email', $user->email)->update(['status' => 'refuted']);
+        }
     }
 }

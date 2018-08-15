@@ -52,10 +52,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
 
-        Route::get('/viewNewValidate', 'ValidateController@listNew')->name('listNew');
-        Route::get('/viewRefutedValidate', 'ValidateController@listRefuted')->name('listRefuted');
-        Route::get('/confirmationValidate/{id}', 'ValidateController@confirmation')->name('confirmation');
-        Route::get('/confutationValidate/{id}', 'ValidateController@confutation')->name('confutation');
+        Route::get('/viewNewValidate', 'Database\ValidateDoctorsController@listNew')->name('listNew');
+        Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
+        Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
+        Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
