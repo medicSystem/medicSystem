@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
         Route::get('/patient', ['uses' => 'PatientController@index'])->name('patient');
         Route::get('/patient/{path?}', ['uses' => 'ReactPatientController@index', 'as' => 'reactPatient', 'where' => ['path' => '.*']]);
+        Route::get('medicalCard', 'ViewMedicalCardController@index')->name('viewMedicalCard');
+        Route::get('/addMedicalCard', 'UserTypeController@addMedicalCard')->name('addMedicalCard');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -56,7 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
         Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
         Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
-        Route::get('/medicalCard', 'UserTypeController@addMedicalCard')->name('medicalCard');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
