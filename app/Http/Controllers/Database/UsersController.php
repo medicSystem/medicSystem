@@ -12,14 +12,48 @@ class UsersController extends Controller
     public function list()
     {
         $users = User::all();
-        $encodeUsers = json_encode($users);
+        $ban_lists = Ban_list::all();
+        foreach ($users as $user){
+            foreach ($ban_lists as $ban_list){
+                if ($user->id != $ban_list->users_id){
+                    $newArray ['id'] = $user->id;
+                    $newArray['first_name'] = $user->first_name;
+                    $newArray['last_name'] = $user->last_name;
+                    $newArray['email'] = $user->email;
+                    $newArray['birthday'] = $user->birthday;
+                    $newArray['phone_number'] = $user->phone_number;
+                    $newArray['avatar'] = $user->avatar;
+                    $newArray['role'] = $user->role;
+                    $newArray['created_at'] = $user->created_at;
+                    $newArray['updated_at'] = $user->updated_at;
+                }
+            }
+        }
+        $encodeUsers = json_encode($newArray);
         return $encodeUsers;
     }
 
     public function banList()
     {
-        $banUsers = Ban_list::all();
-        $encodeBanUsers = json_encode($banUsers);
+        $users = User::all();
+        $ban_lists = Ban_list::all();
+        foreach ($users as $user){
+            foreach ($ban_lists as $ban_list){
+                if ($user->id == $ban_list->users_id){
+                    $newArray ['id'] = $user->id;
+                    $newArray['first_name'] = $user->first_name;
+                    $newArray['last_name'] = $user->last_name;
+                    $newArray['email'] = $user->email;
+                    $newArray['birthday'] = $user->birthday;
+                    $newArray['phone_number'] = $user->phone_number;
+                    $newArray['avatar'] = $user->avatar;
+                    $newArray['role'] = $user->role;
+                    $newArray['created_at'] = $user->created_at;
+                    $newArray['updated_at'] = $user->updated_at;
+                }
+            }
+        }
+        $encodeBanUsers = json_encode($newArray);
         return $encodeBanUsers;
     }
 
@@ -53,10 +87,10 @@ class UsersController extends Controller
         $hasBan = $this->hasBan($id);
         $msg = '';
         if (!$hasUser) {
-            echo 'Haven`t got user with id ' . $id;
+            $msg = 'Haven`t got user with id ' . $id;
         } else {
             if ($hasBan) {
-                echo 'User with id ' . $id . ' is banned';
+                $msg = 'User with id ' . $id . ' is banned';
             } else {
                 $ban_list = new Ban_list();
                 $ban_list->users_id = $id;

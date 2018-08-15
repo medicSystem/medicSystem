@@ -42,16 +42,28 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'ban_list'], function () {
         Route::get('/home', 'UserTypeController@control')->name('control');
+
         Route::get('/uploadImage/{dir}/{divName}', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
         Route::get('/deleteImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
         Route::get('/viewImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
+
         Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
         Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
+
+        Route::get('/viewNewValidate', 'ValidateController@listNew')->name('listNew');
+        Route::get('/viewRefutedValidate', 'ValidateController@listRefuted')->name('listRefuted');
+        Route::get('/confirmationValidate/{id}', 'ValidateController@confirmation')->name('confirmation');
+        Route::get('/confutationValidate/{id}', 'ValidateController@confutation')->name('confutation');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
 });
 
+
+/*Route::get('/test', function () {
+    return view('test');
+})->name('test');
+Route::get('/testController', 'TestController@index')->name('testController');*/
