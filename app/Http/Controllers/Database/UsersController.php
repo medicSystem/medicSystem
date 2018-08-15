@@ -6,55 +6,53 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Ban_list;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
     public function list()
     {
-        $users = User::all();
-        $ban_lists = Ban_list::all();
-        foreach ($users as $user){
-            foreach ($ban_lists as $ban_list){
-                if ($user->id != $ban_list->users_id){
-                    $newArray ['id'] = $user->id;
-                    $newArray['first_name'] = $user->first_name;
-                    $newArray['last_name'] = $user->last_name;
-                    $newArray['email'] = $user->email;
-                    $newArray['birthday'] = $user->birthday;
-                    $newArray['phone_number'] = $user->phone_number;
-                    $newArray['avatar'] = $user->avatar;
-                    $newArray['role'] = $user->role;
-                    $newArray['created_at'] = $user->created_at;
-                    $newArray['updated_at'] = $user->updated_at;
-                }
-            }
-        }
-        $encodeUsers = json_encode($newArray);
+        $resultArray = DB::select('SELECT * FROM `users` WHERE `users`.`id` NOT IN (SELECT `ban_lists`.`users_id` FROM `ban_lists`)');
+        $encodeUsers = json_encode($resultArray);
         return $encodeUsers;
     }
 
     public function banList()
     {
-        $users = User::all();
-        $ban_lists = Ban_list::all();
-        foreach ($users as $user){
-            foreach ($ban_lists as $ban_list){
-                if ($user->id == $ban_list->users_id){
-                    $newArray ['id'] = $user->id;
-                    $newArray['first_name'] = $user->first_name;
-                    $newArray['last_name'] = $user->last_name;
-                    $newArray['email'] = $user->email;
-                    $newArray['birthday'] = $user->birthday;
-                    $newArray['phone_number'] = $user->phone_number;
-                    $newArray['avatar'] = $user->avatar;
-                    $newArray['role'] = $user->role;
-                    $newArray['created_at'] = $user->created_at;
-                    $newArray['updated_at'] = $user->updated_at;
+        /*        $users = User::all();
+                $ban_lists = Ban_list::all();
+                $newArray = array();
+                $firstArray = array();
+                $resultArray = array();
+                $i = 0;
+                $k = 0;
+                foreach ($ban_lists as $ban_list) {
+                    $firstArray[$k] = $ban_list->users_id;
+                    $k++;
                 }
-            }
-        }
-        $encodeBanUsers = json_encode($newArray);
-        return $encodeBanUsers;
+                foreach ($users as $user) {
+                    $newArray[$i] = array(
+                        'id' => $user->id,
+                        'first_name' => $user->first_name,
+                        'last_name' => $user->last_name,
+                        'email' => $user->email,
+                        'birthday' => $user->birthday,
+                        'phone_number' => $user->phone_number,
+                        'avatar' => $user->avatar,
+                        'role' => $user->role);
+                    $i++;
+                }
+                for ($j = 0; $j < $i; $j++) {
+                    for ($l = 0; $l < $k; $l++) {
+                        if ($newArray[$j]['id'] == $firstArray[$l]) {
+                            $resultArray[$j] = $newArray[$j];
+                        }
+                    }
+                }*/
+        $resultArray = DB::table('users')->join('ban_lists', 'users.id', '=', 'ban_lists.users_id')->select(
+            'first_name', 'last_name', 'email', 'birthday', 'phone_number', 'avatar', 'role', 'users_id')->get();
+        $encodeUsers = json_encode($resultArray);
+        return $encodeUsers;
     }
 
     public function hasUser($id)
