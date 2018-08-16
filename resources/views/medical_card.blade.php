@@ -27,15 +27,13 @@
                 <div class="form-group">
                     <label for="chronic_disease" class="control-label col-md-4">Chronic disease:</label>
                     <div class="col-md-6">
-                        <textarea type="text" id="chronic_disease" name="chronic_disease" class="form-control" required>
-                        </textarea>
+                        <textarea type="text" id="chronic_disease" name="chronic_disease" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="allergy" class="control-label col-md-4">Allergy:</label>
                     <div class="col-md-6">
-                        <textarea type="text" id="allergy" name="allergy" class="form-control" required>
-                        </textarea>
+                        <textarea type="text" id="allergy" name="allergy" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="form-group">
