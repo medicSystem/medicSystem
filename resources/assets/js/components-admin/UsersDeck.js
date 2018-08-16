@@ -9,8 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
+import IconButton from '@material-ui/core/IconButton';
+import Clear from '@material-ui/icons/Clear'
 import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button'
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -128,7 +131,9 @@ class FloatingActionButtonZoom extends React.Component {
                                     <td>{usersList.phone_number}</td>
                                     <td>{usersList.email}</td>
                                     <td>{usersList.role}</td>
-                                    <td><Link key={usersList.id + usersList.role} id={usersList.id} to={'/admin/users' + '#' + usersList.id}>{usersList.id}<Icon  className={classes.icon} color="secondary">clear</Icon></Link></td>
+                                    <td key={usersList.id + usersList.role} onClick={ () => {
+                                        axios.post('/addBan/' + usersList.id)
+                                    }}><IconButton ><Clear/></IconButton></td>
                                 </tr>
                             )}
                             </tbody>
