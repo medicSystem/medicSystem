@@ -641,129 +641,88 @@
 .user-panel {
     padding-top: 4.75%;
 }
-
-@media screen and (max-width: 3270px) {
-    .user-panel {
+@media screen and (max-width: 3270px){
+    .user-panel{
         padding-top: 3.5%;
     }
 }
-
-@media screen and (max-width: 2725px) {
-    .user-panel {
+@media screen and (max-width: 2725px){
+    .user-panel{
         padding-top: 3.8%;
     }
 }
-
-@media screen and (max-width: 2400px) {
-    .user-panel {
+@media screen and (max-width: 2400px){
+    .user-panel{
         padding-top: 4%;
     }
 }
-
-@media screen and (max-width: 2000px) {
-    .user-panel {
+@media screen and (max-width: 2000px){
+    .user-panel{
         padding-top: 4.5%;
     }
 }
-
-@media screen and (max-width: 1800px) {
-    .user-panel {
+@media screen and (max-width: 1800px){
+    .user-panel{
         padding-top: 4.9%;
     }
 }
-
-@media screen and (max-width: 1450px) {
-    .user-panel {
+@media screen and (max-width: 1450px){
+    .user-panel{
         padding-top: 5.5%;
     }
 }
-
-@media screen and (max-width: 1150px) {
-    .user-panel {
+@media screen and (max-width: 1150px){
+    .user-panel{
         padding-top: 6.5%;
     }
 }
-
-@media screen and (max-width: 900px) {
-    .user-panel {
+@media screen and (max-width: 900px){
+    .user-panel{
         padding-top: 7.5%;
     }
 }
-
-@media screen and (max-width: 767px) {
-    .user-panel {
+@media screen and (max-width: 767px){
+    .user-panel{
         padding-top: 9.5%;
     }
 }
-
-@media screen and (max-width: 650px) {
-    .user-panel {
+@media screen and (max-width: 650px){
+    .user-panel{
         padding-top: 10.9%;
     }
 }
-
-@media screen and (max-width: 550px) {
-    .user-panel {
+@media screen and (max-width: 550px){
+    .user-panel{
         padding-top: 12.5%;
     }
 }
-
-@media screen and (max-width: 450px) {
-    .user-panel {
+@media screen and (max-width: 450px){
+    .user-panel{
         padding-top: 14.5%;
     }
 }
-
-@media screen and (max-width: 390px) {
-    .user-panel {
+@media screen and (max-width: 390px){
+    .user-panel{
         padding-top: 16.5%;
     }
 }
-
-@media screen and (max-width: 375px) {
-    .user-panel {
+@media screen and (max-width: 375px){
+    .user-panel{
         padding-top: 17.4%;
     }
 }
-
-@media screen and (max-width: 367px) {
-    .user-panel {
+@media screen and (max-width: 367px){
+    .user-panel{
         padding-top: 28.4%;
     }
 }
-
-@media screen and (max-width: 365px) {
-    .user-panel {
+@media screen and (max-width: 365px){
+    .user-panel{
         padding-top: 33.4%;
     }
 }
-
-@media screen and (max-width: 320px) {
-    .user-panel {
+@media screen and (max-width: 320px){
+    .user-panel{
         padding-top: 36%;
     }
-}
-
-.medical-card {
-    display: flex;
-    align-items: center;
-    transform: translate(0, 30%)
-}
-
-.medical-card-title {
-    padding-bottom: 3%;
-    font-size: 200%;
-    line-height: 85%;
-}
-
-.medical-card-form {
-    width: 40%;
-    font-size: 161%;
-}
-
-.medical-card-button {
-    font-size: 90%;
-    width: 100%;
-    background: #4caf50;
-    border-color: #4caf50;
 }

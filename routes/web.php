@@ -22,50 +22,24 @@ Route::get('/dictionary/categoryName', 'Database\UploadDictionary@uniqueCategory
 Route::get('/dictionary/{category}', 'Database\UploadDictionary@getDirectories')->name('dictionary');
 Route::get('/news/{type}', 'Database\UploadNews@getNews')->name('news');
 Route::get('/main/{path?}', ['uses' => 'ReactController@index', 'as' => 'reactMain', 'where' => ['path' => '.*']]);
-Route::get('/newsList', 'Database\UploadNews@list')->name('news_list');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['middleware' => ['role:admin', 'ban_list']], function () {
+    Route::group(['middleware' => 'role:admin'], function () {
         Route::get('/admin', ['uses' => 'AdminController@index'])->name('admin');
         Route::get('/admin/{path?}', ['uses' => 'ReactAdminController@index', 'as' => 'reactAdmin', 'where' => ['path' => '.*']]);
     });
 
-    Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
+    Route::group(['middleware' => 'role:doctor'], function () {
         Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
         Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
     });
 
-    Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
+    Route::group(['middleware' => 'role:patient'], function () {
         Route::get('/patient', ['uses' => 'PatientController@index'])->name('patient');
         Route::get('/patient/{path?}', ['uses' => 'ReactPatientController@index', 'as' => 'reactPatient', 'where' => ['path' => '.*']]);
-        Route::get('medicalCard', 'ViewMedicalCardController@index')->name('viewMedicalCard');
-        Route::get('/addMedicalCard', 'UserTypeController@addMedicalCard')->name('addMedicalCard');
     });
 
-    Route::group(['middleware' => 'ban_list'], function () {
-        Route::get('/home', 'UserTypeController@control')->name('control');
-
-        Route::get('/uploadImage/{dir}/{divName}', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
-        Route::get('/deleteImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
-        Route::get('/viewImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
-
-        Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
-        Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
-        Route::post('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
-        Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
-
-        Route::get('/viewNewValidate', 'Database\ValidateDoctorsController@listNew')->name('listNew');
-        Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
-        Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
-        Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
-    });
-
+    Route::get('/home', 'UserTypeController@control')->name('control');
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
-    Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
+    Route::get('/uploadImage', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
 });
-
-
-/*Route::get('/test', function () {
-    return view('test');
-})->name('test');
-Route::get('/testController', 'TestController@index')->name('testController');*/

@@ -24,7 +24,6 @@ class ValidateDoctorTableSeeder extends Seeder
             'avatar' => str_random(10),
             'patent' => str_random(10),
             'experience' => rand(),
-            'work_time' => str_random(20),
             'send_date' => $this->rendDate(),
             'status' => str_random(10),
             'doctor_types_id' => $doctorType,

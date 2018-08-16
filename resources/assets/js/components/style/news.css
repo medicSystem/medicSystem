@@ -1,18 +1,18 @@
-.news-container {
+/*.news-container {
     text-align: center;
     padding-bottom: 4rem;
 }
 
 .news-box {
     margin: 1rem 0;
-    /*display: inline-flex;*/
-}
+    !*display: inline-flex;*!
+}*/
 
-.news-card {
+/*.news-card {
     width: 250px;
     margin: .1rem;
     display: inline-flex;
-}
+}*/
 @media screen and (max-width: 767px) {
     .news-card {
         width: 100%;
@@ -31,6 +31,7 @@
     }
 }
 
+/*
 .news-card:hover {
     background-color: #e8ffed;
-}
+}*/
