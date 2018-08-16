@@ -1,18 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import SwipeableViews from "react-swipeable-views";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Zoom from "@material-ui/core/Zoom";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
-import UpIcon from "@material-ui/icons/KeyboardArrowUp";
 import green from "@material-ui/core/colors/green";
+import axios from 'axios';
+import Loader from 'react-loader-spinner';
+import IconButton from '@material-ui/core/IconButton';
+import Clear from '@material-ui/icons/Clear'
+import Icon from '@material-ui/core/Icon';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button'
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -52,7 +53,10 @@ class FloatingActionButtonZoom extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            value: 0
+            value: 0,
+            usersList: [],
+            banList: [],
+            loading: false,
         };
         this.handleChange = (event, value) => {
             this.setState({ value });
@@ -61,13 +65,28 @@ class FloatingActionButtonZoom extends React.Component {
             this.setState({ value: index });
         };
     };
+    componentDidMount() {
+        this.setState({loading: true}, () => {
+            axios.get('/usersList')
+                .then((response) => {this.setState({loading: false, usersList: response.data,});
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
+                axios.get('/banList')
+                    .then((response) => {this.setState({loading: false, banList: response.data,});
+                    });
+                const userId = window.location.hash.replace(/#/,'');
+                console.log(userId);
+        })
+    }
     render() {
         const { classes, theme } = this.props;
+        const {usersList, loading} = this.state;
         const transitionDuration = {
             enter: theme.transitions.duration.enteringScreen,
             exit: theme.transitions.duration.leavingScreen
         };
-
         return (
             <div className={classes.root + ' ' + 'deck'}>
                 <AppBar position="static" color="default">
@@ -87,8 +106,68 @@ class FloatingActionButtonZoom extends React.Component {
                     index={this.state.value}
                     onChangeIndex={this.handleChangeIndex}
                 >
-                    <TabContainer dir={theme.direction}>Item One</TabContainer>
-                    <TabContainer dir={theme.direction}>Item Two</TabContainer>
+                    <TabContainer dir={theme.direction}>
+
+                        <table className="table table-borderless table-dark">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Birthdat</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Add to ban</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {loading ? <div className='loader-admin'><Loader id='loader'  type="TailSpin" color="#4caf50" height={80} width={80}/></div> : this.state.usersList.map(usersList =>
+                                <tr id='list'>
+                                    <th scope="row">{usersList.id}</th>
+                                    <td>{usersList.first_name}</td>
+                                    <td>{usersList.last_name}</td>
+                                    <td>{usersList.birthday}</td>
+                                    <td>{usersList.phone_number}</td>
+                                    <td>{usersList.email}</td>
+                                    <td>{usersList.role}</td>
+                                    <td key={usersList.id + usersList.role} onClick={ () => {
+                                        axios.post('/addBan/' + usersList.id)
+                                    }}><IconButton ><Clear/></IconButton></td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
+                    </TabContainer>
+                    <TabContainer dir={theme.direction}> <table className="table table-borderless table-dark">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Birthdat</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Add to ban</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {loading ? <div className='loader-admin'><Loader id='loader'  type="TailSpin" color="#4caf50" height={80} width={80}/></div> : this.state.banList.map(banList =>
+                            <tr>
+                                <th scope="row">{banList.id}</th>
+                                <td>{banList.first_name}</td>
+                                <td>{banList.last_name}</td>
+                                <td>{banList.birthday}</td>
+                                <td>{banList.phone_number}</td>
+                                <td>{banList.email}</td>
+                                <td>{banList.role}</td>
+                                <td id={banList.id} ><Icon className={classes.icon} color="primary">done</Icon></td>
+                            </tr>
+                        )}
+                        </tbody>
+                    </table>
+                    </TabContainer>
                 </SwipeableViews>
             </div>
         );
