@@ -75,6 +75,11 @@ trait RegistersUsers
 
         $this->session($request->all());
 
+        $id = Auth::user()->getAuthIdentifier();
+        if (Auth::user()->getRole($id) == 'patient'){
+            $this->addPatient($id);
+        }
+
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
 

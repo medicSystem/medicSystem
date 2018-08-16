@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Patient;
 
 /*use Intervention\Image\Facades\Image as ImageInt;
 use UploadImage;
@@ -104,5 +105,11 @@ class RegisterController extends Controller
         session(['email' => $data['email']]);
         session(['role' => $data['role']]);
         session(['first_name' => $data['first_name']]);
+    }
+
+    protected function addPatient($id){
+        $patient = new Patient();
+        $patient->users_id = $id;
+        $patient->save();
     }
 }
