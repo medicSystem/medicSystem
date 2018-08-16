@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
         Route::get('/patient', ['uses' => 'PatientController@index'])->name('patient');
         Route::get('/patient/{path?}', ['uses' => 'ReactPatientController@index', 'as' => 'reactPatient', 'where' => ['path' => '.*']]);
+        Route::get('medicalCard', 'ViewMedicalCardController@index')->name('viewMedicalCard');
+        Route::get('/addMedicalCard', 'UserTypeController@addMedicalCard')->name('addMedicalCard');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -52,10 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
 
-        Route::get('/viewNewValidate', 'ValidateController@listNew')->name('listNew');
-        Route::get('/viewRefutedValidate', 'ValidateController@listRefuted')->name('listRefuted');
-        Route::get('/confirmationValidate/{id}', 'ValidateController@confirmation')->name('confirmation');
-        Route::get('/confutationValidate/{id}', 'ValidateController@confutation')->name('confutation');
+        Route::get('/viewNewValidate', 'Database\ValidateDoctorsController@listNew')->name('listNew');
+        Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
+        Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
+        Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
