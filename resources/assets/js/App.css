@@ -87,3 +87,8 @@ body {
         width: 100%;
     }
 }
+
+.loader-admin {
+    text-align: center;
+    margin: 10vh 0 0 60vh;
+}

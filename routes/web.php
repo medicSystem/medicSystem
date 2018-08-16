@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
-        Route::get('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
+        Route::post('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
         Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
 
         Route::get('/viewNewValidate', 'ValidateController@listNew')->name('listNew');
