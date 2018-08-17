@@ -14,8 +14,6 @@ export default class Main extends Component {
       news: [],
       loading: true
     };
-    const id = this.props.match.params;
-    console.log(id);
   }
   componentDidMount() {
     this.setState({ loading: true }, () => {
@@ -47,7 +45,7 @@ export default class Main extends Component {
       );
     }
     return (
-      <div className="content">
+      <div className="main">
         <Carousel />
         <div className="news-container">
           <div className="news-box">

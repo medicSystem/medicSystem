@@ -40,7 +40,6 @@ export default class News extends Component {
       );
     }
 
-    console.log(this.state.news);
     return (
       <div>
         <div className="content">

@@ -4,7 +4,7 @@ import { Navbar } from "react-bootstrap";
 export default class Footer extends Component {
   render() {
     return (
-      <Navbar inverse fixedBottom={false}>
+      <Navbar inverse fixedBottom={true}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#home">Brand</a>
