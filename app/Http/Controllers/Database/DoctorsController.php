@@ -26,4 +26,9 @@ class DoctorsController extends Controller
             $doctor->save();
         }
     }
+
+    public function getDoctor($id){
+        $doctor = Doctor::where('users_id', $id)->get();
+        return $doctor;
+    }
 }

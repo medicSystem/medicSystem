@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Database\ValidateDoctorsController;
 use App\Medical_card;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Database\DoctorsController;
 
 class UserTypeController extends Controller
 {
@@ -36,7 +38,22 @@ class UserTypeController extends Controller
             } else {
                 return redirect()->route('viewMedicalCard');
             }
-        } else{
+        } elseif ($role == 'doctor') {
+            $validate = new ValidateDoctorsController();
+            $validates = $validate->getValidateDoctor($id);
+            if ($validates->isNotEmpty()) {
+                $doctor = new DoctorsController();
+                $doctors = $doctor->getDoctor($id);
+                if ($doctors->isNotEmpty()) {
+                    echo 'notEmpty doctor';
+                    die();
+                    return redirect()->route($role);
+                } elseif ($doctors->isEmpty()) {
+                    echo 'empty';
+                    die();
+                }
+            }
+        } else {
             return redirect()->route($role);
         }
     }
@@ -47,7 +64,7 @@ class UserTypeController extends Controller
         $id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($id);
         $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id`');
-        foreach ($patientIds as $item){
+        foreach ($patientIds as $item) {
             $patientId = $item->id;
         }
         $medical_card = new Medical_card();
