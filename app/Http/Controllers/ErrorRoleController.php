@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ErrorRoleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function check($role)
+    private function check($role)
     {
         $id = Auth::user()->getAuthIdentifier();
         if (!Auth::user()->hasRole($id, $role)) {

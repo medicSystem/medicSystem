@@ -12,7 +12,7 @@ class Validate_doctor extends Model
     protected $primaryKey = 'id';
     protected $table = 'validate_doctors';
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'type', 'birthday', 'phone_number', 'avatar', 'patent', 'experience', 'send_date', 'status', 'doctor_types_id',
+        'first_name', 'last_name', 'email', 'password', 'type', 'birthday', 'phone_number', 'avatar', 'patent', 'experience', 'work_time', 'send_date', 'status', 'doctor_types_id',
     ];
 
     /**
