@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import NewsCard from "../../components/news-card/news-card";
+import Content from "../../components/content/content";
 
 export default class News extends Component {
   constructor(props) {
@@ -41,19 +42,17 @@ export default class News extends Component {
     }
 
     return (
-      <div>
-        <div className="content">
-          {news.map(news => (
-            <NewsCard
-              name={news.news_name}
-              text={news.content}
-              image={news.image}
-              date={name.updated_at}
-              key={news.id}
-            />
-          ))}
-        </div>
-      </div>
+      <Content>
+        {news.map(news => (
+          <NewsCard
+            name={news.news_name}
+            text={news.content}
+            image={news.image}
+            date={name.updated_at}
+            key={news.id}
+          />
+        ))}
+      </Content>
     );
   }
 }

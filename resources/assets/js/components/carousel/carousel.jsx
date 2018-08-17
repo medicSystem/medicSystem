@@ -7,7 +7,7 @@ export default class Header extends Component {
       <Carousel>
         <Carousel.Item>
           <img
-            width={900}
+            width="100%"
             height={500}
             alt="900x500"
             src="https://images.adsttc.com/media/images/594a/2a4a/b22e/38e9/2900/00a6/large_jpg/Cherry_Hospital-1.jpg?1498032701"
@@ -19,7 +19,7 @@ export default class Header extends Component {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            width={900}
+            width="100%"
             height={500}
             alt="900x500"
             src="https://i.ytimg.com/vi/nII0EiAdylA/maxresdefault.jpg"
@@ -31,7 +31,7 @@ export default class Header extends Component {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            width={900}
+            width="100%"
             height={500}
             alt="900x500"
             src="https://www.advancecairns.com/wp-content/uploads/2017/05/cairns-hospital.jpg"

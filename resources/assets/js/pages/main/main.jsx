@@ -5,6 +5,7 @@ import Button from "@material-ui/core/es/Button/Button";
 import { Link } from "react-router-dom";
 import axios from "axios/index";
 import NewsPreview from "../../components/news-preview/news-preview";
+import Content from "../../components/content/content";
 import "./main.css";
 
 export default class Main extends Component {
@@ -45,7 +46,7 @@ export default class Main extends Component {
       );
     }
     return (
-      <div className="main">
+      <Content>
         <Carousel />
         <div className="news-container">
           <div className="news-box">
@@ -66,7 +67,7 @@ export default class Main extends Component {
             </Link>
           </Button>
         </div>
-      </div>
+      </Content>
     );
   }
 }

@@ -3,10 +3,7 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios/index";
 import { LinkContainer } from "react-router-bootstrap";
-import { bootstrapUtils } from "react-bootstrap/lib/utils";
 import "./navbar.css";
-
-bootstrapUtils.addStyle(Nav, "custom");
 
 export default class NavBar extends Component {
   constructor(props) {
@@ -30,7 +27,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <Navbar inverse collapseOnSelect fixedTop={true}>
-        <Navbar.Header>
+        <Navbar.Header bsStyle="custom">
           <Navbar.Brand>
             <Link to="/" className="navbar-brand" style={{ display: "flex" }}>
               <img
