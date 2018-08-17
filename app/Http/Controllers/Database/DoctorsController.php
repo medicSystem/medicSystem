@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class DoctorsController extends Controller
 {
-    public function addDoctor($id){
+    public function addDoctor($id)
+    {
         $users = User::where('id', $id)->get();
-        foreach ($users as $user){
-            $doctorValidate = Validate_doctor::where('email',$user->email)->get();
+        foreach ($users as $user) {
+            $doctorValidate = Validate_doctor::where('email', $user->email)->get();
         }
-        foreach ($doctorValidate as $doctors){
+        foreach ($doctorValidate as $doctors) {
             $doctor = new Doctor();
             $doctor->patent = $doctors->patent;
             $doctor->experience = $doctors->experience;
@@ -25,10 +26,5 @@ class DoctorsController extends Controller
             $doctor->users_id = $id;
             $doctor->save();
         }
-    }
-
-    public function getDoctor($id){
-        $doctor = Doctor::where('users_id', $id)->get();
-        return $doctor;
     }
 }

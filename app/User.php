@@ -73,4 +73,9 @@ class User extends Authenticatable
         }
         return $columnValue;
     }
+
+    public function getUser($id){
+        $user = User::where('id', $id)->get();
+        return $user;
+    }
 }

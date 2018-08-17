@@ -58,6 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
         Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
         Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
+        Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
+        Route::get('/viewValidatePage', 'Database\ValidateDoctorsController@viewValidatePage')->name('viewValidatePage');
+        Route::get('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');

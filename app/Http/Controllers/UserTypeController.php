@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctor;
 use App\Http\Controllers\Database\ValidateDoctorsController;
+use App\Validate_doctor;
 use App\Medical_card;
 use App\User;
+use App\Ban_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,18 +42,36 @@ class UserTypeController extends Controller
                 return redirect()->route('viewMedicalCard');
             }
         } elseif ($role == 'doctor') {
-            $validate = new ValidateDoctorsController();
-            $validates = $validate->getValidateDoctor($id);
-            if ($validates->isNotEmpty()) {
-                $doctor = new DoctorsController();
-                $doctors = $doctor->getDoctor($id);
-                if ($doctors->isNotEmpty()) {
-                    echo 'notEmpty doctor';
-                    die();
+            $validate = new Validate_doctor();
+            $hasValidate = $validate->hasValidateDoctor($id);
+            if ($hasValidate) {
+                $validateStatus = $validate->getValidateDoctor($id);
+                foreach ($validateStatus as $status) {
+                    $checkStatus = $status->status;
+                    if ($checkStatus == 'new') {
+                        return redirect()->route('validating_doctor');
+                    } elseif ($checkStatus == 'refuted') {
+                        $ban = new Ban_list();
+                        $hasBan = $ban->hasBan($id);
+                        if (!$hasBan) {
+                            $ban->addBan($id);
+                            $first_name = $status->first_name;
+                            $last_name = $status->last_name;
+                            return redirect()->route('banUser', ['first_name' => $first_name, 'last_name' => $last_name]);
+                        } else {
+                            $first_name = $status->first_name;
+                            $last_name = $status->last_name;
+                            return redirect()->route('banUser', ['first_name' => $first_name, 'last_name' => $last_name]);
+                        }
+                    }
+                }
+            } else {
+                $doctor = new Doctor();
+                $hasDoctor = $doctor->hasDoctor($id);
+                if ($hasDoctor) {
                     return redirect()->route($role);
-                } elseif ($doctors->isEmpty()) {
-                    echo 'empty';
-                    die();
+                } else {
+                    return redirect()->route('viewValidatePage');
                 }
             }
         } else {
