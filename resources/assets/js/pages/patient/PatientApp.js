@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../../components/app/app.css';
 import { Link } from 'react-router-dom';
 
 
-class DoctorApp extends Component {
+class PatientApp extends Component {
     render() {
         return (
             <div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
@@ -27,4 +27,4 @@ class DoctorApp extends Component {
     }
 }
 
-export default DoctorApp;
+export default PatientApp;

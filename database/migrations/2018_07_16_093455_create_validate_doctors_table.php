@@ -33,7 +33,6 @@ class CreateValidateDoctorsTable extends Migration
             $table->string('avatar', 100);
             $table->string('patent', 100);
             $table->integer('experience');
-            $table->string('work_time', 20);
             $table->date('send_date');
             $table->string('status', 10);
             $table->unsignedInteger('doctor_types_id');

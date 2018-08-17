@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 /*import 'bootstrap/dist/css/bootstrap.css';*/
-import Header from "../Header";
+import Header from "../header/Header";
 import DirectoryNav from "./DirectoryNav";
 
 
