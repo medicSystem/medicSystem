@@ -84,7 +84,7 @@ class UserTypeController extends Controller
 
         $id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($id);
-        $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id`');
+        $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id` WHERE `users`.`id` = '.$id);
         foreach ($patientIds as $item) {
             $patientId = $item->id;
         }
