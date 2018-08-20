@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
         Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
         Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
+
+        Route::post('/addNews', 'Database\UploadNews@addNews')->name('addNews');
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
@@ -69,7 +71,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-/*Route::get('/test', function () {
-    return view('test');
-})->name('test');
-Route::get('/testController', 'TestController@index')->name('testController');*/
+Route::get('/test', 'TestController@index')->name('test');
