@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "../../pages/main/main";
 import Footer from "../footer/footer";
 import News from "../../pages/news/news";
-import Directory from "../directory/Directory";
+import Directory from "../../pages/directory/directory";
 import axios from "axios/index";
 import AdminApp from "../../pages/admin/AdminApp";
 import DoctorApp from "../../pages/doctor/DoctorApp";

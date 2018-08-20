@@ -8,10 +8,18 @@
 }
 
 .news-container {
+  margin-top: 50px;
   text-align: center;
   padding-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px 20px;
 }
-
+.news-button {
+  grid-column: 2;
+  width: 150px;
+  justify-self: center;
+}
 .news-box {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -34,4 +42,13 @@
 }
 .news-box-loader {
   top: 30%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .news-container {
+    grid-template-columns: 1fr;
+  }
+  .news-button {
+    grid-column: 1;
+  }
 }

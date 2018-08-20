@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../style/directorynav.css";
+import "../../components/style/directorynav.css";
 import axios from "axios";
-import DirectoryNav from "./DirectoryNav";
+//import DirectoryNav from "./DirectoryNav";
 import Content from "../../components/content/content";
+import NewsPreview from "../../components/news-preview/news-preview";
 import Loader from "react-loader-spinner";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import List from "../../components/list/list";
+import "./directory.css"
 
 export default class Directory extends Component {
   constructor(props) {
@@ -57,7 +62,31 @@ export default class Directory extends Component {
     }
     return (
       <Content>
-        <div className="directory-content">
+        <List>
+          <ListGroup>
+            {this.state.categories.map(categories => (
+              <LinkContainer
+                key={categories.id + categories}
+                className="list-group-item list-group-item-action"
+                to={/directory/ + categories}
+              >
+                <ListGroupItem> {categories}</ListGroupItem>
+              </LinkContainer>
+            ))}
+          </ListGroup>
+          <div className="card-list">
+            {dictionary.map(dictionary => (
+              <NewsPreview
+                key={dictionary.id}
+                name={dictionary.disease_name}
+                text={dictionary.treatment}
+                date={dictionary.symptoms}
+                image="https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971"
+              />
+            ))}
+          </div>
+        </List>
+        {/*<div className="directory-content">
           <div className="navigation-panel">
             <div className="list-group directory-nav">
               {this.state.categories.map(categories => (
@@ -82,7 +111,7 @@ export default class Directory extends Component {
               </div>
             ))}
           </div>
-        </div>
+        </div>*/}
       </Content>
     );
   }

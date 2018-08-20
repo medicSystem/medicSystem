@@ -44,11 +44,11 @@ export default class NavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav bsStyle="custom">
-            <LinkContainer to="/main/news">
+            <LinkContainer to="/main/news" activeClassName="selected">
               <NavItem>News</NavItem>
             </LinkContainer>
 
-            <LinkContainer to="/">
+            <LinkContainer to="/" activeClassName="selected">
               <NavItem>Home</NavItem>
             </LinkContainer>
 
@@ -60,6 +60,7 @@ export default class NavBar extends Component {
             >
               {this.state.categories.map(categories => (
                 <LinkContainer
+                  activeClassName="selected"
                   to={/directory/ + categories}
                   key={categories.id + categories}
                 >

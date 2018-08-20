@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios/index";
 import NewsPreview from "../../components/news-preview/news-preview";
 import Content from "../../components/content/content";
+import List from "../../components/list/list";
 import "./main.css";
 
 export default class Main extends Component {
@@ -49,7 +50,7 @@ export default class Main extends Component {
       <Content>
         <Carousel />
         <div className="news-container">
-          <div className="news-box">
+
             {news.map(news => (
               <NewsPreview
                 key={news.id}
@@ -59,9 +60,9 @@ export default class Main extends Component {
                 image="https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971"
               />
             ))}
-          </div>
 
-          <Button color="primary" variant="contained">
+
+          <Button color="primary" variant="contained" className="news-button">
             <Link className="btn-link" to="/main/news">
               Read more
             </Link>
