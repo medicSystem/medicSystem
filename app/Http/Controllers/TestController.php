@@ -9,9 +9,6 @@ class TestController extends Controller
 {
     public function index(Request $request)
     {
-        $photo = $request->picture;
-        $dir = 'test';
-        $divName = 'picture';
-        return route('uploadImage', ['dir' => $dir, 'divName' => $divName]);
+        return view('test');
     }
 }
