@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./components/app/app";
 import registerServiceWorker from "./registerServiceWorker";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+require('./bootstrap');
 
 const theme = createMuiTheme({
   palette: {
