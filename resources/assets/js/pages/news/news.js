@@ -7,6 +7,8 @@ import Content from "../../components/content/content";
 export default class News extends Component {
   constructor(props) {
     super(props);
+    this.myRef = React.createRef();
+
     this.state = {
       loading: false
     };
@@ -40,11 +42,13 @@ export default class News extends Component {
         </div>
       );
     }
-
+      window.scrollTo(0, this.myRef);
+console.log(this.myRef)
     return (
       <Content>
         {news.map(news => (
           <NewsCard
+            ref={this.myRef}
             name={news.news_name}
             text={news.content}
             image={news.image}

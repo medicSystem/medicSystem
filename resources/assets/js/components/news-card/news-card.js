@@ -16,7 +16,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 const styles = theme => ({
   root: {
     fontSize: 50
-
   },
   card: {
     maxWidth: 1000,
@@ -64,7 +63,7 @@ class RecipeReviewCard extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div ref={this.props.ref}>
         <Card className={classes.card}>
           <CardHeader title={this.props.name} subheader={this.props.date} />
           <CardMedia
