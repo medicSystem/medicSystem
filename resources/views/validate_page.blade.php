@@ -3,7 +3,9 @@
 @section('content')
     <div class="user-panel">
         <div class="medical-card">
-            <form action="{{ route('addValidate') }}" method="GET" class="form-horizontal medical-card-form">
+            <form action="{{ route('addValidate') }}" method="POST" class="form-horizontal medical-card-form"
+                  enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="form-group medical-card-title">
                     <label for="Doctor_card" class="control-label col-md-10">Doctor
                         card {{ Auth::user()->first_name }} {{ Auth::user()->last_name  }}</label>
@@ -31,7 +33,8 @@
                 <div class="form-group">
                     <label for="experience" class="control-label col-md-4">Experience:</label>
                     <div class="col-md-6">
-                        <input type="number" id="experience" name="experience" class="form-control" required max="50" min="0">
+                        <input type="number" id="experience" name="experience" class="form-control" required max="50"
+                               min="0">
                     </div>
                 </div>
                 <div class="form-group">

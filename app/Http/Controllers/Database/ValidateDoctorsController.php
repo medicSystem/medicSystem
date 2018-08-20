@@ -93,39 +93,77 @@ class ValidateDoctorsController extends Controller
         $experience = $request->experience;
 
         //upload patent image
-        /*$dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
+        $waterMark = public_path().'/upload/waterMark/watermark.png';
+        $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
         if (file_exists($dirName) && is_dir($dirName)) {
             $dirName = $dirName . '/' . $dir;
             if (file_exists($dirName) && is_dir($dirName)) {
-                $file = $request->file('patent');
-                var_dump($file);
-                die();
+                $file = $request->file($divName);
                 $path = $file->store('upload/' . $dir);
+                $imgWidth = ImageInt::make($file)->width();
+                $imgHeight = ImageInt::make($file)->height();
+                $height = $imgHeight;
+                $width = $imgWidth;
+                if ($imgWidth > 1000){
+                    $width = 1000;
+                    $difference = $imgWidth - $width;
+                    $height = $imgHeight - $difference;
+                }
+                if ($imgHeight >1000){
+                    $height = 1000;
+                    $difference = $imgHeight - $height;
+                    $height = $imgWidth - $difference;
+                }
                 $img = ImageInt::make($file);
-                $img->resize(200, 200)->save($path);
+                $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
             } else {
                 mkdir($dirName);
-                $file = $request->file('patent');
-                var_dump($file);
-                die();
+                $file = $request->file($divName);
                 $path = $file->store('upload/' . $dir);
+                $imgWidth = ImageInt::make($file)->width();
+                $imgHeight = ImageInt::make($file)->height();
+                $height = $imgHeight;
+                $width = $imgWidth;
+                if ($imgWidth > 1000){
+                    $width = 1000;
+                    $difference = $imgWidth - $width;
+                    $height = $imgHeight - $difference;
+                }
+                if ($imgHeight >1000){
+                    $height = 1000;
+                    $difference = $imgHeight - $height;
+                    $height = $imgWidth - $difference;
+                }
                 $img = ImageInt::make($file);
-                $img->resize(200, 200)->save($path);
+                $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
             }
         } else {
             mkdir($dirName);
             $dirName = $dirName . '/' . $dir;
             mkdir($dirName);
-            $file = $request->file('patent');
-            var_dump($file);
-            die();
+            $file = $request->file($divName);
             $path = $file->store('upload/' . $dir);
+            //resize big image
+            $imgWidth = ImageInt::make($file)->width();
+            $imgHeight = ImageInt::make($file)->height();
+            $height = $imgHeight;
+            $width = $imgWidth;
+            if ($imgWidth > 1000){
+                $width = 1000;
+                $difference = $imgWidth - $width;
+                $height = $imgHeight - $difference;
+            }
+            if ($imgHeight >1000){
+                $height = 1000;
+                $difference = $imgHeight - $height;
+                $height = $imgWidth - $difference;
+            }
             $img = ImageInt::make($file);
-            $img->resize(200, 200)->save($path);
+            $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
+            $img->resize($width, $height)->save($path);
         }
         $length = strlen($dir) + 2;
-        $patent = substr($path, strpos($path, '/') + $length);*/
-        $patent = $request->patent;
+        $patent = substr($path, strpos($path, '/') + $length);
 
         //add into db
         $validate = new Validate_doctor();

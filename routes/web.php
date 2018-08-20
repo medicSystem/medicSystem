@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
         Route::get('/viewValidatePage', 'Database\ValidateDoctorsController@viewValidatePage')->name('viewValidatePage');
-        Route::get('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
+        Route::post('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
