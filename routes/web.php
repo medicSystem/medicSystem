@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/addNews', 'Database\UploadNews@addNews')->name('addNews');
         Route::get('/deleteNews/{id}', 'Database\UploadNews@deleteNews')->name('deleteNews');
         Route::post('updateNews/{id}', 'Database\UploadNews@updateNews')->name('updateNews');
+
+        Route::post('/addDirectory', 'Database\UploadDictionary@addDirectory')->name('addDirectory');
+        Route::get('/deleteDirectory/{id}', 'Database\UploadDictionary@deleteDirectory')->name('deleteDirectory');
+        Route::post('/updateDirectory/{id}', 'Database\UploadDictionary@updateDirectory')->name('updateDirectory');
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
