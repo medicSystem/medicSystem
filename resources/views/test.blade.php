@@ -1,4 +1,4 @@
-{{--@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -21,7 +21,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            --}}{{--<div class="col-md-6">
+                            {{--<div class="col-md-6">
                                 <textarea id="treatment" name="treatment" type="text" class="form-control"></textarea>
                             </div>
                             <div class="col-md-6">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-6">
                                 <input id="picture" name="picture" type="file" accept="image/*" class="form-control">
-                            </div>--}}{{--
+                            </div>--}}
 
                             <button type="submit">send</button>
                         </form>
@@ -38,4 +38,4 @@
             </div>
         </div>
     </div>
-@endsection--}}
+@endsection

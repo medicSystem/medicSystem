@@ -20,7 +20,6 @@ class CouponsSeeder extends Seeder
                 'doctors_id'=> $doctor,
                 'patients_id' => $patients->id,
                 'date' => $this->rendDate(),
-                'status' => str_random(10),
                 'created_at' => $this->rendDateTime(),
                 'updated_at' => $this->rendDateTime(),
             ]);

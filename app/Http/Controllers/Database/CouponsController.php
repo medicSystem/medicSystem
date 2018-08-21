@@ -31,6 +31,16 @@ class CouponsController extends Controller
         Coupon::where('id', $id)->delete();
     }
 
+    public function deleteNotActive($id)
+    {
+        $coupons = Coupon::where('id', $id)->get();
+        foreach ($coupons as $coupon){
+            if ($coupon->date <= date('Y-m-s H:i:s')){
+                Coupon::where('id', $id)->delete();
+            }
+        }
+    }
+
     public function add(Request $request)
     {
         $coupon = new Coupon();
@@ -41,7 +51,6 @@ class CouponsController extends Controller
         }
         $coupon->doctors_id = $request->doctors_id;
         $coupon->date = $request->date;
-        $coupon->status = 'new';
         $coupon->save();
     }
 }
