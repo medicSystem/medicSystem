@@ -31,15 +31,17 @@ class CouponsController extends Controller
         Coupon::where('id', $id)->delete();
     }
 
-/*    public function add(Request $request)
+    public function add(Request $request)
     {
         $coupon = new Coupon();
         $id = Auth::user()->getAuthIdentifier();
-        $patientId = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id` WHERE `users`.`id` = ' . $id);
-        $coupon->patients_id = $patientId;
+        $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id` WHERE `users`.`id` = ' . $id);
+        foreach ($patientIds as $patientId) {
+            $coupon->patients_id = $patientId->id;
+        }
         $coupon->doctors_id = $request->doctors_id;
         $coupon->date = $request->date;
         $coupon->status = 'new';
         $coupon->save();
-    }*/
+    }
 }

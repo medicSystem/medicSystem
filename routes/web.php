@@ -63,7 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/medicalCard', 'ViewMedicalCardController@index')->name('viewMedicalCard');
         Route::get('/addMedicalCard', 'UserTypeController@addMedicalCard')->name('addMedicalCard');
 
-/*        Route::post('/addCoupon', 'Database\CouponsController@add')->name('addCoupon');*/
+        Route::post('/addCoupon', 'Database\CouponsController@add')->name('addCoupon');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
