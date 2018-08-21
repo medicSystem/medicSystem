@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 const styles = {
   card: {
     width: 325,
-    minHeight: 300,
+    minHeight: 300
   },
   media: {
     height: 0,
@@ -21,6 +21,7 @@ const styles = {
 
 function SimpleMediaCard(props) {
   const { classes } = props;
+  const link = "/main/news#" + props.id.toString();
   return (
     <div>
       <Card className={classes.card}>
@@ -36,7 +37,7 @@ function SimpleMediaCard(props) {
           <Typography component="p">{props.text}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" href={link}>
             Learn More
           </Button>
         </CardActions>

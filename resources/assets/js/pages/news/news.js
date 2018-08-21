@@ -7,29 +7,26 @@ import Content from "../../components/content/content";
 export default class News extends Component {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
-
     this.state = {
-      loading: false
+      loading: true
     };
   }
   componentDidMount() {
     let parameter = "long";
     let string = ["/news/" + parameter];
-    this.setState({ loading: true }, () => {
-      axios
-        .get(string.join())
-        .then(response => {
-          this.setState({ loading: false, news: response.data });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
+    axios
+      .get(string.join())
+      .then(response => {
+        this.setState({ loading: false, news: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
+
   render() {
     const { news, loading } = this.state;
-    if (loading || news === undefined) {
+    if (loading) {
       return (
         <div className="loader-container news-box-loader">
           <Loader
@@ -42,19 +39,17 @@ export default class News extends Component {
         </div>
       );
     }
-      window.scrollTo(0, this.myRef);
-console.log(this.myRef)
     return (
       <Content>
         {news.map(news => (
-          <NewsCard
-            ref={this.myRef}
-            name={news.news_name}
-            text={news.content}
-            image={news.image}
-            date={name.updated_at}
-            key={news.id}
-          />
+          <div id={news.id} key={news.id} >
+            <NewsCard
+              name={news.news_name}
+              text={news.content}
+              image={news.image}
+              date={name.updated_at}
+            />
+          </div>
         ))}
       </Content>
     );

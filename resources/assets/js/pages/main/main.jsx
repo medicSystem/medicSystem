@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import axios from "axios/index";
 import NewsPreview from "../../components/news-preview/news-preview";
 import Content from "../../components/content/content";
-import List from "../../components/list/list";
 import "./main.css";
 
 export default class Main extends Component {
@@ -53,7 +52,7 @@ export default class Main extends Component {
 
             {news.map(news => (
               <NewsPreview
-                key={news.id}
+                id={news.id}
                 name={news.news_name}
                 text={news.content}
                 date={news.created_at}

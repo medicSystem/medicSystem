@@ -63,7 +63,7 @@ class RecipeReviewCard extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div ref={this.props.ref}>
+      <div>
         <Card className={classes.card}>
           <CardHeader title={this.props.name} subheader={this.props.date} />
           <CardMedia

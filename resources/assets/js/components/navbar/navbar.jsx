@@ -27,7 +27,7 @@ export default class NavBar extends Component {
   render() {
     return (
       <Navbar inverse collapseOnSelect fixedTop={true}>
-        <Navbar.Header bsStyle="custom">
+        <Navbar.Header>
           <Navbar.Brand>
             <Link to="/" className="navbar-brand" style={{ display: "flex" }}>
               <img

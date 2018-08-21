@@ -77,7 +77,6 @@ class App extends Component {
             <Fragment>
               <NavBar />
 
-
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route path="/main/news" component={News} />
