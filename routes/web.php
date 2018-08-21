@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
+    Route::get('/getDoctors/{type_name}', 'Database\DoctorsController@getDoctors')->name('getDoctors');
+    Route::get('/getDoctor/{id}', 'Database\DoctorsController@getDoctor')->name('getDoctor');
 });
 
 
