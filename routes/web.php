@@ -40,6 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
 
         Route::post('/addNews', 'Database\UploadNews@addNews')->name('addNews');
+        Route::get('/deleteNews/{id}', 'Database\UploadNews@deleteNews')->name('deleteNews');
+        Route::post('updateNews/{id}', 'Database\UploadNews@updateNews')->name('updateNews');
+
+        Route::post('/addDirectory', 'Database\UploadDictionary@addDirectory')->name('addDirectory');
+        Route::get('/deleteDirectory/{id}', 'Database\UploadDictionary@deleteDirectory')->name('deleteDirectory');
+        Route::post('/updateDirectory/{id}', 'Database\UploadDictionary@updateDirectory')->name('updateDirectory');
+
+        Route::get('/deleteCoupon/{id}', 'Database\CouponsController@delete')->name('deleteCoupon');
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
@@ -49,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
         Route::get('/viewValidatePage', 'Database\ValidateDoctorsController@viewValidatePage')->name('viewValidatePage');
         Route::post('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
+
+        Route::get('/deleteNotActive/{id}', 'Database\CouponsController@deleteNotActive')->name('deleteNotActive');
     });
 
     Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
@@ -56,6 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/patient/{path?}', ['uses' => 'ReactPatientController@index', 'as' => 'reactPatient', 'where' => ['path' => '.*']]);
         Route::get('/medicalCard', 'ViewMedicalCardController@index')->name('viewMedicalCard');
         Route::get('/addMedicalCard', 'UserTypeController@addMedicalCard')->name('addMedicalCard');
+
+        Route::post('/addCoupon', 'Database\CouponsController@add')->name('addCoupon');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -64,10 +76,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/uploadImage/{dir}/{divName}', ['uses' => 'UploadImageController@upload', 'as' => 'uploadImage']);
         Route::get('/deleteImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
         Route::get('/viewImage/{db}/{columnName}/{id}/{dir}', ['uses' => 'UploadImageController@delete', 'as' => 'deleteImage']);
+
+        Route::get('/getActiveCoupon', 'Database\CouponsController@listActiveCoupon')->name('listActiveCoupon');
+        Route::get('/getNotActiveCoupon', 'Database\CouponsController@listNotActiveCoupon')->name('listNotActiveCoupon');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
+    Route::get('/getDoctors/{type_name}', 'Database\DoctorsController@getDoctors')->name('getDoctors');
+    Route::get('/getDoctor/{id}', 'Database\DoctorsController@getDoctor')->name('getDoctor');
 });
 
 

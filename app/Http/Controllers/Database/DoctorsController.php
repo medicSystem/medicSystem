@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Doctor;
 use App\Validate_doctor;
 use Illuminate\Support\Facades\Auth;
+use App\Doctor_type;
 
 class DoctorsController extends Controller
 {
@@ -26,5 +27,21 @@ class DoctorsController extends Controller
             $doctor->users_id = $id;
             $doctor->save();
         }
+    }
+
+    public function getDoctors($type_name){
+        $doctor_types_id = Doctor_type::where('type_name', $type_name)->get();
+        foreach ($doctor_types_id as $item){
+            $type_id = $item->id;
+        }
+        $doctors = Doctor::where('doctor_types_id', $type_id)->get();
+        $encodeDoctors = json_encode($doctors);
+        return $encodeDoctors;
+    }
+
+    public function getDoctor($id){
+        $doctors = Doctor::where('id', $id)->get();
+        $encodeDoctors = json_encode($doctors);
+        return $encodeDoctors;
     }
 }

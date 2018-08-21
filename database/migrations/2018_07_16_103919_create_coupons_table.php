@@ -24,7 +24,6 @@ class CreateCouponsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->dateTime('date');
-            $table->string('status', 10);
             $table->unsignedInteger('patients_id');
             $table->unsignedInteger('doctors_id');
             $table->timestamps();
