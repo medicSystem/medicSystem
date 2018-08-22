@@ -77,7 +77,7 @@ export default class Directory extends Component {
           <div className="card-list">
             {dictionary.map(dictionary => (
               <NewsPreview
-                key={dictionary.id}
+
                 name={dictionary.disease_name}
                 text={dictionary.treatment}
                 date={dictionary.symptoms}

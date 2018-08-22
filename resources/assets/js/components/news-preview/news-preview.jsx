@@ -21,7 +21,11 @@ const styles = {
 
 function SimpleMediaCard(props) {
   const { classes } = props;
-  const link = "/main/news#" + props.id.toString();
+  let id = 0;
+  if (props.id) {
+    id = props.id;
+  }
+  const link = "/main/news#" + id.toString();
   return (
     <div>
       <Card className={classes.card}>
@@ -48,6 +52,9 @@ function SimpleMediaCard(props) {
 
 SimpleMediaCard.propTypes = {
   classes: PropTypes.object.isRequired
+};
+SimpleMediaCard.defaultProps = {
+    id: 0
 };
 
 export default withStyles(styles)(SimpleMediaCard);
