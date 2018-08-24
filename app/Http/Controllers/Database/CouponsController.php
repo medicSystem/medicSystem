@@ -26,6 +26,22 @@ class CouponsController extends Controller
         return $encodeCoupon;
     }
 
+    public function listActiveCouponByDoctorId($id)
+    {
+        $dataTime = date('Y-m-d H:i:s');
+        $coupon = Coupon::where('date', '>=', $dataTime)->where('doctors_id', $id)->get();
+        $encodeCoupon = json_encode($coupon);
+        return $encodeCoupon;
+    }
+
+    public function listNotActiveCouponByDoctorId($id)
+    {
+        $dataTime = date('Y-m-d H:i:s');
+        $coupon = Coupon::where('date', '<=', $dataTime)->where('doctors_id', $id)->get();
+        $encodeCoupon = json_encode($coupon);
+        return $encodeCoupon;
+    }
+
     public function delete($id)
     {
         Coupon::where('id', $id)->delete();
