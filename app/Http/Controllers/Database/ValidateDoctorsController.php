@@ -23,14 +23,56 @@ class ValidateDoctorsController extends Controller
     public function listNew()
     {
         $validateList = Validate_doctor::where('status', 'new')->get();
-        $encodeValidateList = json_encode($validateList);
+        foreach ($validateList as $item){
+            $email = $item->email;
+            $validate ['id'] = $item->id;
+            $validate ['first_name'] = $item->first_name;
+            $validate['last_name'] = $item->last_name;
+            $validate['email'] = $item->email;
+            $validate['type'] = $item->type;
+            $validate['birthday'] = $item->birthday;
+            $validate['phone_number'] = $item->phone_number;
+            $validate['avatar'] = $item->avatar;
+            $validate['patent'] = $item->patent;
+            $validate['experience'] = $item->experience;
+            $validate['work_time'] = $item->work_time;
+            $validate['send_date'] = $item->send_date;
+            $validate['status'] = $item->status;
+            $validate['doctor_types_id'] = $item->doctor_types_id;
+        }
+        $users = User::where('email', $email)->get();
+        foreach ($users as $user){
+            $validate['users_id'] = $user->id;
+        }
+        $encodeValidateList = json_encode($validate);
         return $encodeValidateList;
     }
 
     public function listRefuted()
     {
         $validateList = Validate_doctor::where('status', 'refuted')->get();
-        $encodeValidateList = json_encode($validateList);
+        foreach ($validateList as $item){
+            $email = $item->email;
+            $validate ['id'] = $item->id;
+            $validate ['first_name'] = $item->first_name;
+            $validate['last_name'] = $item->last_name;
+            $validate['email'] = $item->email;
+            $validate['type'] = $item->type;
+            $validate['birthday'] = $item->birthday;
+            $validate['phone_number'] = $item->phone_number;
+            $validate['avatar'] = $item->avatar;
+            $validate['patent'] = $item->patent;
+            $validate['experience'] = $item->experience;
+            $validate['work_time'] = $item->work_time;
+            $validate['send_date'] = $item->send_date;
+            $validate['status'] = $item->status;
+            $validate['doctor_types_id'] = $item->doctor_types_id;
+        }
+        $users = User::where('email', $email)->get();
+        foreach ($users as $user){
+            $validate['users_id'] = $user->id;
+        }
+        $encodeValidateList = json_encode($validate);
         return $encodeValidateList;
     }
 
