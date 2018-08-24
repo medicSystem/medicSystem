@@ -85,6 +85,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
     Route::get('/getDoctors/{type_name}', 'Database\DoctorsController@getDoctors')->name('getDoctors');
     Route::get('/getDoctor/{id}', 'Database\DoctorsController@getDoctor')->name('getDoctor');
+    Route::get('/getWorkTime/{id}', 'Database\DoctorsController@getWorkTime')->name('getWorkTime');
+    Route::get('/getBusyTime/{id}/{needDate}', 'Database\DoctorsController@getBusyTime')->name('getBusyTime');
+    Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
 });
 
 
