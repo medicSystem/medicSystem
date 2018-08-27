@@ -23,26 +23,19 @@ class ValidateDoctorsController extends Controller
     public function listNew()
     {
         $validateList = Validate_doctor::where('status', 'new')->get();
-        foreach ($validateList as $item){
-            $email = $item->email;
-            $validate ['id'] = $item->id;
-            $validate ['first_name'] = $item->first_name;
-            $validate['last_name'] = $item->last_name;
-            $validate['email'] = $item->email;
-            $validate['type'] = $item->type;
-            $validate['birthday'] = $item->birthday;
-            $validate['phone_number'] = $item->phone_number;
-            $validate['avatar'] = $item->avatar;
-            $validate['patent'] = $item->patent;
-            $validate['experience'] = $item->experience;
-            $validate['work_time'] = $item->work_time;
-            $validate['send_date'] = $item->send_date;
-            $validate['status'] = $item->status;
-            $validate['doctor_types_id'] = $item->doctor_types_id;
-        }
-        $users = User::where('email', $email)->get();
-        foreach ($users as $user){
-            $validate['users_id'] = $user->id;
+        $i = 0;
+        $validate[] = array();
+        if ($validateList->isNotEmpty()) {
+            foreach ($validateList as $item) {
+                $email = $item->email;
+                $users = User::where('email', $email)->get();
+                foreach ($users as $user) {
+                    $users_id = $user->id;
+                }
+                $validate[$i] = array("first_name" => $item->first_name, "last_name" => $item->last_name, "email" => $item->email, "type" => $item->type, "birthday" => $item->birthday, "phone_number" => $item->phone_number,
+                    "avatar" => $item->avatar, "patent" => $item->patent, "experience" => $item->experience, "work_time" => $item->work_time, "send_date" => $item->send_date, "status" => $item->status, "doctor_types_id" => $item->doctor_types_id, "users_id" => $users_id);
+                $i++;
+            }
         }
         $encodeValidateList = json_encode($validate);
         return $encodeValidateList;
@@ -51,26 +44,19 @@ class ValidateDoctorsController extends Controller
     public function listRefuted()
     {
         $validateList = Validate_doctor::where('status', 'refuted')->get();
-        foreach ($validateList as $item){
-            $email = $item->email;
-            $validate ['id'] = $item->id;
-            $validate ['first_name'] = $item->first_name;
-            $validate['last_name'] = $item->last_name;
-            $validate['email'] = $item->email;
-            $validate['type'] = $item->type;
-            $validate['birthday'] = $item->birthday;
-            $validate['phone_number'] = $item->phone_number;
-            $validate['avatar'] = $item->avatar;
-            $validate['patent'] = $item->patent;
-            $validate['experience'] = $item->experience;
-            $validate['work_time'] = $item->work_time;
-            $validate['send_date'] = $item->send_date;
-            $validate['status'] = $item->status;
-            $validate['doctor_types_id'] = $item->doctor_types_id;
-        }
-        $users = User::where('email', $email)->get();
-        foreach ($users as $user){
-            $validate['users_id'] = $user->id;
+        $i = 0;
+        $validate[] = array();
+        if ($validateList->isNotEmpty()) {
+            foreach ($validateList as $item) {
+                $email = $item->email;
+                $users = User::where('email', $email)->get();
+                foreach ($users as $user) {
+                    $users_id = $user->id;
+                }
+                $validate[$i] = array("first_name" => $item->first_name, "last_name" => $item->last_name, "email" => $item->email, "type" => $item->type, "birthday" => $item->birthday, "phone_number" => $item->phone_number,
+                    "avatar" => $item->avatar, "patent" => $item->patent, "experience" => $item->experience, "work_time" => $item->work_time, "send_date" => $item->send_date, "status" => $item->status, "doctor_types_id" => $item->doctor_types_id, "users_id" => $users_id);
+                $i++;
+            }
         }
         $encodeValidateList = json_encode($validate);
         return $encodeValidateList;
@@ -111,7 +97,7 @@ class ValidateDoctorsController extends Controller
         $dir = 'patents';
         $divName = 'patent';
 
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $first_name = $user->first_name;
             $last_name = $user->last_name;
             $email = $user->email;
@@ -121,21 +107,21 @@ class ValidateDoctorsController extends Controller
             $phone_number = $user->phone_number;
             $avatar = $user->avatar;
         }
-        $work_time = $request->start_time . '-' .$request->end_time;
+        $work_time = $request->start_time . '-' . $request->end_time;
         $send_date = date('Y-m-d');
         $status = 'new';
 
         //doctor_type id
         $type_name = $request->doctor_types;
         $doctor_type = Doctor_type::where('type_name', $type_name)->get();
-        foreach ($doctor_type as $item){
+        foreach ($doctor_type as $item) {
             $doctor_types_id = $item->id;
         }
 
         $experience = $request->experience;
 
         //upload patent image
-        $waterMark = public_path().'/upload/waterMark/watermark.png';
+        $waterMark = public_path() . '/upload/waterMark/watermark.png';
         $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
         if (file_exists($dirName) && is_dir($dirName)) {
             $dirName = $dirName . '/' . $dir;
@@ -146,12 +132,12 @@ class ValidateDoctorsController extends Controller
                 $imgHeight = ImageInt::make($file)->height();
                 $height = $imgHeight;
                 $width = $imgWidth;
-                if ($imgWidth > 1000){
+                if ($imgWidth > 1000) {
                     $width = 1000;
                     $difference = $imgWidth - $width;
                     $height = $imgHeight - $difference;
                 }
-                if ($imgHeight >1000){
+                if ($imgHeight > 1000) {
                     $height = 1000;
                     $difference = $imgHeight - $height;
                     $height = $imgWidth - $difference;
@@ -166,12 +152,12 @@ class ValidateDoctorsController extends Controller
                 $imgHeight = ImageInt::make($file)->height();
                 $height = $imgHeight;
                 $width = $imgWidth;
-                if ($imgWidth > 1000){
+                if ($imgWidth > 1000) {
                     $width = 1000;
                     $difference = $imgWidth - $width;
                     $height = $imgHeight - $difference;
                 }
-                if ($imgHeight >1000){
+                if ($imgHeight > 1000) {
                     $height = 1000;
                     $difference = $imgHeight - $height;
                     $height = $imgWidth - $difference;
@@ -190,12 +176,12 @@ class ValidateDoctorsController extends Controller
             $imgHeight = ImageInt::make($file)->height();
             $height = $imgHeight;
             $width = $imgWidth;
-            if ($imgWidth > 1000){
+            if ($imgWidth > 1000) {
                 $width = 1000;
                 $difference = $imgWidth - $width;
                 $height = $imgHeight - $difference;
             }
-            if ($imgHeight >1000){
+            if ($imgHeight > 1000) {
                 $height = 1000;
                 $difference = $imgHeight - $height;
                 $height = $imgWidth - $difference;
