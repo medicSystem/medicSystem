@@ -54,7 +54,7 @@
                         </p>
                     </li>
                     <li class="dropdown">
-                        <a role="button" class="dropdown-toggle log-button drop-btn transparent" data-toggle="dropdown"
+                        <a role="button" class="dropdown-toggle " data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" href="#" v-pre>
                             {{Auth::user()->last_name }}
                             <span class="caret">
@@ -110,6 +110,7 @@
 <script src="{{ asset('js/modal.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/photo_preview.js') }}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
 </html>

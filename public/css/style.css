@@ -444,13 +444,7 @@
     font-size: 2rem;
 }
 
-.log-button {
-    color: #9d9d9d;
-}
 
-.log-button:hover {
-    color: #fff;
-}
 
 .li-nav {
     display: inline;
@@ -463,7 +457,7 @@
 
 .drop-btn {
     width: max-content;
-    border: 1px solid transparent;
+
 }
 
 .footer {
@@ -679,12 +673,14 @@ padding-top: 51px;
 .navbar-nav > li > a {
     padding-top: 13px;
     padding-bottom: 13px;
+    border: 1px solid transparent;
 }
 
 .navbar-text {
     float: left;
     margin-bottom: 13px;
     margin-top: 13px;
+
 }
 
 .navbar-right {
