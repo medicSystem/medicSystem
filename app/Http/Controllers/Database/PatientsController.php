@@ -15,7 +15,7 @@ class PatientsController extends Controller
         $i = 0;
         foreach ($patients as $patient) {
             $user_id[$i] = $patient->users_id;
-            $patientsInfo[$i] = DB::select('SELECT `users`.`first_name`,`users`.`id`,`users`.`last_name`,`users`.`email`,`users`.`birthday`,`users`.`phone_number`,`users`.`avatar`,`users`.`role` FROM `users` JOIN `patients` ON `users`.`id` = `patients`.`users_id` WHERE `patients`.`users_id` = ' . $user_id[$i]);
+            $patientsInfo[$i] = DB::select('SELECT `users`.`first_name`,`users`.`id`,`users`.`last_name`,`users`.`email`,`users`.`birthday`,`users`.`phone_number`,`users`.`avatar`,`users`.`role`,`patients`.`id` AS `patients_id` FROM `users` JOIN `patients` ON `users`.`id` = `patients`.`users_id` WHERE `patients`.`users_id` = ' . $user_id[$i]);
             $i++;
         }
         $encodeInfo = json_encode($patientsInfo);
@@ -24,7 +24,7 @@ class PatientsController extends Controller
 
     public function getPatientById($id)
     {
-        $patient = DB::select('SELECT `users`.`first_name`,`users`.`id`,`users`.`last_name`,`users`.`email`,`users`.`birthday`,`users`.`phone_number`,`users`.`avatar`,`users`.`role` FROM `users` JOIN `patients` ON `users`.`id` = `patients`.`users_id` WHERE `patients`.`users_id` = ' . $id);
+        $patient = DB::select('SELECT `users`.`first_name`,`users`.`id`,`users`.`last_name`,`users`.`email`,`users`.`birthday`,`users`.`phone_number`,`users`.`avatar`,`users`.`role`,`patients`.`id` AS `patients_id` FROM `users` JOIN `patients` ON `users`.`id` = `patients`.`users_id` WHERE `patients`.`users_id` = ' . $id);
         $encodePatient = json_encode($patient);
         return $encodePatient;
     }
