@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
 
         Route::get('/deleteNotActive/{id}', 'Database\CouponsController@deleteNotActive')->name('deleteNotActive');
+
+        Route::get('/patientsList', 'Database\PatientsController@patientsList')->name('patientsList');
     });
 
     Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
@@ -89,6 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/getDoctor/{id}', 'Database\DoctorsController@getDoctor')->name('getDoctor');
         Route::get('/getWorkTime/{id}', 'Database\DoctorsController@getWorkTime')->name('getWorkTime');
+
+        Route::get('/getPatientById/{id}', 'Database\PatientsController@getPatientById')->name('getPatientById');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
