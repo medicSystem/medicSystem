@@ -2,6 +2,7 @@
   max-width: 1024px;
   margin-top: 71px;
   margin-bottom: 70px;
+  vertical-align: auto;
 }
 @media only screen and (max-device-width: 1024px) {
   .app-content {

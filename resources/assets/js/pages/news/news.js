@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import NewsCard from "../../components/news-card/news-card";
 import Content from "../../components/content/content";
+import { Button, FormControl, FormGroup, Navbar } from "react-bootstrap";
 
 export default class News extends Component {
   constructor(props) {
@@ -41,16 +42,24 @@ export default class News extends Component {
     }
     return (
       <Content>
-        {news.map(news => (
-          <div id={news.id} key={news.id} >
-            <NewsCard
-              name={news.news_name}
-              text={news.content}
-              image={news.image}
-              date={name.updated_at}
-            />
-          </div>
-        ))}
+        <Navbar.Form pullRight>
+          <FormGroup>
+            <FormControl type="text" placeholder="Search" />
+          </FormGroup>{" "}
+          <Button type="submit">Submit</Button>
+        </Navbar.Form>
+        <div style={{paddingTop: 60}}>
+          {news.map(news => (
+            <div id={news.id} key={news.id}>
+              <NewsCard
+                name={news.news_name}
+                text={news.content}
+                image={news.image}
+                date={name.updated_at}
+              />
+            </div>
+          ))}
+        </div>
       </Content>
     );
   }

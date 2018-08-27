@@ -20,8 +20,8 @@
 
 <body>
 <div id="app">
-    <nav class="navbar navbar-fixed-top">
-        <div class="navbar-container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/" style="display: flex;">
                     <img class="logo" height="40px"
@@ -41,7 +41,8 @@
                         </a>
                     </li>
                     <li role="presentation" class="selected">
-                        <a href="{{ route('register') }}" class="btn btn-secondary log-button transparent" id="register">
+                        <a href="{{ route('register') }}" class="btn btn-secondary log-button transparent"
+                           id="register">
                             Register
                         </a>
                     </li>
@@ -52,11 +53,13 @@
                             Signed in as:
                         </p>
                     </li>
-                    <li class="dropdown" >
+                    <li class="dropdown">
                         <a role="button" class="dropdown-toggle log-button drop-btn transparent" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false" href="#" v-pre>
                             {{Auth::user()->last_name }}
-                            <span class="caret"></span>
+                            <span class="caret">
+
+                            </span>
                         </a>
                         <ul role="menu" class="dropdown-menu" aria-labelledby="basic-nav-dropdown">
                             <li role="presentation">
@@ -81,14 +84,14 @@
 
     @yield('content')
 
-    <nav class="navbar navbar-fixed-bottom">
-        <div class="navbar-container">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
             <div class="navbar-header">
                 <a href="#home" class="navbar-brand">
                     Brand
                 </a>
             </div>
-            <p class="footer-text">
+            <p class="navbar-text">
                 <a href="mailto:example@example.example" class="navbar-link">
                     example@example.example
                 </a>
