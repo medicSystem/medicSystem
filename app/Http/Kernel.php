@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\CheckBanUsers;
+use App\Http\Middleware\CheckValidatingDoctor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \App\Http\Middleware\Role::class,
         'ban_list' => CheckBanUsers::class,
+        'validating_doctor' => CheckValidatingDoctor::class,
     ];
 }
