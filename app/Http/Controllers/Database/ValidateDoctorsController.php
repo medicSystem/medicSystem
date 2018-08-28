@@ -121,7 +121,7 @@ class ValidateDoctorsController extends Controller
         $experience = $request->experience;
 
         //upload patent image
-        $waterMark = public_path() . '/upload/waterMark/watermark.png';
+/*        $waterMark = public_path() . '/upload/waterMark/watermark.png';*/
         $dirName = "{$_SERVER['DOCUMENT_ROOT']}/upload";
         if (file_exists($dirName) && is_dir($dirName)) {
             $dirName = $dirName . '/' . $dir;
@@ -143,7 +143,7 @@ class ValidateDoctorsController extends Controller
                     $height = $imgWidth - $difference;
                 }
                 $img = ImageInt::make($file);
-                $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
+                $img->resize($width, $height)->save($path);
             } else {
                 mkdir($dirName);
                 $file = $request->file($divName);
@@ -163,7 +163,7 @@ class ValidateDoctorsController extends Controller
                     $height = $imgWidth - $difference;
                 }
                 $img = ImageInt::make($file);
-                $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
+                $img->resize($width, $height)->save($path);
             }
         } else {
             mkdir($dirName);
@@ -187,7 +187,6 @@ class ValidateDoctorsController extends Controller
                 $height = $imgWidth - $difference;
             }
             $img = ImageInt::make($file);
-            $img->resize($width, $height)->insert($waterMark, 'bottom-right', 10, 10)->save($path);
             $img->resize($width, $height)->save($path);
         }
         $length = strlen($dir) + 2;
