@@ -51,8 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
-        Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
-        Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
+        Route::group(['middleware' => ['validating_doctor']], function (){
+            Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
+            Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
+        });
 
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
         Route::get('/viewValidatePage', 'Database\ValidateDoctorsController@viewValidatePage')->name('viewValidatePage');
