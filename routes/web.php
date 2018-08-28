@@ -54,18 +54,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['middleware' => ['validating_doctor']], function (){
             Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
             Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
+
+            Route::get('/deleteNotActive/{id}', 'Database\CouponsController@deleteNotActive')->name('deleteNotActive');
+
+            Route::get('/patientsList', 'Database\PatientsController@patientsList')->name('patientsList');
+
+            Route::get('/listActiveCouponByDoctorId', 'Database\CouponsController@listActiveCouponByDoctorId')->name('listActiveCouponByDoctorId');
+            Route::get('/listNotActiveCouponByDoctorId', 'Database\CouponsController@listNotActiveCouponByDoctorId')->name('listNotActiveCouponByDoctorId');
+
+            Route::get('/getMedicalCardForDoctor/{id}', 'Database\MedicalCardController@getMedicalCardForDoctor')->name('getMedicalCardForDoctor');
         });
 
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
         Route::get('/viewValidatePage', 'Database\ValidateDoctorsController@viewValidatePage')->name('viewValidatePage');
         Route::post('/addValidate', 'Database\ValidateDoctorsController@addValidate')->name('addValidate');
-
-        Route::get('/deleteNotActive/{id}', 'Database\CouponsController@deleteNotActive')->name('deleteNotActive');
-
-        Route::get('/patientsList', 'Database\PatientsController@patientsList')->name('patientsList');
-
-        Route::get('/listActiveCouponByDoctorId', 'Database\CouponsController@listActiveCouponByDoctorId')->name('listActiveCouponByDoctorId');
-        Route::get('/listNotActiveCouponByDoctorId', 'Database\CouponsController@listNotActiveCouponByDoctorId')->name('listNotActiveCouponByDoctorId');
     });
 
     Route::group(['middleware' => ['role:patient', 'ban_list']], function () {
@@ -80,6 +82,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/getBusyTime/{id}/{needDate}', 'Database\DoctorsController@getBusyTime')->name('getBusyTime');
         Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
+
+        Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -96,8 +100,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getWorkTime/{id}', 'Database\DoctorsController@getWorkTime')->name('getWorkTime');
 
         Route::get('/getPatientById/{id}', 'Database\PatientsController@getPatientById')->name('getPatientById');
-
-        Route::get('/getMedicalCard/{id}', 'Database\MedicalCardController@getMedicalCard')->name('getMedicalCard');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
