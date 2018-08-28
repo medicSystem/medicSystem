@@ -1,17 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import SwipeableViews from "react-swipeable-views";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Zoom from "@material-ui/core/Zoom";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
-import UpIcon from "@material-ui/icons/KeyboardArrowUp";
+
 import green from "@material-ui/core/colors/green";
 
 function TabContainer(props) {

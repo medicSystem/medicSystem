@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import "../../App.css";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import Users from "../../components-admin/Users";
+import News from "../../components-admin/News";
+import Doctors from "../../components-admin/Doctors";
+import Coupons from "../../components-admin/Coupons";
+import Patients from "../patients/patients";
+import { Route } from "react-router";
 
 class DoctorApp extends Component {
   render() {
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div className="mdl-layout__drawer">
-          <LinkContainer to="#" className="mdl-navigation__link">
-            <span className="mdl-layout-title">Doctor</span>
-          </LinkContainer>
+          <Link to="#" className="mdl-navigation__link">
+            <span className="mdl-layout-title"> Doctor </span>
+          </Link>
           <nav className="mdl-navigation">
-            <Link to="#" className="mdl-navigation__link">
-              Users
+            <Link to="/doctor/patients" className="mdl-navigation__link">
+              Patients
             </Link>
             <Link to="#" className="mdl-navigation__link" href="">
               Doctors
@@ -32,8 +38,11 @@ class DoctorApp extends Component {
             </Link>
           </nav>
         </div>
-        <main className="mdl-layout__content">
-          <div className="page-content" />
+
+        <main className="mdl-layout__content page-content">
+          <div>
+            <Route path="/doctor/patients" component={Patients} />
+          </div>
         </main>
       </div>
     );
