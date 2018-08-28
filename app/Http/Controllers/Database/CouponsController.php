@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Database;
 
+use App\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Coupon;
@@ -26,16 +27,26 @@ class CouponsController extends Controller
         return $encodeCoupon;
     }
 
-    public function listActiveCouponByDoctorId($id)
+    public function listActiveCouponByDoctorId()
     {
+        $user_id = Auth::user()->getAuthIdentifier();
+        $doctors = Doctor::where('users_id', $user_id)->get();
+        foreach ($doctors as $doctor) {
+            $id = $doctor->id;
+        }
         $dataTime = date('Y-m-d H:i:s');
         $coupon = Coupon::where('date', '>=', $dataTime)->where('doctors_id', $id)->get();
         $encodeCoupon = json_encode($coupon);
         return $encodeCoupon;
     }
 
-    public function listNotActiveCouponByDoctorId($id)
+    public function listNotActiveCouponByDoctorId()
     {
+        $user_id = Auth::user()->getAuthIdentifier();
+        $doctors = Doctor::where('users_id', $user_id)->get();
+        foreach ($doctors as $doctor) {
+            $id = $doctor->id;
+        }
         $dataTime = date('Y-m-d H:i:s');
         $coupon = Coupon::where('date', '<=', $dataTime)->where('doctors_id', $id)->get();
         $encodeCoupon = json_encode($coupon);
@@ -50,8 +61,8 @@ class CouponsController extends Controller
     public function deleteNotActive($id)
     {
         $coupons = Coupon::where('id', $id)->get();
-        foreach ($coupons as $coupon){
-            if ($coupon->date <= date('Y-m-s H:i:s')){
+        foreach ($coupons as $coupon) {
+            if ($coupon->date <= date('Y-m-s H:i:s')) {
                 Coupon::where('id', $id)->delete();
             }
         }
