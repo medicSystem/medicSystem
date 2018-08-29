@@ -1,19 +1,26 @@
 import React from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
 import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import FolderIcon from "@material-ui/icons/Folder";
+
+import Loader from "react-loader-spinner";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
+import SwipeableViews from "react-swipeable-views";
+import { LinkContainer } from "react-router-bootstrap";
 import green from "@material-ui/core/colors/green";
-import axios from "axios";
-import Loader from "react-loader-spinner";
-import IconButton from "@material-ui/core/IconButton";
-import Clear from "@material-ui/icons/Clear";
-import Icon from "@material-ui/core/Icon";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 
 function TabContainer(props) {
   const { children, dir } = props;
@@ -32,10 +39,14 @@ TabContainer.propTypes = {
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-    position: "relative",
-    minHeight: 200
+    flexGrow: 1,
+    maxWidth: 1200
+  },
+  demo: {
+    backgroundColor: theme.palette.background.paper
+  },
+  title: {
+    margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`
   },
   fab: {
     position: "absolute",
@@ -48,12 +59,14 @@ const styles = theme => ({
   }
 });
 
-class FloatingActionButtonZoom extends React.Component {
+class InteractiveList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 0,
-      loading: true
+      loading: true,
+      dense: false,
+      secondary: false
     };
     this.handleChange = (event, value) => {
       this.setState({ value });
@@ -74,13 +87,11 @@ class FloatingActionButtonZoom extends React.Component {
         });
     });
   }
+
   render() {
     const { classes, theme } = this.props;
+    const { dense, secondary } = this.state;
     const { patientsList, loading } = this.state;
-    const transitionDuration = {
-      enter: theme.transitions.duration.enteringScreen,
-      exit: theme.transitions.duration.leavingScreen
-    };
     if (loading) {
       return (
         <div className="loader-container news-box-loader">
@@ -94,7 +105,7 @@ class FloatingActionButtonZoom extends React.Component {
         </div>
       );
     }
-    //console.log(this.state.patientsList[0][0])
+
     return (
       <div className={classes.root + " " + "deck"}>
         <AppBar position="static" color="default">
@@ -114,43 +125,48 @@ class FloatingActionButtonZoom extends React.Component {
           onChangeIndex={this.handleChangeIndex}
         >
           <TabContainer dir={theme.direction}>
-            <table className="table table-borderless table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">id</th>
-                  <th scope="col">First Name</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Birthdat</th>
-                  <th scope="col">Mobile</th>
-                  <th scope="col">EMAIL</th>
-                  <th scope="col">Role</th>
-                  <th scope="col">Add to ban</th>
-                </tr>
-              </thead>
-              <tbody>
-                {patientsList.map(patientsList => (
-                  <tr id="list">
-                    <th scope="row">""</th>
-                    <td>{patientsList[0].id}</td>
-                    <td>{patientsList[0].last_name}</td>
-                    <td>{patientsList[0].first_name}</td>
-                    <td>{patientsList[0].id}</td>
-                    <td>{patientsList[0].id}</td>
-                    <td>{patientsList[0].id}</td>
-                 {/*   <td
-                      key={usersList.id + usersList.role}
-                      onClick={() => {
-                        axios.post("/addBan/" + usersList.id);
-                      }}
-                    >
-                      <IconButton>
-                        <Clear />
-                      </IconButton>
-                    </td>*/}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className={classes.root}>
+              <Grid
+                style={{ maxWidth: "100%", marginLeft: 20, marginRight: 20 }}
+                item
+                xs={12}
+                md={6}
+              >
+                <Typography variant="title" className={classes.title}>
+                  Patients
+                </Typography>
+                <div className={classes.demo}>
+                  <List dense={dense}>
+                    {patientsList.map(patientsList => (
+                      <ListItem key={patientsList.id}>
+                        <ListItemAvatar>
+                          <Avatar src={`/upload/user/${patientsList.avatar}`} />
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={`${patientsList.last_name} ${
+                            patientsList.first_name
+                          }`}
+                          secondary={secondary ? "Secondary text" : null}
+                        />
+                        <ListItemText
+                          primary={patientsList.email}
+                          secondary={secondary ? "Secondary text" : null}
+                        />
+                        <ListItemSecondaryAction>
+                          <IconButton>
+                            <LinkContainer
+                              to={`/doctor/medcard/${patientsList.id}`}
+                            >
+                              <FolderIcon />
+                            </LinkContainer>
+                          </IconButton>
+                        </ListItemSecondaryAction>
+                      </ListItem>
+                    ))}
+                  </List>
+                </div>
+              </Grid>
+            </div>
           </TabContainer>
         </SwipeableViews>
       </div>
@@ -158,11 +174,9 @@ class FloatingActionButtonZoom extends React.Component {
   }
 }
 
-FloatingActionButtonZoom.propTypes = {
+InteractiveList.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(
-  FloatingActionButtonZoom
-);
+export default withStyles(styles, { withTheme: true })(InteractiveList);

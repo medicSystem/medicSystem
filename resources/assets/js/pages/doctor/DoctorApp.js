@@ -6,6 +6,7 @@ import Users from "../../components-admin/Users";
 import News from "../../components-admin/News";
 import Doctors from "../../components-admin/Doctors";
 import Coupons from "../../components-admin/Coupons";
+import Medcard from "../medcard/medcard";
 import Patients from "../patients/patients";
 import { Route } from "react-router";
 
@@ -42,6 +43,7 @@ class DoctorApp extends Component {
         <main className="mdl-layout__content page-content">
           <div>
             <Route path="/doctor/patients" component={Patients} />
+              <Route path="/doctor/medcard/:id" component={Medcard} />
           </div>
         </main>
       </div>
