@@ -23,7 +23,6 @@ class CreateDiseaseHistoriesTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('disease_name', 60);
             $table->string('analyzes', 100);
             $table->unsignedInteger('directories_id');
             $table->unsignedInteger('medical_cards_id');

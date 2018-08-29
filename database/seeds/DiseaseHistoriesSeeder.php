@@ -22,7 +22,6 @@ class DiseaseHistoriesSeeder extends Seeder
                 'medical_cards_id' => $medicalCard,
                 'directories_id' => $directory,
                 'doctors_id' => $doctors->id,
-                'disease_name' => str_random(10),
                 'analyzes' => str_random(10),
                 'created_at' => $this->rendDateTime(),
                 'updated_at' => $this->rendDateTime(),
