@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('/getMedicalCardForDoctor/{id}', 'Database\MedicalCardController@getMedicalCardForDoctor')->name('getMedicalCardForDoctor');
             Route::get('/getDiseaseHistoryByDoctorId', 'Database\MedicalCardController@getDiseaseHistoryByDoctorId')->name('getDiseaseHistoryByDoctorId');
+            Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
+            Route::get('/getDiseaseHistoryByDoctorIdAndMedicalCardId/{medical_card_id}', 'Database\MedicalCardController@getDiseaseHistoryByDoctorIdAndMedicalCardId')->name('getDiseaseHistoryByDoctorIdAndMedicalCardId');
         });
 
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');

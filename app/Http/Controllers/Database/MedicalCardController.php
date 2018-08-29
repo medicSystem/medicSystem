@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Database;
 
+use App\Directory;
 use App\Doctor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,20 +37,39 @@ class MedicalCardController extends Controller
         foreach ($doctors as $doctor) {
             $id = $doctor->id;
         }
-        $disease_histories = Disease_history::where('doctors_id', $id)->get();
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`=' . $id);
         $encodeHistory = json_encode($disease_histories);
         return $encodeHistory;
     }
 
-/*    public function getMedicalCardForPatient()
+    public function getDiseaseHistoryByMedicalCardId($id)
+    {
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`medical_cards_id`=' . $id);
+        $encodeHistory = json_encode($disease_histories);
+        return $encodeHistory;
+    }
+
+    public function getDiseaseHistoryByDoctorIdAndMedicalCardId($medical_card_id)
     {
         $user_id = Auth::user()->getAuthIdentifier();
-        $patients = Patient::where('users_id', $user_id)->get();
-        foreach ($patients as $patient) {
-            $id = $patient->id;
+        $doctors = Doctor::where('users_id', $user_id)->get();
+        foreach ($doctors as $doctor) {
+            $id = $doctor->id;
         }
-        $medical_cards = Medical_card::where('patients_id', $id)->get();
-        $encodeMedicalCard = json_encode($medical_cards);
-        return $encodeMedicalCard;
-    }*/
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`= '.$id.' AND `disease_histories`.`medical_cards_id`= '.$medical_card_id);
+        $encodeHistory = json_encode($disease_histories);
+        return $encodeHistory;
+    }
+
+    /*    public function getMedicalCardForPatient()
+        {
+            $user_id = Auth::user()->getAuthIdentifier();
+            $patients = Patient::where('users_id', $user_id)->get();
+            foreach ($patients as $patient) {
+                $id = $patient->id;
+            }
+            $medical_cards = Medical_card::where('patients_id', $id)->get();
+            $encodeMedicalCard = json_encode($medical_cards);
+            return $encodeMedicalCard;
+        }*/
 }
