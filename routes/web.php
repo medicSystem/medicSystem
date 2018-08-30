@@ -64,7 +64,6 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('/getMedicalCardForDoctor/{id}', 'Database\MedicalCardController@getMedicalCardForDoctor')->name('getMedicalCardForDoctor');
             Route::get('/getDiseaseHistoryByDoctorId', 'Database\MedicalCardController@getDiseaseHistoryByDoctorId')->name('getDiseaseHistoryByDoctorId');
-            Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
             Route::get('/getDiseaseHistoryByDoctorIdAndMedicalCardId/{medical_card_id}', 'Database\MedicalCardController@getDiseaseHistoryByDoctorIdAndMedicalCardId')->name('getDiseaseHistoryByDoctorIdAndMedicalCardId');
             Route::post('/addDisease/{medical_card_id}', 'Database\MedicalCardController@addDisease')->name('addDisease');
 
@@ -89,7 +88,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getBusyTime/{id}/{needDate}', 'Database\DoctorsController@getBusyTime')->name('getBusyTime');
         Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
 
-        /*Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');*/
+        Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
+
+        Route::get('/listActiveCouponForPatient', 'Database\CouponsController@listActiveCouponForPatient')->name('listActiveCouponForPatient');
+        Route::get('/listNotActiveCouponForPatient', 'Database\CouponsController@listNotActiveCouponForPatient')->name('listNotActiveCouponForPatient');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -106,6 +108,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getWorkTime/{id}', 'Database\DoctorsController@getWorkTime')->name('getWorkTime');
 
         Route::get('/getPatientById/{id}', 'Database\PatientsController@getPatientById')->name('getPatientById');
+
+        Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');

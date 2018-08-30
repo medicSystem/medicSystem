@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Patient;
 
 class CouponsController extends Controller
 {
@@ -15,6 +16,36 @@ class CouponsController extends Controller
     {
         $dataTime = date('Y-m-d H:i:s');
         $coupon = Coupon::where('date', '>=', $dataTime)->get();
+        $encodeCoupon = json_encode($coupon);
+        return $encodeCoupon;
+    }
+
+    public function listActiveCouponForPatient()
+    {
+        $coupon = Coupon::where(function ($query) {
+            $user_id = Auth::user()->getAuthIdentifier();
+            $patients = Patient::where('users_id', $user_id)->get();
+            foreach ($patients as $patient) {
+                $id = $patient->id;
+            }
+            $dataTime = date('Y-m-d H:i:s');
+            $query->where('date', '>=', $dataTime)->where('patients_id', $id);
+        })->get();
+        $encodeCoupon = json_encode($coupon);
+        return $encodeCoupon;
+    }
+
+    public function listNotActiveCouponForPatient()
+    {
+        $coupon = Coupon::where(function ($query) {
+            $user_id = Auth::user()->getAuthIdentifier();
+            $patients = Patient::where('users_id', $user_id)->get();
+            foreach ($patients as $patient) {
+                $id = $patient->id;
+            }
+            $dataTime = date('Y-m-d H:i:s');
+            $query->where('date', '<=', $dataTime)->where('patients_id', $id);
+        })->get();
         $encodeCoupon = json_encode($coupon);
         return $encodeCoupon;
     }
