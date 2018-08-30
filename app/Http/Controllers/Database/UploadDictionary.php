@@ -23,6 +23,17 @@ class UploadDictionary
         return $encodeDirectory;
     }
 
+    public function getDiseaseName(){
+        $directories = Directory::all();
+        $i =0;
+        foreach ($directories as $directory){
+            $name[$i] = $directory->disease_name;
+            $i++;
+        }
+        $encodeDirectory = json_encode($name);
+        return $encodeDirectory;
+    }
+
     public function uniqueCategoryName()
     {
         $categoryName = Directory::all();

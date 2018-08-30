@@ -8,16 +8,15 @@
                     <div class="panel-heading">Test</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('addCoupon') }}"
-                              enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('addDisease', ['medical_card_id' => 6]) }}">
                             {{ csrf_field() }}
                             <div class="col-md-6">
-                                <input id="date" name="date" type="datetime-local" class="form-control">
+                                <input id="analyzes" name="analyzes" type="text" class="form-control">
                             </div>
                             <div class="col-md-6">
-                                <select id="doctors_id" name="doctors_id" class="form-control">
-                                    @foreach($doctor_id as $doctors_id)
-                                        <option value="{{ $doctors_id }}">{{ $doctors_id }}</option>
+                                <select id="disease_name" name="disease_name" class="form-control">
+                                    @foreach($name as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
                             </div>

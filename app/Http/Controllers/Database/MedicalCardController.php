@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Medical_card;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Patient;
 use App\Disease_history;
 
 class MedicalCardController extends Controller
@@ -59,6 +58,24 @@ class MedicalCardController extends Controller
         $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`= '.$id.' AND `disease_histories`.`medical_cards_id`= '.$medical_card_id);
         $encodeHistory = json_encode($disease_histories);
         return $encodeHistory;
+    }
+
+    public function addDisease($medical_card_id, Request $request){
+        $user_id = Auth::user()->getAuthIdentifier();
+        $doctors = Doctor::where('users_id', $user_id)->get();
+        foreach ($doctors as $doctor){
+            $id = $doctor->id;
+        }
+        $directories = Directory::where('disease_name', $request->disease_name)->get();
+        foreach ($directories as $directory){
+            $directories_id = $directory->id;
+        }
+        $diseaseHistories = new Disease_history();
+        $diseaseHistories->analyzes = $request->analyzes;
+        $diseaseHistories->directories_id = $directories_id;
+        $diseaseHistories->medical_cards_id = $medical_card_id;
+        $diseaseHistories->doctors_id = $id;
+        $diseaseHistories->save();
     }
 
     /*    public function getMedicalCardForPatient()

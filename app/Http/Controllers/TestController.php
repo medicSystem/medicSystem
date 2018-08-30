@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Doctor;
+use App\Directory;
 
 class TestController extends Controller
 {
     public function index(Request $request)
     {
-        $id = array();
-        $doctors = Doctor::all();
-        $i = 0;
-        foreach ($doctors as $doctor){
-            $id [$i] = $doctor->id;
+        $directories = Directory::all();
+        $i =0;
+        foreach ($directories as $directory){
+            $name[$i] = $directory->disease_name;
             $i++;
         }
-        return view('test')->with(['doctor_id' => $id]);
+        return view('test')->with(['name' => $name]);
     }
 }

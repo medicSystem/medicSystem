@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
-        Route::group(['middleware' => ['validating_doctor']], function (){
+        Route::group(['middleware' => ['validating_doctor']], function () {
             Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
             Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
 
@@ -66,6 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/getDiseaseHistoryByDoctorId', 'Database\MedicalCardController@getDiseaseHistoryByDoctorId')->name('getDiseaseHistoryByDoctorId');
             Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
             Route::get('/getDiseaseHistoryByDoctorIdAndMedicalCardId/{medical_card_id}', 'Database\MedicalCardController@getDiseaseHistoryByDoctorIdAndMedicalCardId')->name('getDiseaseHistoryByDoctorIdAndMedicalCardId');
+            Route::post('/addDisease/{medical_card_id}', 'Database\MedicalCardController@addDisease')->name('addDisease');
+
+            Route::get('/getDiseaseName', 'Database\UploadDictionary@getDiseaseName')->name('getDiseaseName');
         });
 
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
@@ -108,6 +111,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
 });
-
-
 Route::get('/test', 'TestController@index')->name('test');
+
+
