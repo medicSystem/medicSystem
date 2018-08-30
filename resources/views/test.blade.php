@@ -8,18 +8,27 @@
                     <div class="panel-heading">Test</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('addDisease', ['medical_card_id' => 6]) }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('updateMedicalCard') }}">
                             {{ csrf_field() }}
                             <div class="col-md-6">
-                                <input id="analyzes" name="analyzes" type="text" class="form-control">
+                                <input id="phone_number" name="phone_number" type="tel" class="form-control">
                             </div>
                             <div class="col-md-6">
+                                <input id="postal_address" name="postal_address" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <input id="chronic_disease" name="chronic_disease" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <input id="allergy" name="allergy" type="text" class="form-control">
+                            </div>
+{{--                            <div class="col-md-6">
                                 <select id="disease_name" name="disease_name" class="form-control">
                                     @foreach($name as $item)
                                         <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>--}}
                             {{--<div class="col-md-6">
                                 <textarea id="treatment" name="treatment" type="text" class="form-control"></textarea>
                             </div>

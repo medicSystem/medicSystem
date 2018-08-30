@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
 
         Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
+        Route::post('/updateMedicalCard', 'Database\MedicalCardController@updateMedicalCard')->name('updateMedicalCard');
 
         Route::get('/listActiveCouponForPatient', 'Database\CouponsController@listActiveCouponForPatient')->name('listActiveCouponForPatient');
         Route::get('/listNotActiveCouponForPatient', 'Database\CouponsController@listNotActiveCouponForPatient')->name('listNotActiveCouponForPatient');
