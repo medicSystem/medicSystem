@@ -106,7 +106,6 @@ class InteractiveList extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { dense, secondary } = this.state;
     const { patientsList, loading } = this.state;
     if (loading) {
       return (

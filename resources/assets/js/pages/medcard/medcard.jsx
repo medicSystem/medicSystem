@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
 import axios from "axios";
 import Loader from "react-loader-spinner";
-
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import Divider from "@material-ui/core/es/Divider/Divider";
 import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
@@ -93,13 +92,7 @@ class FloatingActionButtonZoom extends React.Component {
   }
   render() {
     const { classes, theme } = this.props;
-
     const { patient, loading } = this.state;
-
-    const transitionDuration = {
-      enter: theme.transitions.duration.enteringScreen,
-      exit: theme.transitions.duration.leavingScreen
-    };
     if (loading) {
       return (
         <div className="loader-container news-box-loader">
