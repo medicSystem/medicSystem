@@ -32,12 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
         Route::post('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
-        Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
+        Route::post('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
 
         Route::get('/viewNewValidate', 'Database\ValidateDoctorsController@listNew')->name('listNew');
         Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
-        Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
-        Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
+        Route::post('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
+        Route::post('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
 
         Route::post('/addNews', 'Database\UploadNews@addNews')->name('addNews');
         Route::get('/deleteNews/{id}', 'Database\UploadNews@deleteNews')->name('deleteNews');

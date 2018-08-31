@@ -1,0 +1,24 @@
+input {
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: #4caf50;
+    transition: color-indent 1s;
+}
+
+textarea {
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 100%;
+}
+
+textarea:focus {
+    outline: none;
+    border-bottom-color: #4caf50;
+    transition: color-indent 1s;
+}
