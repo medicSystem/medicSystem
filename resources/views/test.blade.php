@@ -8,19 +8,27 @@
                     <div class="panel-heading">Test</div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('addCoupon') }}"
-                              enctype="multipart/form-data">
+                        <form class="form-horizontal" method="POST" action="{{ route('updateMedicalCard') }}">
                             {{ csrf_field() }}
                             <div class="col-md-6">
-                                <input id="date" name="date" type="datetime-local" class="form-control">
+                                <input id="phone_number" name="phone_number" type="tel" class="form-control">
                             </div>
                             <div class="col-md-6">
-                                <select id="doctors_id" name="doctors_id" class="form-control">
-                                    @foreach($doctor_id as $doctors_id)
-                                        <option value="{{ $doctors_id }}">{{ $doctors_id }}</option>
+                                <input id="postal_address" name="postal_address" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <input id="chronic_disease" name="chronic_disease" type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <input id="allergy" name="allergy" type="text" class="form-control">
+                            </div>
+{{--                            <div class="col-md-6">
+                                <select id="disease_name" name="disease_name" class="form-control">
+                                    @foreach($name as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div>--}}
                             {{--<div class="col-md-6">
                                 <textarea id="treatment" name="treatment" type="text" class="form-control"></textarea>
                             </div>

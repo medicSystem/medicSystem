@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import SwipeableViews from "react-swipeable-views";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Zoom from "@material-ui/core/Zoom";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import EditIcon from "@material-ui/icons/Edit";
-import UpIcon from "@material-ui/icons/KeyboardArrowUp";
 import green from "@material-ui/core/colors/green";
+import axios from 'axios';
+import IconButton from '@material-ui/core/IconButton';
+import Done from '@material-ui/icons/Done';
+import Clear from '@material-ui/icons/Clear';
+import Loader from 'react-loader-spinner';
+
 
 function TabContainer(props) {
     const { children, dir } = props;
@@ -49,10 +49,14 @@ const styles = theme => ({
 
 class FloatingActionButtonZoom extends React.Component {
 
+
     constructor(props){
         super(props);
         this.state = {
-            value: 0
+            value: 0,
+            validation: [],
+            canceledValidation: [],
+            loading: false,
         };
         this.handleChange = (event, value) => {
             this.setState({ value });
@@ -61,8 +65,20 @@ class FloatingActionButtonZoom extends React.Component {
             this.setState({ value: index });
         };
     };
+    componentDidMount(){
+        this.setState({loading: true}, () => {
+            axios.get('/viewNewValidate')
+                .then((response) => {this.setState({loading: false, validation: response.data,})
+                        .catch((error)=>{
+                            console.log(error);
+                        });
+        }
+        )}
+    )}
+
     render() {
         const { classes, theme } = this.props;
+        const {validation, loading} = this.state;
         const transitionDuration = {
             enter: theme.transitions.duration.enteringScreen,
             exit: theme.transitions.duration.leavingScreen
@@ -79,6 +95,7 @@ class FloatingActionButtonZoom extends React.Component {
                         fullWidth
                     >
                         <Tab label="Validation" />
+                        <Tab label="Canceled Validation" />
                     </Tabs>
                 </AppBar>
                 <SwipeableViews
@@ -86,6 +103,37 @@ class FloatingActionButtonZoom extends React.Component {
                     index={this.state.value}
                     onChangeIndex={this.handleChangeIndex}
                 >
+                    <TabContainer dir={theme.direction}>
+                        <table className="table table-borderless table-dark">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Birthday</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">Accept</th>
+                                <th scope="col">Dispath</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {loading ? <div className='loader-admin'><Loader id='loader'  type="TailSpin" color="#4caf50" height={80} width={80}/></div> : this.state.validation.map(validation =>
+                                <tr id='list'>
+                                    <th scope="row"></th>
+                                    <td>{validation.first_name}</td>
+                                    <td>{validation.last_name}</td>
+                                    <td>{validation.birthday}</td>
+                                    <td>{validation.phone_number}</td>
+                                    <td>{validation.email}</td>
+                                    <td><IconButton color="primary"><Done /></IconButton></td>
+                                    <td><IconButton ><Clear color='secondary'/></IconButton></td>
+                                </tr>
+                            )}
+                            {console.log(this.state.validation)}
+                            </tbody>
+                        </table>
+                    </TabContainer>
                     <TabContainer dir={theme.direction}>Item One</TabContainer>
                 </SwipeableViews>
             </div>

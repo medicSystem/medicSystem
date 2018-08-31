@@ -32,12 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/banList', 'Database\UsersController@banList')->name('ban_list');
         Route::get('/usersList', 'Database\UsersController@list')->name('users_list');
         Route::post('/addBan/{id}', 'Database\UsersController@banUser')->name('ban_user');
-        Route::get('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
+        Route::post('/returnUser/{id}', 'Database\UsersController@returnUser')->name('return_user');
 
         Route::get('/viewNewValidate', 'Database\ValidateDoctorsController@listNew')->name('listNew');
         Route::get('/viewRefutedValidate', 'Database\ValidateDoctorsController@listRefuted')->name('listRefuted');
-        Route::get('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
-        Route::get('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
+        Route::post('/confirmationValidate/{id}', 'Database\ValidateDoctorsController@confirmation')->name('confirmation');
+        Route::post('/confutationValidate/{id}', 'Database\ValidateDoctorsController@confutation')->name('confutation');
 
         Route::post('/addNews', 'Database\UploadNews@addNews')->name('addNews');
         Route::get('/deleteNews/{id}', 'Database\UploadNews@deleteNews')->name('deleteNews');
@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['middleware' => ['role:doctor', 'ban_list']], function () {
-        Route::group(['middleware' => ['validating_doctor']], function (){
+        Route::group(['middleware' => ['validating_doctor']], function () {
             Route::get('/doctor', ['uses' => 'DoctorController@index'])->name('doctor');
             Route::get('/doctor/{path?}', ['uses' => 'ReactDoctorController@index', 'as' => 'reactDoctor', 'where' => ['path' => '.*']]);
 
@@ -64,8 +64,10 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('/getMedicalCardForDoctor/{id}', 'Database\MedicalCardController@getMedicalCardForDoctor')->name('getMedicalCardForDoctor');
             Route::get('/getDiseaseHistoryByDoctorId', 'Database\MedicalCardController@getDiseaseHistoryByDoctorId')->name('getDiseaseHistoryByDoctorId');
-            Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
             Route::get('/getDiseaseHistoryByDoctorIdAndMedicalCardId/{medical_card_id}', 'Database\MedicalCardController@getDiseaseHistoryByDoctorIdAndMedicalCardId')->name('getDiseaseHistoryByDoctorIdAndMedicalCardId');
+            Route::post('/addDisease/{medical_card_id}', 'Database\MedicalCardController@addDisease')->name('addDisease');
+
+            Route::get('/getDiseaseName', 'Database\UploadDictionary@getDiseaseName')->name('getDiseaseName');
         });
 
         Route::get('/validatingDoctor', 'ValidatingDoctor@index')->name('validating_doctor');
@@ -86,7 +88,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getBusyTime/{id}/{needDate}', 'Database\DoctorsController@getBusyTime')->name('getBusyTime');
         Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
 
-        /*Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');*/
+        Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
+        Route::post('/updateMedicalCard', 'Database\MedicalCardController@updateMedicalCard')->name('updateMedicalCard');
+
+        Route::get('/listActiveCouponForPatient', 'Database\CouponsController@listActiveCouponForPatient')->name('listActiveCouponForPatient');
+        Route::get('/listNotActiveCouponForPatient', 'Database\CouponsController@listNotActiveCouponForPatient')->name('listNotActiveCouponForPatient');
     });
 
     Route::group(['middleware' => 'ban_list'], function () {
@@ -103,11 +109,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/getWorkTime/{id}', 'Database\DoctorsController@getWorkTime')->name('getWorkTime');
 
         Route::get('/getPatientById/{id}', 'Database\PatientsController@getPatientById')->name('getPatientById');
+
+        Route::get('/getDiseaseHistoryByMedicalCardId/{id}', 'Database\MedicalCardController@getDiseaseHistoryByMedicalCardId')->name('getDiseaseHistoryByMedicalCardId');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
     Route::get('banUser/{first_name}/{last_name}', ['uses' => 'BanUserController@index'])->name('banUser');
 });
-
-
 Route::get('/test', 'TestController@index')->name('test');
+
+

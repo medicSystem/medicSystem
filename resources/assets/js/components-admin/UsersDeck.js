@@ -12,6 +12,7 @@ import Loader from 'react-loader-spinner';
 import IconButton from '@material-ui/core/IconButton';
 import Clear from '@material-ui/icons/Clear'
 import Icon from '@material-ui/core/Icon';
+import Done from '@material-ui/icons/Done'
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 
@@ -133,7 +134,7 @@ class FloatingActionButtonZoom extends React.Component {
                                     <td>{usersList.role}</td>
                                     <td key={usersList.id + usersList.role} onClick={ () => {
                                         axios.post('/addBan/' + usersList.id)
-                                    }}><IconButton ><Clear/></IconButton></td>
+                                    }}><IconButton ><Clear color='secondary'/></IconButton></td>
                                 </tr>
                             )}
                             </tbody>
@@ -149,20 +150,22 @@ class FloatingActionButtonZoom extends React.Component {
                             <th scope="col">Mobile</th>
                             <th scope="col">EMAIL</th>
                             <th scope="col">Role</th>
-                            <th scope="col">Add to ban</th>
+                            <th scope="col">Returm from ban</th>
                         </tr>
                         </thead>
                         <tbody>
                         {loading ? <div className='loader-admin'><Loader id='loader'  type="TailSpin" color="#4caf50" height={80} width={80}/></div> : this.state.banList.map(banList =>
                             <tr>
-                                <th scope="row">{banList.id}</th>
+                                <th scope="row">{banList.users_id}</th>
                                 <td>{banList.first_name}</td>
                                 <td>{banList.last_name}</td>
                                 <td>{banList.birthday}</td>
                                 <td>{banList.phone_number}</td>
                                 <td>{banList.email}</td>
                                 <td>{banList.role}</td>
-                                <td id={banList.id} ><Icon className={classes.icon} color="primary">done</Icon></td>
+                                <td id={banList.id} ><IconButton onClick={ () => {
+                                    axios.post('/returnUser/' + banList.users_id)
+                                }} className={classes.icon} color="primary"><Done /></IconButton></td>
                             </tr>
                         )}
                         </tbody>
