@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../App.css";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import Users from "../../components-admin/Users";
@@ -9,32 +10,57 @@ import Coupons from "../../components-admin/Coupons";
 import Medcard from "../medcard/medcard";
 import Patients from "../patients/patients";
 import { Route } from "react-router";
+import Drawer from "@material-ui/core/es/Drawer/Drawer";
+import List from "@material-ui/core/es/List/List";
+import withStyles from "@material-ui/core/es/styles/withStyles";
+import ListItem from "@material-ui/core/es/ListItem/ListItem";
+import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
+
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    height: 440,
+    zIndex: 1,
+    overflow: "hidden",
+    position: "relative",
+    display: "flex"
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  drawerPaper: {
+    position: "relative",
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0 // So the Typography noWrap works
+  },
+  toolbar: theme.mixins.toolbar
+});
 
 class DoctorApp extends Component {
   render() {
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
         <div className="mdl-layout__drawer">
-          <Link to="#" className="mdl-navigation__link">
-            <span className="mdl-layout-title"> Doctor </span>
-          </Link>
+          <span className="mdl-layout-title"> Doctor </span>
+
           <nav className="mdl-navigation">
             <Link to="/doctor/patients" className="mdl-navigation__link">
               Patients
             </Link>
-            <Link to="#" className="mdl-navigation__link" href="">
-              Doctors
+            <Link to="#" className="mdl-navigation__link">
+              Tickets
             </Link>
-            <Link to="#" className="mdl-navigation__link" href="">
-              News
+            <Link to="#" className="mdl-navigation__link">
+              Chat
             </Link>
-            <Link to="#" className="mdl-navigation__link" href="">
-              Coupons
-            </Link>
-            <Link to="#" className="mdl-navigation__link" href="">
-              Notifications
-            </Link>
-            <Link to="#" className="mdl-navigation__link" href="">
+            <Link to="#" className="mdl-navigation__link">
               Support
             </Link>
           </nav>
@@ -43,7 +69,7 @@ class DoctorApp extends Component {
         <main className="mdl-layout__content page-content">
           <div>
             <Route path="/doctor/patients" component={Patients} />
-              <Route path="/doctor/medcard/:id" component={Medcard} />
+            <Route path="/doctor/medcard/:id" component={Medcard} />
           </div>
         </main>
       </div>
@@ -51,4 +77,8 @@ class DoctorApp extends Component {
   }
 }
 
-export default DoctorApp;
+DoctorApp.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(DoctorApp);

@@ -9,14 +9,13 @@ import Typography from "@material-ui/core/Typography";
 import green from "@material-ui/core/colors/green";
 import axios from "axios";
 import Loader from "react-loader-spinner";
-import IconButton from "@material-ui/core/IconButton";
-import Clear from "@material-ui/icons/Clear";
-import Icon from "@material-ui/core/Icon";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { Image } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import Header from "../../components/carousel/carousel";
+
+import ListItem from "@material-ui/core/es/ListItem/ListItem";
+import Divider from "@material-ui/core/es/Divider/Divider";
+import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
+import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
+import { createMuiTheme } from "@material-ui/core/styles/index";
+import List from "@material-ui/core/es/List/List";
 
 function TabContainer(props) {
   const { children, dir } = props;
@@ -32,6 +31,11 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
   dir: PropTypes.string.isRequired
 };
+const text = createMuiTheme({
+  typography: {
+    fontSize: 18
+  }
+});
 
 const styles = theme => ({
   root: {
@@ -39,6 +43,11 @@ const styles = theme => ({
     width: 500,
     position: "relative",
     minHeight: 200
+  },
+  tabRoot: {
+    width: "100%",
+    maxWidth: 1360,
+    backgroundColor: theme.palette.background.paper
   },
   fab: {
     position: "absolute",
@@ -48,6 +57,9 @@ const styles = theme => ({
   fabGreen: {
     color: theme.palette.common.white,
     backgroundColor: green[500]
+  },
+  list: {
+    color: "red"
   }
 });
 
@@ -70,7 +82,7 @@ class FloatingActionButtonZoom extends React.Component {
     const id = this.props.match.params.id;
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getPatientById/${id}`)
+        .get(`/getMedicalCardForDoctor/${id}`)
         .then(response => {
           this.setState({ loading: false, patient: response.data[0] });
         })
@@ -101,7 +113,7 @@ class FloatingActionButtonZoom extends React.Component {
         </div>
       );
     }
-
+    console.log(patient);
     return (
       <div className={classes.root + " " + "deck"}>
         <AppBar position="static" color="default">
@@ -112,7 +124,7 @@ class FloatingActionButtonZoom extends React.Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="All Users" />
+            <Tab label="Medical Card" />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -121,14 +133,53 @@ class FloatingActionButtonZoom extends React.Component {
           onChangeIndex={this.handleChangeIndex}
         >
           <TabContainer dir={theme.direction}>
-            <img
-              src={`/upload/user/${patient.avatar}`}
-              width="40px"
-              height="30px"
-            />
-            <h1>
-              {patient.last_name} {patient.first_name}
-            </h1>
+            <div className={classes.tabRoot}>
+              <List component="nav">
+                <MuiThemeProvider theme={text}>
+                  <ListItem>
+                    <ListItemText primary={`Last name: ${patient.last_name}`} />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText
+                      primary={`First name: ${patient.first_name}`}
+                    />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText primary={`Sex: ${patient.sex}`} />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText primary={`Date: ${patient.birthday}`} />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText
+                      primary={`Address: ${patient.postal_address}`}
+                    />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText
+                      primary={`Phone number: ${patient.phone_number}`}
+                    />
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText primary={`Allergy: ${patient.allergy}`} />
+                  </ListItem>
+                  <Divider />
+
+                  <ListItem>
+                    <ListItemText
+                      primary={`Chronic disease: ${patient.chronic_disease}`}
+                    />
+                  </ListItem>
+                  <Divider />
+                </MuiThemeProvider>
+              </List>
+            </div>
           </TabContainer>
         </SwipeableViews>
       </div>

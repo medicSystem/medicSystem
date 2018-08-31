@@ -2,18 +2,10 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
-
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import FolderIcon from "@material-ui/icons/Folder";
-
 import Loader from "react-loader-spinner";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -21,16 +13,32 @@ import Tab from "@material-ui/core/Tab";
 import SwipeableViews from "react-swipeable-views";
 import { LinkContainer } from "react-router-bootstrap";
 import green from "@material-ui/core/colors/green";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import Table from "@material-ui/core/es/Table/Table";
+import TableHead from "@material-ui/core/es/TableHead/TableHead";
+import TableRow from "@material-ui/core/es/TableRow/TableRow";
+import TableCell from "@material-ui/core/es/TableCell/TableCell";
+import TableBody from "@material-ui/core/es/TableBody/TableBody";
+import Paper from "@material-ui/core/es/Paper/Paper";
 
 function TabContainer(props) {
   const { children, dir } = props;
 
   return (
-    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+    <Typography
+      component="div"
+      dir={dir}
+      style={{ padding: 8 * 3, fontSize: "5px" }}
+    >
       {children}
     </Typography>
   );
 }
+const text = createMuiTheme({
+  typography: {
+    fontSize: 18
+  }
+});
 
 TabContainer.propTypes = {
   children: PropTypes.node.isRequired,
@@ -41,6 +49,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 1200
+  },
+  tabRoot: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
   },
   demo: {
     backgroundColor: theme.palette.background.paper
@@ -56,6 +69,9 @@ const styles = theme => ({
   fabGreen: {
     color: theme.palette.common.white,
     backgroundColor: green[500]
+  },
+  table: {
+    minWidth: 700
   }
 });
 
@@ -105,7 +121,7 @@ class InteractiveList extends React.Component {
         </div>
       );
     }
-
+    console.log(patientsList);
     return (
       <div className={classes.root + " " + "deck"}>
         <AppBar position="static" color="default">
@@ -116,7 +132,7 @@ class InteractiveList extends React.Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="All Users" />
+            <Tab label="Patients" />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -125,48 +141,56 @@ class InteractiveList extends React.Component {
           onChangeIndex={this.handleChangeIndex}
         >
           <TabContainer dir={theme.direction}>
-            <div className={classes.root}>
-              <Grid
-                style={{ maxWidth: "100%", marginLeft: 20, marginRight: 20 }}
-                item
-                xs={12}
-                md={6}
-              >
-                <Typography variant="title" className={classes.title}>
-                  Patients
-                </Typography>
-                <div className={classes.demo}>
-                  <List dense={dense}>
-                    {patientsList.map(patientsList => (
-                      <ListItem key={patientsList.id}>
-                        <ListItemAvatar>
-                          <Avatar src={`/upload/user/${patientsList.avatar}`} />
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={`${patientsList.last_name} ${
-                            patientsList.first_name
-                          }`}
-                          secondary={secondary ? "Secondary text" : null}
-                        />
-                        <ListItemText
-                          primary={patientsList.email}
-                          secondary={secondary ? "Secondary text" : null}
-                        />
-                        <ListItemSecondaryAction>
-                          <IconButton>
-                            <LinkContainer
-                              to={`/doctor/medcard/${patientsList.id}`}
-                            >
-                              <FolderIcon />
-                            </LinkContainer>
-                          </IconButton>
-                        </ListItemSecondaryAction>
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
-              </Grid>
-            </div>
+            <MuiThemeProvider theme={text}>
+              <Paper className={classes.tabRoot}>
+                <Table className={classes.table}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell />
+                      <TableCell numeric>Last name</TableCell>
+                      <TableCell numeric>First name</TableCell>
+                      <TableCell numeric>Email</TableCell>
+                      <TableCell numeric>Date</TableCell>
+                      <TableCell numeric>Medcard</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {patientsList.map(patientsList => {
+                      return (
+                        <TableRow key={patientsList.patients_id}>
+                          <TableCell component="th" scope="row">
+                            <Avatar
+                              src={`/upload/user/${patientsList.avatar}`}
+                            />
+                          </TableCell>
+                          <TableCell numeric>
+                            {patientsList.last_name}
+                          </TableCell>
+                          <TableCell numeric>
+                            {patientsList.first_name}
+                          </TableCell>
+                          <TableCell numeric>{patientsList.email}</TableCell>
+                          <TableCell numeric>
+                            {patientsList.birthday.replace(/-/gi, ".")}
+                          </TableCell>
+                          <TableCell numeric>
+                            <IconButton>
+                              <LinkContainer
+                                to={`/doctor/medcard/${
+                                  patientsList.patients_id
+                                }`}
+                              >
+                                <FolderIcon />
+                              </LinkContainer>
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </Paper>
+            </MuiThemeProvider>
           </TabContainer>
         </SwipeableViews>
       </div>
