@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
         Route::post('/updateMedicalCard', 'Database\MedicalCardController@updateMedicalCard')->name('updateMedicalCard');
+        Route::get('/createPDFMedicalCard', 'Database\MedicalCardController@createPDFMedicalCard')->name('createPDFMedicalCard');
 
         Route::get('/listActiveCouponForPatient', 'Database\CouponsController@listActiveCouponForPatient')->name('listActiveCouponForPatient');
         Route::get('/listNotActiveCouponForPatient', 'Database\CouponsController@listNotActiveCouponForPatient')->name('listNotActiveCouponForPatient');
