@@ -45,30 +45,32 @@
 </table>
 <h2> Disease History:</h2>
 <table>
+    <tr>
+        <th scope="col">Disease name</th>
+        <th scope="col">Doctor name</th>
+        <th scope="col">Analyzes</th>
+        <th scope="col">Treatment</th>
+        <th scope="col">Symptoms</th>
+    </tr>
     @for($i =0; $i<count($disease_history); $i++)
-        <thead>
         <tr>
-            <th scope="col">Analyzes</th>
-            <th scope="col">Disease name</th>
-            <th scope="col">Treatment</th>
-            <th scope="col">Symptoms</th>
+            <td>
+                {{ $disease_history[$i]['disease_name'] }}
+            </td>
+            <td>
+                {{ $disease_history[$i]['doctor_name'] }}
+            </td>
+            <td>
+                {{ $disease_history[$i]['analyzes'] }}
+            </td>
+            <td>
+                {{ $disease_history[$i]['treatment'] }}
+            </td>
+            <td>
+                {{ $disease_history[$i]['symptoms'] }}
+            </td>
         </tr>
-        </thead>
-        <tbody>
-        <td>
-            {{ $disease_history[$i]['analyzes'] }}
-        </td>
-        <td>
-            {{ $disease_history[$i]['disease_name'] }}
-        </td>
-        <td>
-            {{ $disease_history[$i]['treatment'] }}
-        </td>
-        <td>
-            {{ $disease_history[$i]['symptoms'] }}
-        </td>
-        </tbody>
-    @endfor
+        @endfor
 </table>
 </body>
 </html>

@@ -8,11 +8,15 @@ table {
     border: 16px solid #ECE9E0;
     border-radius: 20px;
 }
+
 th {
     font-size: 18px;
     padding: 10px;
 }
+
 td {
     background: #F5D7BF;
     padding: 10px;
+    word-wrap: break-word;
+    max-width: 165px;
 }
