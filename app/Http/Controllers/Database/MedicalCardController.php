@@ -128,11 +128,17 @@ class MedicalCardController extends Controller
             }
             $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`medical_cards_id`=' . $card->id);
             foreach ($disease_histories as $history) {
-                $disease_history[$j] = array("analyzes" => $history->analyzes, "disease_name" => $history->disease_name, "treatment" => $history->treatment, "symptoms" => $history->symptoms);
+                $doctors = DB::select('SELECT `users`.`first_name`, `users`.`last_name` FROM `users` JOIN `doctors` ON `users`.`id`=`doctors`.`users_id` WHERE `doctors`.`id` =' . $history->doctors_id);
+                foreach ($doctors as $doctor) {
+                    $doctor_name = $doctor->first_name . ' ' . $doctor->last_name;
+                }
+                $disease_history[$j] = array("analyzes" => $history->analyzes, "disease_name" => $history->disease_name, "treatment" => $history->treatment, "symptoms" => $history->symptoms, "doctor_name" => $doctor_name);
                 $j++;
             }
         }
         $pdf = PDF::loadView('pdf', compact('medic_card', 'disease_history'));
+        $pdf->setPaper('A3', 'landscape');
+        //return view('pdf', compact('medic_card', 'disease_history'));
         return $pdf->download('medical_card.pdf');
     }
 }
