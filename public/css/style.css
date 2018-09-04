@@ -444,8 +444,6 @@
     font-size: 2rem;
 }
 
-
-
 .li-nav {
     display: inline;
 }
@@ -514,7 +512,7 @@
 }
 
 .container-acc {
-padding-top: 51px;
+    padding-top: 51px;
 }
 
 .link {
@@ -631,7 +629,6 @@ padding-top: 51px;
     padding-top: 51px;
 }
 
-
 .medical-card {
     display: flex;
     align-items: center;
@@ -690,4 +687,15 @@ padding-top: 51px;
 .dropdown-menu {
     min-width: 60px;
 
+}
+
+.btn-link-1 {
+    color: #2579a9;
+}
+
+.btn-link-1:hover {
+    color: #1f648b;
+    font-weight: normal;
+    border-radius: 0;
+    text-decoration: none;
 }
