@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import { LinkContainer } from "react-router-bootstrap";
 import ListItem from "@material-ui/core/es/ListItem/ListItem";
 import ListItemIcon from "@material-ui/core/es/ListItemIcon/ListItemIcon";
@@ -11,12 +10,6 @@ import ChatIcon from "@material-ui/icons/Chat";
 import UserIcon from "@material-ui/icons/Person";
 
 class UserMenuList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      header: ""
-    };
-  }
   choseIcon() {
     switch (this.props.icon) {
       case "user":

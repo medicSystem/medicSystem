@@ -49,7 +49,6 @@ class History extends React.Component {
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    console.log(id)
     this.setState({ loading: true }, () => {
       axios
         .get(`/getDiseaseHistoryByMedicalCardId/${id}`)
