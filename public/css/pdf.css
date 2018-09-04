@@ -1,6 +1,6 @@
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    text-align: center;
+    text-align: left;
     border-collapse: separate;
     border-spacing: 5px;
     background: #ECE9E0;
@@ -14,13 +14,13 @@ th {
     padding: 10px;
 }
 
+h1, h2 {
+    text-align: center;
+}
+
 td {
     background: #F5D7BF;
     padding: 10px;
     word-wrap: break-word;
     max-width: 165px;
-}
-
-h1, h2 {
-    text-align: center;
 }
