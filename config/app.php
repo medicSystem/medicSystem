@@ -167,6 +167,7 @@ return [
         Spatie\Glide\GlideServiceProvider::class,
         Dan\UploadImage\UploadImageServiceProvider::class,
         Dlnsk\HierarchicalRBAC\HRBACServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,7 +233,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'GlideImage' => Spatie\Glide\GlideImageFacade::class,
         'UploadImage' => Dan\UploadImage\UploadImageFacade::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

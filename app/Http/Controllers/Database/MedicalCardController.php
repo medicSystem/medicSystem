@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Disease_history;
 use App\Patient;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class MedicalCardController extends Controller
 {
@@ -112,5 +113,32 @@ class MedicalCardController extends Controller
         $user_id = Auth::user()->getAuthIdentifier();
         DB::table('medical_cards')->where('patients_id', $id)->update(['postal_address' => $request->postal_address, 'chronic_disease' => $request->chronic_disease, 'allergy' => $request->allergy]);
         DB::table('users')->where('id', $user_id)->update(['phone_number' => $request->phone_number]);
+    }
+
+    public function createPDFMedicalCard()
+    {
+        $id = $this->getPatientsId();
+        $medical_cards = Medical_card::where('patients_id', $id)->get();
+        $j = 0;
+        foreach ($medical_cards as $card) {
+            $users = DB::select('SELECT `users`.`first_name`, `users`.`last_name`, `users`.`birthday`, `users`.`phone_number` FROM `users` JOIN `patients` ON `users`.`id`=`patients`.`users_id` WHERE `patients`.`id` =' . $id);
+            foreach ($users as $user) {
+                $medic_card = array("first_name" => $user->first_name, "last_name" => $user->last_name, "birthday" => $user->birthday, "phone_number" => $user->phone_number, "postal_address" => $card->postal_address,
+                    "sex" => $card->sex, "chronic_disease" => $card->chronic_disease, "allergy" => $card->allergy);
+            }
+            $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`medical_cards_id`=' . $card->id);
+            foreach ($disease_histories as $history) {
+                $doctors = DB::select('SELECT `users`.`first_name`, `users`.`last_name` FROM `users` JOIN `doctors` ON `users`.`id`=`doctors`.`users_id` WHERE `doctors`.`id` =' . $history->doctors_id);
+                foreach ($doctors as $doctor) {
+                    $doctor_name = $doctor->first_name . ' ' . $doctor->last_name;
+                }
+                $disease_history[$j] = array("analyzes" => $history->analyzes, "disease_name" => $history->disease_name, "treatment" => $history->treatment, "symptoms" => $history->symptoms, "doctor_name" => $doctor_name);
+                $j++;
+            }
+        }
+        $pdf = PDF::loadView('pdf', compact('medic_card', 'disease_history'));
+        $pdf->setPaper('A3', 'landscape');
+        //return view('pdf', compact('medic_card', 'disease_history'));
+        return $pdf->download('medical_card.pdf');
     }
 }
