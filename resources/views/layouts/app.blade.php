@@ -106,8 +106,8 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script src="{{ asset('js/phone_number.js') }}"></script>
-<script src="{{ asset('js/modal.js') }}"></script>
+{{--<script src="{{ asset('js/phone_number.js') }}"></script>
+<script src="{{ asset('js/modal.js') }}"></script>--}}
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/photo_preview.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
