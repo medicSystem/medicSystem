@@ -11,7 +11,6 @@ import { createMuiTheme } from "@material-ui/core/styles/index";
 import List from "@material-ui/core/es/List/List";
 import Button from "@material-ui/core/es/Button/Button";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import { LinkContainer } from "react-router-bootstrap";
 
 const text = createMuiTheme({
   typography: {
@@ -33,14 +32,14 @@ const styles = theme => ({
   }
 });
 
-class Medcard extends React.Component {
+class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 0,
       loading: true
     };
-
+      console.log("lol")
     this.handleChange = (event, value) => {
       this.setState({ value });
     };
@@ -50,11 +49,12 @@ class Medcard extends React.Component {
   }
   componentDidMount() {
     const id = this.props.match.params.id;
+    console.log(id)
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getMedicalCardForDoctor/${id}`)
+        .get(`/getDiseaseHistoryByMedicalCardId/${id}`)
         .then(response => {
-          this.setState({ loading: false, patient: response.data[0] });
+          this.setState({ loading: false, history: response.data[0] });
         })
         .catch(error => {
           console.log(error);
@@ -63,7 +63,7 @@ class Medcard extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    const { patient, loading } = this.state;
+    const { history, loading } = this.state;
     if (loading) {
       return (
         <div className="loader-container news-box-loader">
@@ -77,7 +77,7 @@ class Medcard extends React.Component {
         </div>
       );
     }
-    console.log(patient);
+    console.log(history);
     return (
       <div className={classes.root}>
         <List>
@@ -148,23 +148,22 @@ class Medcard extends React.Component {
             <Divider />
           </MuiThemeProvider>
         </List>
-        <LinkContainer to={`/doctor/history`}>
-          <Button
-            variant="contained"
-            color="default"
-            className={classes.button}
-          >
-            History of diseases
-            <AssignmentIcon className={classes.rightIcon} />
-          </Button>
-        </LinkContainer>
+        <Button
+          variant="contained"
+          color="default"
+          className={classes.button}
+          href={`/doctor/history/${patient.patients_id}`}
+        >
+          History of diseases
+          <AssignmentIcon className={classes.rightIcon} />
+        </Button>
       </div>
     );
   }
 }
 
-Medcard.propTypes = {
+History.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Medcard);
+export default withStyles(styles, { withTheme: true })(History);

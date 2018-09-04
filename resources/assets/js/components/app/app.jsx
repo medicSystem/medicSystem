@@ -9,6 +9,11 @@ import axios from "axios/index";
 import AdminApp from "../../pages/admin/AdminApp";
 import DoctorApp from "../../pages/doctor/DoctorApp";
 import PatientApp from "../../pages/patient/PatientApp";
+import Patients from "../../pages/patients/patients";
+import Medcard from "../../pages/medcard/medcard";
+import History from "../../pages/history/history";
+
+
 import NavBar from "../navbar/navbar";
 
 class App extends Component {
@@ -72,14 +77,16 @@ class App extends Component {
         );
 
       default:
-        return (
-          <Router>
+        return <Router>
             <Fragment>
               <NavBar />
 
               <Switch>
                 <Route exact path="/" component={Main} />
                 <Route path="/main/news" component={News} />
+                <Route path="/doctor/patients" component={Patients} />
+                <Route path="/doctor/medcard/:id" component={Medcard} />
+                <Route path="/doctor/history" component={History} />
                 {this.state.categories.map(categories => (
                   <Route
                     key={categories.id + categories}
@@ -90,8 +97,7 @@ class App extends Component {
               </Switch>
               <Footer />
             </Fragment>
-          </Router>
-        );
+          </Router>;
     }
   }
 }
