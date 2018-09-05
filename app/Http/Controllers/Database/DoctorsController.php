@@ -70,6 +70,7 @@ class DoctorsController extends Controller
 
     public function getBusyTime($id, $needDate)
     {
+        $date = array();
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
@@ -92,6 +93,7 @@ class DoctorsController extends Controller
 
     public function getFreeTime($id, $needDate)
     {
+        $date = array();
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
