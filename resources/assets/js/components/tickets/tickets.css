@@ -1,0 +1,30 @@
+/*.tickets {
+  margin: 0 !important;
+}*/
+/*
+.tickets * {
+  margin: 0;
+}
+*/
+.tile {
+  height: 8rem;
+
+}
+.tickets {
+  width: 80%;
+}
+@media (max-width: 1224px) {
+  .tile {
+    height: 5rem;
+  }
+}
+@media (max-width: 768px) {
+  .tile {
+    height: 4rem;
+  }
+}
+@media (max-width: 480px) {
+  .tile {
+    height: 3rem;
+  }
+}

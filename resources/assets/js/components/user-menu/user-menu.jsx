@@ -14,6 +14,8 @@ import UserMenuList from "../user-menu-list/user-menu-list";
 
 import Medcard from "../../pages/medcard/medcard";
 import Patients from "../../pages/patients/patients";
+import History from "../../pages/history/history";
+import Tickets from "../tickets/tickets";
 
 const drawerWidth = 240;
 
@@ -57,7 +59,7 @@ const doctor = (
   <List>
     <UserMenuList role="Doctor" link="/doctor" icon="user" />
     <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
-    <UserMenuList role="Tickets" link="/doctor" icon="tickets" />
+    <UserMenuList role="Tickets" link="/doctor/tickets" icon="tickets" />
     <UserMenuList role="Chat" link="/doctor" icon="chat" />
     <UserMenuList role="Support" link="/doctor" icon="support" />
   </List>
@@ -68,7 +70,7 @@ const patient = (
         <UserMenuList role="Patient" link="/doctor" icon="user" />
         <UserMenuList role="Doctor" link="/doctor/patients" icon="patients" />
         <UserMenuList role="Medcard" link="/doctor" icon="tickets" />
-        <UserMenuList role="Tickets" link="/doctor" icon="tickets" />
+        <UserMenuList role="Tickets" link="/doctor/tickets" icon="tickets" />
         <UserMenuList role="Chat" link="/doctor" icon="chat" />
         <UserMenuList role="Support" link="/doctor" icon="support" />
     </List>
@@ -174,6 +176,8 @@ class UserMenu extends Component {
           <div className={classes.toolbar} />
           <Route path="/doctor/patients" component={Patients} />
           <Route path="/doctor/medcard/:id" component={Medcard} />
+            <Route path="/doctor/history" component={History} />
+            <Route path="/doctor/tickets" component={Tickets} />
         </main>
       </div>
     );
