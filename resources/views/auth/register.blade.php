@@ -130,7 +130,7 @@
                                     <div class="form-group" id="phone_number_div">
                                         <input id="phone_number" type="tel" class="form-control" name="phone_number"
                                                value="{{ old('phone_number') }}"
-                                               pattern="^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$" maxlength="14"
+                                               pattern="^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$" maxlength="13"
                                                minlength="11" required disabled>
                                     </div>
                                     @if ($errors->has('phone_number'))
