@@ -71,11 +71,24 @@ class DoctorsController extends Controller
     public function getBusyTime($id, $needDate)
     {
         $date = array();
+        $dateTime = array();
+        $time = array();
+        $user_id = Auth::user()->getAuthIdentifier();
+        $role = Auth::user()->getRole($user_id);
+        if ($role == 'doctor'){
+            $doctors = Doctor::where('users_id', $user_id)->get();
+            foreach ($doctors as $doctor){
+                $id = $doctor->id;
+            }
+        }
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
-            $dateTime[$i] = $coupon->date;
-            $i++;
+            if (date('Y-m-d', strtotime($coupon->date)) == $needDate){
+                $dateTime[$i] = $coupon->date;
+                $i++;
+
+            }
         }
         $workTime = $this->getWorkTime($id);
         for ($k = 0; $k < $i; $k++) {
@@ -94,15 +107,24 @@ class DoctorsController extends Controller
     public function getFreeTime($id, $needDate)
     {
         $date = array();
+        $dateTime = array();
+        $time = array();
+        $user_id = Auth::user()->getAuthIdentifier();
+        $role = Auth::user()->getRole($user_id);
+        if ($role == 'doctor'){
+            $doctors = Doctor::where('users_id', $user_id)->get();
+            foreach ($doctors as $doctor){
+                $id = $doctor->id;
+            }
+        }
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
             if (date('Y-m-d', strtotime($coupon->date)) == $needDate){
                 $dateTime[$i] = $coupon->date;
                 $i++;
+
             }
-            $dateTime[$i] = $coupon->date;
-            $i++;
         }
         $workTime = $this->getWorkTime($id);
         for ($k = 0; $k < $i; $k++) {
