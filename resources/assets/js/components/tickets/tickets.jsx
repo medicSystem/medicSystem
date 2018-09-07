@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar";
 import "./tickets.css";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import axios from "axios/index";
 import Loader from "react-loader-spinner";
 import dateFormat from "dateformat";
-import List from "../list/list";
 import PropTypes from "prop-types";
+import FolderIcon from "@material-ui/icons/Folder";
 import { withStyles } from "@material-ui/core/styles/index";
 import Paper from "@material-ui/core/es/Paper/Paper";
 import Table from "@material-ui/core/es/Table/Table";
@@ -38,7 +38,8 @@ class Tickets extends Component {
     this.state = {
       show: false,
       loading: false,
-      tickets: []
+      patient: [],
+      tickets: [{ time: "no tickets", patient_id: 0 }]
     };
   }
 
@@ -47,8 +48,9 @@ class Tickets extends Component {
   }
 
   handleShow(value) {
+    console.log(1);
     this.setState({ show: true });
-    console.log("111111111111");
+    console.log(2);
     this.setState({ loading: true }, () => {
       axios
         .get(`/getBusyTime/2/${dateFormat(value, "isoDate")}`)
@@ -58,9 +60,10 @@ class Tickets extends Component {
         .catch(error => {
           console.log(error);
         });
+      console.log("lol");
     });
   }
-/*  componentDidMount() {
+  /*  componentDidMount() {
     const id = this.props.match;
     console.log("2222");
     this.setState({ loading: true }, () => {
@@ -77,7 +80,7 @@ class Tickets extends Component {
 
   render() {
     const { classes } = this.props;
-    const { tickets, loading } = this.state;
+    const { tickets, patient, loading } = this.state;
     if (loading) {
       return (
         <div className="loader-container news-box-loader">
@@ -91,7 +94,7 @@ class Tickets extends Component {
         </div>
       );
     }
-    console.log(this.state.allTickets);
+    console.log(this.state.patient);
     return (
       <div>
         <Calendar
@@ -108,24 +111,26 @@ class Tickets extends Component {
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell numeric>Date</TableCell>
+                    <TableCell numeric>Time</TableCell>
                     <TableCell numeric>First name</TableCell>
-                      <TableCell numeric>Patient</TableCell>
+                    <TableCell numeric>Patient</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {tickets.map(tickets => {
                     return (
-                      <TableRow >
-                        <TableCell numeric>{tickets}</TableCell>
-                        <TableCell numeric>{tickets}</TableCell>
+                      <TableRow key={tickets.patient_id}>
+                        <TableCell numeric>{tickets.time}</TableCell>
+                        <TableCell numeric>{patient}</TableCell>
                         <TableCell numeric>
                           <IconButton>
-                          {/*  <LinkContainer
-                              to={`/doctor/medcard/${tickets.patients_id}`}
-                            >
-                              <FolderIcon />
-                            </LinkContainer>*/}
+                            {
+                              <LinkContainer
+                                to={`/doctor/medcard/${tickets.patients_id}`}
+                              >
+                                <FolderIcon />
+                              </LinkContainer>
+                            }
                           </IconButton>
                         </TableCell>
                       </TableRow>
