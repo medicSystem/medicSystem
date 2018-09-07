@@ -73,21 +73,23 @@ class DoctorsController extends Controller
         $date = array();
         $dateTime = array();
         $time = array();
+        $patients_id = array();
+        $result = array();
         $user_id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($user_id);
-        if ($role == 'doctor'){
+        if ($role == 'doctor') {
             $doctors = Doctor::where('users_id', $user_id)->get();
-            foreach ($doctors as $doctor){
+            foreach ($doctors as $doctor) {
                 $id = $doctor->id;
             }
         }
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
-            if (date('Y-m-d', strtotime($coupon->date)) == $needDate){
+            if (date('Y-m-d', strtotime($coupon->date)) == $needDate) {
                 $dateTime[$i] = $coupon->date;
+                $patients_id [$i] = $coupon->patients_id;
                 $i++;
-
             }
         }
         $workTime = $this->getWorkTime($id);
@@ -95,15 +97,19 @@ class DoctorsController extends Controller
             $time[$k] = date('H:i', strtotime($dateTime[$k]));
         }
         $freeTime = array_intersect($workTime, $time);
-        $encodeResult = json_encode($freeTime);
-        return $encodeResult;
-/*        $arr = array_keys($freeTime);
-        for ($i = 0; $i < count($arr); $i++) {
-            $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
-            $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
+        $arr = array_keys($freeTime);
+        for ($j = 0; $j < count($freeTime); $j++){
+            $result[$j] = array("time" => $freeTime[$arr[$j]], "patients_id" => $patients_id[$j]);
         }
-        $encodeResult = json_encode($date);
-        return $encodeResult;*/
+        $encodeResult = json_encode($result);
+        return $encodeResult;
+        /*        $arr = array_keys($freeTime);
+                for ($i = 0; $i < count($arr); $i++) {
+                    $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
+                    $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
+                }
+                $encodeResult = json_encode($date);
+                return $encodeResult;*/
     }
 
     public function getFreeTime($id, $needDate)
@@ -113,16 +119,16 @@ class DoctorsController extends Controller
         $time = array();
         $user_id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($user_id);
-        if ($role == 'doctor'){
+        if ($role == 'doctor') {
             $doctors = Doctor::where('users_id', $user_id)->get();
-            foreach ($doctors as $doctor){
+            foreach ($doctors as $doctor) {
                 $id = $doctor->id;
             }
         }
         $coupons = Coupon::where('doctors_id', $id)->get();
         $i = 0;
         foreach ($coupons as $coupon) {
-            if (date('Y-m-d', strtotime($coupon->date)) == $needDate){
+            if (date('Y-m-d', strtotime($coupon->date)) == $needDate) {
                 $dateTime[$i] = $coupon->date;
                 $i++;
 
@@ -135,12 +141,12 @@ class DoctorsController extends Controller
         $freeTime = array_diff($workTime, $time);
         $encodeResult = json_encode($freeTime);
         return $encodeResult;
-/*        $arr = array_keys($freeTime);
-        for ($i = 0; $i < count($arr); $i++) {
-            $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
-            $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
-        }
-        $encodeResult = json_encode($date);
-        return $encodeResult;*/
+        /*        $arr = array_keys($freeTime);
+                for ($i = 0; $i < count($arr); $i++) {
+                    $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
+                    $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
+                }
+                $encodeResult = json_encode($date);
+                return $encodeResult;*/
     }
 }
