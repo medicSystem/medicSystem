@@ -95,13 +95,15 @@ class DoctorsController extends Controller
             $time[$k] = date('H:i', strtotime($dateTime[$k]));
         }
         $freeTime = array_intersect($workTime, $time);
-        $arr = array_keys($freeTime);
+        $encodeResult = json_encode($freeTime);
+        return $encodeResult;
+/*        $arr = array_keys($freeTime);
         for ($i = 0; $i < count($arr); $i++) {
             $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
             $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
         }
         $encodeResult = json_encode($date);
-        return $encodeResult;
+        return $encodeResult;*/
     }
 
     public function getFreeTime($id, $needDate)
@@ -131,12 +133,14 @@ class DoctorsController extends Controller
             $time[$k] = date('H:i', strtotime($dateTime[$k]));
         }
         $freeTime = array_diff($workTime, $time);
-        $arr = array_keys($freeTime);
+        $encodeResult = json_encode($freeTime);
+        return $encodeResult;
+/*        $arr = array_keys($freeTime);
         for ($i = 0; $i < count($arr); $i++) {
             $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
             $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
         }
         $encodeResult = json_encode($date);
-        return $encodeResult;
+        return $encodeResult;*/
     }
 }
