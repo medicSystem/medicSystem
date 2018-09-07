@@ -6,8 +6,29 @@ import axios from "axios/index";
 import Loader from "react-loader-spinner";
 import dateFormat from "dateformat";
 import List from "../list/list";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles/index";
+import Paper from "@material-ui/core/es/Paper/Paper";
+import Table from "@material-ui/core/es/Table/Table";
+import TableHead from "@material-ui/core/es/TableHead/TableHead";
+import TableRow from "@material-ui/core/es/TableRow/TableRow";
+import TableCell from "@material-ui/core/es/TableCell/TableCell";
+import TableBody from "@material-ui/core/es/TableBody/TableBody";
+import IconButton from "@material-ui/core/es/IconButton/IconButton";
+import { LinkContainer } from "react-router-bootstrap";
 
-export default class Tickets extends Component {
+const styles = theme => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 300
+  }
+});
+
+class Tickets extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -17,7 +38,7 @@ export default class Tickets extends Component {
     this.state = {
       show: false,
       loading: false,
-        tickets: []
+      tickets: []
     };
   }
 
@@ -39,35 +60,21 @@ export default class Tickets extends Component {
         });
     });
   }
-  /* componentDidMount() {
+/*  componentDidMount() {
     const id = this.props.match;
-    console.log("111111111111");
+    console.log("2222");
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getBusyTime/2/${this.state.date}`)
+        .get("/getActiveCoupon")
         .then(response => {
-          this.setState({ loading: false, tickets: response.data });
+          this.setState({ loading: false, allTickets: response.data });
         })
         .catch(error => {
           console.log(error);
         });
     });
-  }
+  }*/
 
-    componentWillReceiveProps() {
-        const id = this.props.match;
-        console.log("222222222");
-        this.setState({ loading: true }, () => {
-            axios
-                .get(`/getBusyTime/2/${this.state.date}`)
-                .then(response => {
-                    this.setState({ loading: false, tickets: response.data });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        });
-    }*/
   render() {
     const { classes } = this.props;
     const { tickets, loading } = this.state;
@@ -84,7 +91,7 @@ export default class Tickets extends Component {
         </div>
       );
     }
-    console.log(this.state.tickets);
+    console.log(this.state.allTickets);
     return (
       <div>
         <Calendar
@@ -97,19 +104,44 @@ export default class Tickets extends Component {
             <Modal.Title>Business hours</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-           {/* <List>*/}
-              {this.state.tickets.map(tickets => (
-                  <p>{tickets} </p>
-                 /* <ListItem>
-                    <ListItemText primary={tickets}/>
-
-
-                  </ListItem>*/
-              ))}
-          {/*  </List>*/}
+            <Paper className={classes.root}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell numeric>Date</TableCell>
+                    <TableCell numeric>First name</TableCell>
+                      <TableCell numeric>Patient</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tickets.map(tickets => {
+                    return (
+                      <TableRow >
+                        <TableCell numeric>{tickets}</TableCell>
+                        <TableCell numeric>{tickets}</TableCell>
+                        <TableCell numeric>
+                          <IconButton>
+                          {/*  <LinkContainer
+                              to={`/doctor/medcard/${tickets.patients_id}`}
+                            >
+                              <FolderIcon />
+                            </LinkContainer>*/}
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </Paper>
           </Modal.Body>
         </Modal>
       </div>
     );
   }
 }
+Tickets.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Tickets);
