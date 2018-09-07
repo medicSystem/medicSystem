@@ -4,6 +4,8 @@ import "./tickets.css";
 import { Button, Modal } from "react-bootstrap";
 import axios from "axios/index";
 import Loader from "react-loader-spinner";
+import dateFormat from "dateformat";
+import List from "../list/list";
 
 export default class Tickets extends Component {
   constructor(props, context) {
@@ -14,7 +16,8 @@ export default class Tickets extends Component {
 
     this.state = {
       show: false,
-        loading: true
+      loading: false,
+        tickets: []
     };
   }
 
@@ -22,22 +25,49 @@ export default class Tickets extends Component {
     this.setState({ show: false });
   }
 
-  handleShow() {
+  handleShow(value) {
     this.setState({ show: true });
-  }
-  componentDidMount() {
-/*    const id = this.props.match.params.id;*/
+    console.log("111111111111");
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getBusyTime/${1}/1997-01-10`)
+        .get(`/getBusyTime/2/${dateFormat(value, "isoDate")}`)
         .then(response => {
-          this.setState({ loading: false, tickets: response.data});
+          this.setState({ loading: false, tickets: response.data });
         })
         .catch(error => {
           console.log(error);
         });
     });
   }
+  /* componentDidMount() {
+    const id = this.props.match;
+    console.log("111111111111");
+    this.setState({ loading: true }, () => {
+      axios
+        .get(`/getBusyTime/2/${this.state.date}`)
+        .then(response => {
+          this.setState({ loading: false, tickets: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    });
+  }
+
+    componentWillReceiveProps() {
+        const id = this.props.match;
+        console.log("222222222");
+        this.setState({ loading: true }, () => {
+            axios
+                .get(`/getBusyTime/2/${this.state.date}`)
+                .then(response => {
+                    this.setState({ loading: false, tickets: response.data });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        });
+    }*/
   render() {
     const { classes } = this.props;
     const { tickets, loading } = this.state;
@@ -54,24 +84,30 @@ export default class Tickets extends Component {
         </div>
       );
     }
-    console.log(this.state.tickets)
+    console.log(this.state.tickets);
     return (
       <div>
         <Calendar
           className="tickets"
           tileClassName="tile"
-          onClickDay={this.handleShow}
+          onClickDay={value => this.handleShow(value)}
         />
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Business hours</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Text in a modal</h4>
+           {/* <List>*/}
+              {this.state.tickets.map(tickets => (
+                  <p>{tickets} </p>
+                 /* <ListItem>
+                    <ListItemText primary={tickets}/>
+
+
+                  </ListItem>*/
+              ))}
+          {/*  </List>*/}
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
