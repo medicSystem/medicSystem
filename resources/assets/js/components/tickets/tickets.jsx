@@ -48,9 +48,7 @@ class Tickets extends Component {
   }
 
   handleShow(value) {
-    console.log(1);
     this.setState({ show: true });
-    console.log(2);
     this.setState({ loading: true }, () => {
       axios
         .get(`/getBusyTime/2/${dateFormat(value, "isoDate")}`)
@@ -60,23 +58,8 @@ class Tickets extends Component {
         .catch(error => {
           console.log(error);
         });
-      console.log("lol");
     });
   }
-  /*  componentDidMount() {
-    const id = this.props.match;
-    console.log("2222");
-    this.setState({ loading: true }, () => {
-      axios
-        .get("/getActiveCoupon")
-        .then(response => {
-          this.setState({ loading: false, allTickets: response.data });
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    });
-  }*/
 
   render() {
     const { classes } = this.props;
@@ -94,7 +77,6 @@ class Tickets extends Component {
         </div>
       );
     }
-    console.log(this.state.patient);
     return (
       <div>
         <Calendar

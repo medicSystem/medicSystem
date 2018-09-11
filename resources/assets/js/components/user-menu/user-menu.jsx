@@ -15,7 +15,7 @@ import UserMenuList from "../user-menu-list/user-menu-list";
 import Medcard from "../../pages/medcard/medcard";
 import Patients from "../../pages/patients/patients";
 import History from "../../pages/history/history";
-import Tickets from "../tickets/tickets";
+import DoctorTickets from "../doctor-tickets/doctor-tickets";
 
 const drawerWidth = 240;
 
@@ -66,24 +66,24 @@ const doctor = (
 );
 
 const patient = (
-    <List>
-        <UserMenuList role="Patient" link="/doctor" icon="user" />
-        <UserMenuList role="Doctor" link="/doctor/patients" icon="patients" />
-        <UserMenuList role="Medcard" link="/doctor" icon="tickets" />
-        <UserMenuList role="Tickets" link="/doctor/tickets" icon="tickets" />
-        <UserMenuList role="Chat" link="/doctor" icon="chat" />
-        <UserMenuList role="Support" link="/doctor" icon="support" />
-    </List>
+  <List>
+    <UserMenuList role="Patient" link="/patient" icon="user" />
+    <UserMenuList role="Doctor" link="/patient" icon="patients" />
+    <UserMenuList role="Medcard" link="/patient" icon="tickets" />
+    <UserMenuList role="Tickets" link="/patient/tickets" icon="tickets" />
+    <UserMenuList role="Chat" link="/patient" icon="chat" />
+    <UserMenuList role="Support" link="/patient" icon="support" />
+  </List>
 );
 
 const admin = (
-    <List>
-        <UserMenuList role="Doctor" link="/doctor" icon="user" />
-        <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
-        <UserMenuList role="Tickets" link="/doctor" icon="tickets" />
-        <UserMenuList role="Chat" link="/doctor" icon="chat" />
-        <UserMenuList role="Support" link="/doctor" icon="support" />
-    </List>
+  <List>
+    <UserMenuList role="Doctor" link="/doctor" icon="user" />
+    <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
+    <UserMenuList role="Tickets" link="/doctor" icon="tickets" />
+    <UserMenuList role="Chat" link="/doctor" icon="chat" />
+    <UserMenuList role="Support" link="/doctor" icon="support" />
+  </List>
 );
 class UserMenu extends Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class UserMenu extends Component {
       case "Doctor":
         return doctor;
       case "Patient":
-        return "patient";
+        return patient;
       case "Admin":
         return "admin";
       default:
@@ -176,8 +176,8 @@ class UserMenu extends Component {
           <div className={classes.toolbar} />
           <Route path="/doctor/patients" component={Patients} />
           <Route path="/doctor/medcard/:id" component={Medcard} />
-            <Route path="/doctor/history" component={History} />
-            <Route path="/doctor/tickets" component={Tickets} />
+          <Route path="/doctor/history" component={History} />
+          <Route path="/doctor/tickets" component={DoctorTickets} />
         </main>
       </div>
     );
