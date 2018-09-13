@@ -12,29 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    /*    public function createNewMessenger($id)
-        {
-            $user_id = Auth::user()->getAuthIdentifier();
-            $role = Auth::user()->getRole($user_id);
-            if ($role == 'doctor') {
-                $doctors = Doctor::where('users_id', $user_id)->get();
-                foreach ($doctors as $doctor) {
-                    $doctor_id = $doctor->id;
-                }
-                $patient_id = $id;
-            } elseif ($role == 'patient') {
-                $patients = Patient::where('users_id', $user_id)->get();
-                foreach ($patients as $patient) {
-                    $patient_id = $patient->id;
-                }
-                $doctor_id = $id;
-            }
-            $messenger = new Messenger();
-            $messenger->doctors_id = $doctor_id;
-            $messenger->patients_id = $patient_id;
-            $messenger->save();
-        }*/
-
     public function createNewMessengerAndReturn($id)
     {
         $user_id = Auth::user()->getAuthIdentifier();
@@ -68,5 +45,16 @@ class MessageController extends Controller
         $messageList = Message::where('messengers_id', $id)->get();
         $encode = json_encode($messageList);
         return $encode;
+    }
+
+    public function addMessage(Request $request, $id)
+    {
+        $user_id = Auth::user()->getAuthIdentifier();
+        $message = new Message();
+        $message->message = $request->message;
+        $message->users_id = $user_id;
+        $message->messengers_id = $id;
+        $message->send_datetime = date('Y-m-d H:m:s');
+        $message->save();
     }
 }

@@ -10,6 +10,7 @@ use App\Validate_doctor;
 use Illuminate\Support\Facades\Auth;
 use App\Doctor_type;
 use App\Coupon;
+use Illuminate\Support\Facades\DB;
 
 class DoctorsController extends Controller
 {
@@ -43,7 +44,7 @@ class DoctorsController extends Controller
 
     public function getDoctor($id)
     {
-        $doctors = Doctor::where('id', $id)->get();
+        $doctors = DB::select('SELECT `doctors`.`id`,`doctors`.`patent`, `doctors`.`experience`, `doctors`.`work_time`, `users`.`first_name`, `users`.`last_name`, `users`.`avatar`, `users`.`email`,`users`.`birthday`,`users`.`phone_number`, `doctor_types`.`type_name` FROM `doctors` JOIN `users` ON `doctors`.`users_id` = `users`.`id` JOIN `doctor_types` ON `doctors`.`doctor_types_id` = `doctor_types`.`id` WHERE `doctors`.`id` =' . $id);
         $encodeDoctors = json_encode($doctors);
         return $encodeDoctors;
     }
@@ -98,7 +99,7 @@ class DoctorsController extends Controller
         }
         $freeTime = array_intersect($workTime, $time);
         $arr = array_keys($freeTime);
-        for ($j = 0; $j < count($freeTime); $j++){
+        for ($j = 0; $j < count($freeTime); $j++) {
             $result[$j] = array("time" => $freeTime[$arr[$j]], "patients_id" => $patients_id[$j]);
         }
         $encodeResult = json_encode($result);
@@ -131,7 +132,6 @@ class DoctorsController extends Controller
             if (date('Y-m-d', strtotime($coupon->date)) == $needDate) {
                 $dateTime[$i] = $coupon->date;
                 $i++;
-
             }
         }
         $workTime = $this->getWorkTime($id);
@@ -139,14 +139,12 @@ class DoctorsController extends Controller
             $time[$k] = date('H:i', strtotime($dateTime[$k]));
         }
         $freeTime = array_diff($workTime, $time);
-        $encodeResult = json_encode($freeTime);
+        $arr = array_keys($freeTime);
+        for ($i = 0; $i < count($arr); $i++) {
+            $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
+            $date[$i] = date('Y-m-d H:i', strtotime($strDate[$i]));
+        }
+        $encodeResult = json_encode($date);
         return $encodeResult;
-        /*        $arr = array_keys($freeTime);
-                for ($i = 0; $i < count($arr); $i++) {
-                    $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
-                    $date[$i] = date( 'Y-m-d H:i',strtotime($strDate[$i]));
-                }
-                $encodeResult = json_encode($date);
-                return $encodeResult;*/
     }
 }
