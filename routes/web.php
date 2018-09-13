@@ -112,6 +112,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/getBusyTime/{id}/{needDate}', 'Database\DoctorsController@getBusyTime')->name('getBusyTime');
         Route::get('/getFreeTime/{id}/{needDate}', 'Database\DoctorsController@getFreeTime')->name('getFreeTime');
+
+        Route::get('/createNewMessengerAndReturn/{id}', 'Database\MessageController@createNewMessengerAndReturn')->name('createNewMessengerAndReturn');
+        Route::get('/getMessageList/{id}', 'Database\MessageController@getMessageList')->name('getMessageList');
+        Route::post('/addMessage/{id}', 'Database\MessageController@addMessage')->name('addMessage');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');

@@ -25,6 +25,7 @@ return array(
     'App\\Http\\Controllers\\Database\\CouponsController' => $baseDir . '/app/Http/Controllers/Database/CouponsController.php',
     'App\\Http\\Controllers\\Database\\DoctorsController' => $baseDir . '/app/Http/Controllers/Database/DoctorsController.php',
     'App\\Http\\Controllers\\Database\\MedicalCardController' => $baseDir . '/app/Http/Controllers/Database/MedicalCardController.php',
+    'App\\Http\\Controllers\\Database\\MessageController' => $baseDir . '/app/Http/Controllers/Database/MessageController.php',
     'App\\Http\\Controllers\\Database\\PatientsController' => $baseDir . '/app/Http/Controllers/Database/PatientsController.php',
     'App\\Http\\Controllers\\Database\\UploadDictionary' => $baseDir . '/app/Http/Controllers/Database/UploadDictionary.php',
     'App\\Http\\Controllers\\Database\\UploadNews' => $baseDir . '/app/Http/Controllers/Database/UploadNews.php',

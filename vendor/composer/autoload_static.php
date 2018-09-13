@@ -391,6 +391,7 @@ class ComposerStaticInit6c0985354d0b58722a7cc9d23498b60f
         'App\\Http\\Controllers\\Database\\CouponsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/CouponsController.php',
         'App\\Http\\Controllers\\Database\\DoctorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/DoctorsController.php',
         'App\\Http\\Controllers\\Database\\MedicalCardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/MedicalCardController.php',
+        'App\\Http\\Controllers\\Database\\MessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/MessageController.php',
         'App\\Http\\Controllers\\Database\\PatientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/PatientsController.php',
         'App\\Http\\Controllers\\Database\\UploadDictionary' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/UploadDictionary.php',
         'App\\Http\\Controllers\\Database\\UploadNews' => __DIR__ . '/../..' . '/app/Http/Controllers/Database/UploadNews.php',

@@ -26,8 +26,10 @@ class CreateMessagesTable extends Migration
             $table->text('message');
             $table->dateTime('send_datetime');
             $table->unsignedInteger('messengers_id');
+            $table->unsignedInteger('users_id');
             $table->timestamps();
             $table->foreign('messengers_id')->references('id')-> on('messengers')->onDelete('cascade');
+            $table->foreign('users_id')->references('id')-> on('users')->onDelete('cascade');
             //$table->unique(["id"], 'id_UNIQUE');
         });
     }
