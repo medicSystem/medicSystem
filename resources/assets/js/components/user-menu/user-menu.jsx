@@ -16,6 +16,7 @@ import Medcard from "../../pages/medcard/medcard";
 import Patients from "../../pages/patients/patients";
 import History from "../../pages/history/history";
 import DoctorTickets from "../doctor-tickets/doctor-tickets";
+import PatientTickets from "../patient-tickets/patient-tickets";
 
 const drawerWidth = 240;
 
@@ -178,6 +179,7 @@ class UserMenu extends Component {
           <Route path="/doctor/medcard/:id" component={Medcard} />
           <Route path="/doctor/history" component={History} />
           <Route path="/doctor/tickets" component={DoctorTickets} />
+          <Route path="/patient/tickets" component={PatientTickets} />
         </main>
       </div>
     );

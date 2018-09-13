@@ -15,7 +15,10 @@ import TableRow from "@material-ui/core/es/TableRow/TableRow";
 import TableCell from "@material-ui/core/es/TableCell/TableCell";
 import TableBody from "@material-ui/core/es/TableBody/TableBody";
 import IconButton from "@material-ui/core/es/IconButton/IconButton";
+import GridList from "@material-ui/core/GridList";
 import { LinkContainer } from "react-router-bootstrap";
+import GridListTile from "@material-ui/core/es/GridListTile/GridListTile";
+import Button from "@material-ui/core/es/Button/Button";
 
 const styles = theme => ({
   root: {
@@ -25,6 +28,11 @@ const styles = theme => ({
   },
   table: {
     minWidth: 300
+  },
+  gridList: {
+    width: "100%",
+    height: "100%",
+      border: "2px"
   }
 });
 
@@ -51,7 +59,7 @@ class Tickets extends Component {
     this.setState({ show: true });
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getBusyTime/2/${dateFormat(value, "isoDate")}`)
+        .get(`/getFreeTime/1/${dateFormat(value, "isoDate")}`)
         .then(response => {
           this.setState({ loading: false, tickets: response.data });
         })
@@ -60,10 +68,90 @@ class Tickets extends Component {
         });
     });
   }
+  doctorTable() {
+    const { classes } = this.props;
+    const { tickets, patient } = this.state;
+
+    return (
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell numeric>Time</TableCell>
+            <TableCell numeric>First name</TableCell>
+            <TableCell numeric>Patient</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tickets.map(tickets => {
+            return (
+              <TableRow key={tickets.patient_id + tickets}>
+                <TableCell numeric>{tickets.time}</TableCell>
+                <TableCell numeric>{patient}</TableCell>
+                <TableCell numeric>
+                  <IconButton>
+                    {
+                      <LinkContainer
+                        to={`/doctor/medcard/${tickets.patients_id}`}
+                      >
+                        <FolderIcon />
+                      </LinkContainer>
+                    }
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    );
+  }
+
+  patientTable() {
+    const { classes } = this.props;
+    const { tickets } = this.state;
+    console.log(tickets);
+    return (
+      <GridList className={classes.gridList} >
+        {tickets.map(tickets => (
+          <GridListTile key={tickets} cols={0.3} rows={0.3}>
+            <Button>{tickets}</Button>
+          </GridListTile>
+        ))}
+      </GridList>
+      /* {/!*<Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell numeric>Time</TableCell>
+            <TableCell numeric>Book it</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tickets.map(tickets => {
+            return (
+              <TableRow key={tickets}>
+                <TableCell numeric>{tickets}</TableCell>
+                <TableCell numeric>
+                  <IconButton>
+                    {
+                      <LinkContainer
+                        to={`/doctor/medcard/${tickets.patients_id}`}
+                      >
+                        <FolderIcon />
+                      </LinkContainer>
+                    }
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>*!/}*/
+    );
+  }
 
   render() {
     const { classes } = this.props;
-    const { tickets, patient, loading } = this.state;
+    const { loading } = this.state;
     if (loading) {
       return (
         <div className="loader-container news-box-loader">
@@ -89,38 +177,7 @@ class Tickets extends Component {
             <Modal.Title>Business hours</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Paper className={classes.root}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell numeric>Time</TableCell>
-                    <TableCell numeric>First name</TableCell>
-                    <TableCell numeric>Patient</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {tickets.map(tickets => {
-                    return (
-                      <TableRow key={tickets.patient_id}>
-                        <TableCell numeric>{tickets.time}</TableCell>
-                        <TableCell numeric>{patient}</TableCell>
-                        <TableCell numeric>
-                          <IconButton>
-                            {
-                              <LinkContainer
-                                to={`/doctor/medcard/${tickets.patients_id}`}
-                              >
-                                <FolderIcon />
-                              </LinkContainer>
-                            }
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </Paper>
+            <Paper className={classes.root}>{this.patientTable()}</Paper>
           </Modal.Body>
         </Modal>
       </div>
