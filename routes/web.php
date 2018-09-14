@@ -116,6 +116,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/createNewMessengerAndReturn/{id}', 'Database\MessageController@createNewMessengerAndReturn')->name('createNewMessengerAndReturn');
         Route::get('/getMessageList/{id}', 'Database\MessageController@getMessageList')->name('getMessageList');
         Route::post('/addMessage/{id}', 'Database\MessageController@addMessage')->name('addMessage');
+        Route::get('/getMessageListForCurrentUser/{id}/{role}', 'Database\MessageController@getMessageListForCurrentUser')->name('getMessageListForCurrentUser');
     });
 
     Route::get('/errorRole/{role}', ['uses' => 'ErrorRoleController@index'])->name('errorRole');
