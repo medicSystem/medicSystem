@@ -47,6 +47,27 @@ class MessageController extends Controller
         return $encode;
     }
 
+    public function getMessageListForCurrentUser($id, $role){
+        if ($role == 'doctor'){
+            $doctors = Doctor::where('id', $id)->get();
+            foreach ($doctors as $doctor){
+                $user_id = $doctor->users_id;
+            }
+            $messageList = Message::where('users_id', $user_id)->get();
+            $encode = json_encode($messageList);
+        } elseif ($role == 'patient'){
+            $patients = Patient::where('id', $id)->get();
+            foreach ($patients as $patient){
+                $user_id = $patient->users_id;
+            }
+            $messageList = Message::where('users_id', $user_id)->get();
+            $encode = json_encode($messageList);
+        }else {
+            $encode = 'Error. Check your parametries';
+        }
+        return $encode;
+    }
+
     public function addMessage(Request $request, $id)
     {
         $user_id = Auth::user()->getAuthIdentifier();
