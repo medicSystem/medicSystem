@@ -71,6 +71,7 @@ class Tickets extends Component {
   doctorTable() {
     const { classes } = this.props;
     const { tickets, patient } = this.state;
+    console.log(tickets)
 
     return (
       <Table className={classes.table}>
