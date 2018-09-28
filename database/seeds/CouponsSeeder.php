@@ -10,13 +10,16 @@ class CouponsSeeder extends Seeder
     {
         $patient = Patient::all();
         $doctor = Doctor::find(1)->id;
-        $time = 30;
-        foreach ($patient as $patients) {
+        $minutes_to_add = 30;
+        $time = new DateTime('2018-10-25 10:00');
 
+        foreach ($patient as $patients) {
+            $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+            $stamp = $time->format('Y-m-d H:i:s');
             DB::table('coupons')->insert([
                 'doctors_id' => $doctor,
                 'patients_id' => $patients->id,
-                'date' => '',
+                'date' => $stamp,
                 'created_at' => $this->rendDateTime(),
                 'updated_at' => $this->rendDateTime(),
             ]);
