@@ -7,11 +7,6 @@ use App\Doctor;
 
 class DiseaseHistoriesSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $doctor = Doctor::all();

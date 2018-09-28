@@ -4,11 +4,6 @@ use Illuminate\Database\Seeder;
 use App\Patient;
 class MedicalCardsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $patient = Patient::all();

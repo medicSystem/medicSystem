@@ -6,21 +6,15 @@ use App\Doctor_type;
 
 class DoctorsSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $user = User::all();
-        $doctorType = Doctor_type::find(1)->id;
+        $user = User::all()->where('role', 'doctor');
         foreach ($user as $users) {
             DB::table('doctors')->insert([
-                'doctor_types_id' => $doctorType,
+                'doctor_types_id' => rand(1, 5),
                 'patent' => str_random(10),
-                'experience' => rand(),
-                'work_time' => str_random(20),
+                'experience' => rand(1, 5),
+                'work_time' => 8,
                 'users_id' => $users->id,
                 'created_at' => $this->rendDateTime(),
                 'updated_at' => $this->rendDateTime(),

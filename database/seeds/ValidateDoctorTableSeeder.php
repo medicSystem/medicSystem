@@ -5,11 +5,6 @@ use App\Doctor_type;
 
 class ValidateDoctorTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $doctorType = Doctor_type::find(1)->id;

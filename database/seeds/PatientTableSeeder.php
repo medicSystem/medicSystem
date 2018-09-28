@@ -5,14 +5,9 @@ use App\User;
 
 class PatientTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $user = User::all();
+        $user = User::all()->where('role', 'patient');
         foreach ($user as $users) {
             DB::table('patients')->insert([
                 'users_id' => $users->id,
