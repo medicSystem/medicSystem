@@ -59,7 +59,7 @@ class Tickets extends Component {
     this.setState({ show: true });
     this.setState({ loading: true }, () => {
       axios
-        .get(`/getFreeTime/1/${dateFormat(value, "isoDate")}`)
+          .get(`/getBusyTime/1/${dateFormat(value, "isoDate")}`)
         .then(response => {
           this.setState({ loading: false, tickets: response.data });
         })
@@ -85,7 +85,7 @@ class Tickets extends Component {
         <TableBody>
           {tickets.map(tickets => {
             return (
-              <TableRow key={tickets.patient_id + tickets}>
+                <TableRow key={tickets.patient_id}>
                 <TableCell numeric>{tickets.time}</TableCell>
                 <TableCell numeric>{patient}</TableCell>
                 <TableCell numeric>
@@ -110,7 +110,7 @@ class Tickets extends Component {
   patientTable() {
     const { classes } = this.props;
     const { tickets } = this.state;
-    console.log(tickets);
+      /* console.log(tickets);*/
     return (
       <GridList className={classes.gridList} >
         {tickets.map(tickets => (
@@ -178,7 +178,7 @@ class Tickets extends Component {
             <Modal.Title>Business hours</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Paper className={classes.root}>{this.patientTable()}</Paper>
+              <Paper className={classes.root}>{this.doctorTable()}</Paper>
           </Modal.Body>
         </Modal>
       </div>
