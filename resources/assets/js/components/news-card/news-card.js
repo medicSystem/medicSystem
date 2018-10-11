@@ -62,13 +62,14 @@ class RecipeReviewCard extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const newsImg = "/images/" + this.props.image;
     return (
       <div>
         <Card className={classes.card}>
           <CardHeader title={this.props.name} subheader={this.props.date} />
           <CardMedia
             className={classes.media}
-            image={this.props.image}
+            image={newsImg}
             title="Contemplative Reptile"
           />
           <CardActions className={classes.actions} disableActionSpacing>

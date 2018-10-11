@@ -1,23 +1,23 @@
-input {
+.NewsDeck input {
     border: none;
     border-bottom: 2px solid gray;
     width: 100%;
     margin-bottom: 2rem;
 }
 
-input:focus {
+.NewsDeck input:focus {
     outline: none;
     border-bottom-color: #4caf50;
     transition: color-indent 1s;
 }
 
-textarea {
+.NewsDeck textarea {
     border: none;
     border-bottom: 2px solid gray;
     width: 100%;
 }
 
-textarea:focus {
+.NewsDeck textarea:focus {
     outline: none;
     border-bottom-color: #4caf50;
     transition: color-indent 1s;
