@@ -56,7 +56,7 @@ export default class Main extends Component {
                 name={news.news_name}
                 text={news.content}
                 date={news.created_at}
-                image="https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971"
+                image={news.photo}
               />
             ))}
 

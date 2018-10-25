@@ -26,19 +26,21 @@ function SimpleMediaCard(props) {
     id = props.id;
   }
   const link = "/main/news#" + id.toString();
+  const newsImg = "/images/" + props.image;
+  const subtext = props.text.substring(0,90) + "...";
   return (
     <div>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image={props.image}
+          image={newsImg}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
             {props.name}
           </Typography>
-          <Typography component="p">{props.text}</Typography>
+          <Typography component="p">{subtext}</Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" href={link}>

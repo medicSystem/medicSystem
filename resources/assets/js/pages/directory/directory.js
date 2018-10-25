@@ -81,7 +81,7 @@ export default class Directory extends Component {
                 name={dictionary.disease_name}
                 text={dictionary.treatment}
                 date={dictionary.symptoms}
-                image="https://static.dentaldepartures.com/clinics/dd_201604030325_5397cbeba0bbf.jpg?_ga=2.44103460.1011704726.1530860971-1003451310.1530860971"
+                image={dictionary.picture}
               />
             ))}
           </div>
