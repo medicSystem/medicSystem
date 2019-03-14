@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Patient extends Model
 {
@@ -26,5 +27,10 @@ class Patient extends Model
 
     public function medicalCard(){
         return $this->hasOne('App\Medical_card', 'patients_id', 'id');
+    }
+
+    public function getPatientID($id){
+        $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id` WHERE `users`.`id` = '.$id);
+        return $patientIds;
     }
 }

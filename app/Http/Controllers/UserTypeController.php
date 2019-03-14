@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
-use App\Http\Controllers\Database\ValidateDoctorsController;
+use App\Patient;
 use App\Validate_doctor;
 use App\Medical_card;
-use App\User;
 use App\Ban_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Database\DoctorsController;
 
 class UserTypeController extends Controller
 {
@@ -24,13 +21,14 @@ class UserTypeController extends Controller
     {
         $id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($id);
-        if ($role == 'patient') {
-            $medicalCards = DB::select('SELECT `users`.`id` FROM `medical_cards` join `patients` ON `medical_cards`.`patients_id`=`patients`.`id` JOIN `users` ON `patients`.`users_id`=`users`.`id`');
+        if ($role === 'patient') {
+            $medicalCard = new Medical_card();
+            $medicalCardList = $medicalCard->getUsersID();
             $checkMedicalCard = Medical_card::all();
             $check = false;
             if ($checkMedicalCard->isNotEmpty()) {
-                foreach ($medicalCards as $medicalCard) {
-                    if ($id == $medicalCard->id) {
+                foreach ($medicalCardList as $list) {
+                    if ($id == $list->id) {
                         $check = true;
                         break;
                     }
@@ -41,16 +39,16 @@ class UserTypeController extends Controller
             } else {
                 return redirect()->route('viewMedicalCard');
             }
-        } elseif ($role == 'doctor') {
+        } elseif ($role === 'doctor') {
             $validate = new Validate_doctor();
             $hasValidate = $validate->hasValidateDoctor($id);
             if ($hasValidate) {
                 $validateStatus = $validate->getValidateDoctor($id);
                 foreach ($validateStatus as $status) {
                     $checkStatus = $status->status;
-                    if ($checkStatus == 'new') {
+                    if ($checkStatus === 'new') {
                         return redirect()->route('validating_doctor');
-                    } elseif ($checkStatus == 'refuted') {
+                    } elseif ($checkStatus === 'refuted') {
                         $ban = new Ban_list();
                         $hasBan = $ban->hasBan($id);
                         if (!$hasBan) {
@@ -84,7 +82,8 @@ class UserTypeController extends Controller
 
         $id = Auth::user()->getAuthIdentifier();
         $role = Auth::user()->getRole($id);
-        $patientIds = DB::select('SELECT `patients`.`id` FROM `patients` JOIN `users` ON `patients`.`users_id` = `users`.`id` WHERE `users`.`id` = '.$id);
+        $patient = new Patient();
+        $patientIds= $patient->getPatientID($id);
         foreach ($patientIds as $item) {
             $patientId = $item->id;
         }
