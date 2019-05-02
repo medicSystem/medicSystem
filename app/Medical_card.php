@@ -22,9 +22,7 @@ class Medical_card extends Model
     }
 
     public function getUsersID(){
-        //$medicalCards = DB::select('SELECT `users`.`id` FROM `medical_cards` join `patients` ON `medical_cards`.`patients_id`=`patients`.`id` JOIN `users` ON `patients`.`users_id`=`users`.`id`');
-        $medicalCards = DB::table('medical_cards')->join('patients', 'medical_cards.patients_id', '=', 'patients.id')
-            ->join('users', 'patients.users_id', '=', 'users.id')->select('users.id');
+        $medicalCards = DB::select('SELECT `users`.`id` FROM `medical_cards` join `patients` ON `medical_cards`.`patients_id`=`patients`.`id` JOIN `users` ON `patients`.`users_id`=`users`.`id`');
         return $medicalCards;
     }
 }
