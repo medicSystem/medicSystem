@@ -3,6 +3,6 @@ import "./content.css";
 
 export default class Content extends Component {
   render() {
-    return <div className="app-content">{this.props.children}</div>;
+    return <div className="Content">{this.props.children}</div>;
   }
 }

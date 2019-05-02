@@ -78,8 +78,9 @@ class History extends React.Component {
     }
     console.log(history);
     return (
-      <div className={classes.root}>
-        <List>
+      <div className="">
+        sdfsfdsfsf
+       {/* <List>
           <MuiThemeProvider theme={text}>
             <ListItem>
               <ListItemText primary="Last name:" className={classes.text} />
@@ -155,7 +156,7 @@ class History extends React.Component {
         >
           History of diseases
           <AssignmentIcon className={classes.rightIcon} />
-        </Button>
+        </Button>*/}
       </div>
     );
   }

@@ -1,3 +1,4 @@
+/*
 .main {
   max-width: 1024px;
   margin-top: 71px;
@@ -51,4 +52,10 @@
   .news-button {
     grid-column: 1;
   }
+}
+*/
+.Main_carousel_image {
+  max-height: 550px;
+  width: 100%;
+
 }

@@ -63,6 +63,7 @@ class Medcard extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const id = this.props.match.params.id;
     const { patient, loading } = this.state;
     if (loading) {
       return (
@@ -148,7 +149,7 @@ class Medcard extends React.Component {
             <Divider />
           </MuiThemeProvider>
         </List>
-        <LinkContainer to={`/doctor/history`}>
+        <LinkContainer to={`/doctor/history/${id}`}>
           <Button
             variant="contained"
             color="default"

@@ -177,7 +177,7 @@ class UserMenu extends Component {
           <div className={classes.toolbar} />
           <Route path="/doctor/patients" component={Patients} />
           <Route path="/doctor/medcard/:id" component={Medcard} />
-          <Route path="/doctor/history" component={History} />
+          <Route path="/doctor/history/:id" component={History} />
           <Route path="/doctor/tickets" component={DoctorTickets} />
           <Route path="/patient/tickets" component={PatientTickets} />
         </main>

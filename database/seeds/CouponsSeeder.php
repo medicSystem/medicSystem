@@ -11,7 +11,7 @@ class CouponsSeeder extends Seeder
         $patient = Patient::all();
         $doctor = Doctor::find(1)->id;
         $minutes_to_add = 30;
-        $time = new DateTime('2018-10-25 10:00');
+        $time = new DateTime('2019-05-05 10:00');
 
         foreach ($patient as $patients) {
             $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
