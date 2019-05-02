@@ -78,7 +78,6 @@ class Tickets extends Component {
         <TableHead>
           <TableRow>
             <TableCell numeric>Time</TableCell>
-            <TableCell numeric>First name</TableCell>
             <TableCell numeric>Patient</TableCell>
           </TableRow>
         </TableHead>
@@ -87,7 +86,6 @@ class Tickets extends Component {
             return (
                 <TableRow key={tickets.patient_id}>
                 <TableCell numeric>{tickets.time}</TableCell>
-                <TableCell numeric>{patient}</TableCell>
                 <TableCell numeric>
                   <IconButton>
                     {

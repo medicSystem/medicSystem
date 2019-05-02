@@ -9,8 +9,10 @@ import ListItemText from "@material-ui/core/es/ListItemText/ListItemText";
 import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import { createMuiTheme } from "@material-ui/core/styles/index";
 import List from "@material-ui/core/es/List/List";
-import Button from "@material-ui/core/es/Button/Button";
+
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import {Form, FormControl, FormGroup, Button} from "react-bootstrap";
+import FormLabel from "@material-ui/core/FormLabel/FormLabel";
 
 const text = createMuiTheme({
   typography: {
@@ -37,15 +39,18 @@ class History extends React.Component {
     super(props);
     this.state = {
       value: 0,
-      loading: true
+      loading: true,
+      conclusion: ''
     };
       console.log("lol")
-    this.handleChange = (event, value) => {
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    /*this.handleChange = (event, value) => {
       this.setState({ value });
     };
     this.handleChangeIndex = index => {
       this.setState({ value: index });
-    };
+    };*/
   }
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -60,6 +65,22 @@ class History extends React.Component {
         });
     });
   }
+  handleChange(event) {
+    this.setState({ conclusion: event.target.value });
+  };
+  handleSubmit (event) {
+    event.preventDefault();
+
+    const conclusion = {
+      conclusion: this.state.conclusion
+    };
+    const id = this.props.match.params.id;
+    axios.post(`/addDisease/${id}`, { conclusion })
+    .then(res => {
+      console.log(res);
+      /*console.log(res.data);*/
+    })
+  };
   render() {
     const { classes } = this.props;
     const { history, loading } = this.state;
@@ -76,88 +97,19 @@ class History extends React.Component {
         </div>
       );
     }
-    console.log(history);
+
     return (
-      <div className="">
-        sdfsfdsfsf
-       {/* <List>
-          <MuiThemeProvider theme={text}>
-            <ListItem>
-              <ListItemText primary="Last name:" className={classes.text} />
-              <ListItemText
-                primary={patient.last_name}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="First name:" className={classes.text} />
-              <ListItemText
-                primary={patient.first_name}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Sex:" className={classes.text} />
-              <ListItemText primary={patient.sex} className={classes.text} />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Date:" className={classes.text} />
-              <ListItemText
-                primary={patient.birthday}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Address:" className={classes.text} />
-              <ListItemText
-                primary={patient.postal_address}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Phone number:" className={classes.text} />
-              <ListItemText
-                primary={patient.phone_number}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText primary="Allergy:" className={classes.text} />
-              <ListItemText
-                primary={patient.allergy}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-            <ListItem>
-              <ListItemText
-                primary="Chronic disease:"
-                className={classes.text}
-              />
-              <ListItemText
-                primary={patient.chronic_disease}
-                className={classes.text}
-              />
-            </ListItem>
-            <Divider />
-          </MuiThemeProvider>
-        </List>
-        <Button
-          variant="contained"
-          color="default"
-          className={classes.button}
-          href={`/doctor/history/${patient.patients_id}`}
-        >
-          History of diseases
-          <AssignmentIcon className={classes.rightIcon} />
-        </Button>*/}
-      </div>
+
+        <Form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="historyConclusion">
+            <FormLabel>Example textarea</FormLabel>
+            <textarea className="form-control" onChange={this.handleChange}  style={{height: 400}} rows="3" />
+          </FormGroup>
+          <Button variant="success" type="submit">
+            Submit
+          </Button>
+        </Form>
+
     );
   }
 }
