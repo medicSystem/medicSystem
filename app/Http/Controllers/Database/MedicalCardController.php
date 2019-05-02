@@ -55,14 +55,14 @@ class MedicalCardController extends Controller
     public function getDiseaseHistoryByDoctorId()
     {
         $id = $this->getDoctorId();
-        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`=' . $id);
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`conclusion`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`=' . $id);
         $encodeHistory = json_encode($disease_histories);
         return $encodeHistory;
     }
 
     public function getDiseaseHistoryByMedicalCardId($id)
     {
-        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`medical_cards_id`=' . $id);
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`conclusion`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`medical_cards_id`=' . $id);
         $encodeHistory = json_encode($disease_histories);
         return $encodeHistory;
     }
@@ -70,7 +70,7 @@ class MedicalCardController extends Controller
     public function getDiseaseHistoryByDoctorIdAndMedicalCardId($medical_card_id)
     {
         $id = $this->getDoctorId();
-        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`= ' . $id . ' AND `disease_histories`.`medical_cards_id`= ' . $medical_card_id);
+        $disease_histories = DB::select('SELECT `disease_histories`.`id`,`disease_histories`.`conclusion`,`disease_histories`.`analyzes`, `disease_histories`.`directories_id`, `disease_histories`.`medical_cards_id`, `disease_histories`.`doctors_id`, `directories`.`disease_name`,`directories`.`category`,`directories`.`treatment`,`directories`.`symptoms`,`directories`.`picture` FROM `disease_histories` JOIN `directories` ON `disease_histories`.`directories_id` = `directories`.`id` WHERE `disease_histories`.`doctors_id`= ' . $id . ' AND `disease_histories`.`medical_cards_id`= ' . $medical_card_id);
         $encodeHistory = json_encode($disease_histories);
         return $encodeHistory;
     }
@@ -84,6 +84,7 @@ class MedicalCardController extends Controller
         }
         $diseaseHistories = new Disease_history();
         $diseaseHistories->analyzes = $request->analyzes;
+        $diseaseHistories->conclusion = $request->conclusion;
         $diseaseHistories->directories_id = $directories_id;
         $diseaseHistories->medical_cards_id = $medical_card_id;
         $diseaseHistories->doctors_id = $id;
@@ -132,7 +133,7 @@ class MedicalCardController extends Controller
                 foreach ($doctors as $doctor) {
                     $doctor_name = $doctor->first_name . ' ' . $doctor->last_name;
                 }
-                $disease_history[$j] = array("analyzes" => $history->analyzes, "disease_name" => $history->disease_name, "treatment" => $history->treatment, "symptoms" => $history->symptoms, "doctor_name" => $doctor_name);
+                $disease_history[$j] = array("analyzes" => $history->analyzes, "conclusion" => $history->conclusion,"disease_name" => $history->disease_name, "treatment" => $history->treatment, "symptoms" => $history->symptoms, "doctor_name" => $doctor_name);
                 $j++;
             }
         }
