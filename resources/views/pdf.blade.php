@@ -49,6 +49,7 @@
         <th scope="col">Disease name</th>
         <th scope="col">Doctor name</th>
         <th scope="col">Analyzes</th>
+        <th scope="col">Conclusion</th>
         <th scope="col">Treatment</th>
         <th scope="col">Symptoms</th>
     </tr>
@@ -62,6 +63,9 @@
             </td>
             <td>
                 {{ $disease_history[$i]['analyzes'] }}
+            </td>
+            <td>
+                {{ $disease_history[$i]['conclusion'] }}
             </td>
             <td>
                 {{ $disease_history[$i]['treatment'] }}

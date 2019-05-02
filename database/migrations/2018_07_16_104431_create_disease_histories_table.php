@@ -24,6 +24,7 @@ class CreateDiseaseHistoriesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('analyzes', 100);
+            $table->string('conclusion', 100);
             $table->unsignedInteger('directories_id');
             $table->unsignedInteger('medical_cards_id');
             $table->unsignedInteger('doctors_id');
