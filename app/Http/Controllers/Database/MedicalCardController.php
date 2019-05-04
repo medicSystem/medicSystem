@@ -86,7 +86,7 @@ class MedicalCardController extends Controller
         $diseaseHistories->analyzes = $request->analyzes;
         $diseaseHistories->conclusion = $request->conclusion;
         $diseaseHistories->directories_id = $directories_id;
-        $diseaseHistories->medical_cards_id = $medical_card_id;
+        $diseaseHistories->medical_cards_id = (int)$medical_card_id;
         $diseaseHistories->doctors_id = $id;
         $diseaseHistories->save();
     }

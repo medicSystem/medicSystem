@@ -9,7 +9,7 @@ class Disease_history extends Model
     protected $table = 'disease_histories';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'analyzes', 'directories_id', 'medical_cards_id', 'doctors_id'
+        'analyzes', 'conclusion', 'directories_id', 'medical_cards_id', 'doctors_id'
     ];
 
     public function medicalCard(){
