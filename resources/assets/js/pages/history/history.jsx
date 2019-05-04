@@ -71,14 +71,16 @@ class History extends React.Component {
   handleSubmit (event) {
     event.preventDefault();
 
-    const conclusion = {
-      conclusion: this.state.conclusion
-    };
+
+     let conclusion = this.state.conclusion;
+    console.log(conclusion);
+let analyzes = "hhhhh";
+let disease_name = "Plague";
     const id = this.props.match.params.id;
-    axios.post(`/addDisease/${id}`, { conclusion })
+    axios.post(`/addDisease/${id}`, { conclusion, analyzes, disease_name })
     .then(res => {
       console.log(res);
-      /*console.log(res.data);*/
+      console.log(res.data);
     })
   };
   render() {
