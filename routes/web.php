@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('/addCoupon', 'Database\CouponsController@add')->name('addCoupon');
 
-        Route::get('/getDoctors/{type_name}', 'Database\DoctorsController@getDoctors')->name('getDoctors');
+        Route::get('/getDoctors', 'Database\DoctorsController@getDoctors')->name('getDoctors');
 
         Route::get('/getMedicalCardForPatient', 'Database\MedicalCardController@getMedicalCardForPatient')->name('getMedicalCardForPatient');
         Route::post('/updateMedicalCard', 'Database\MedicalCardController@updateMedicalCard')->name('updateMedicalCard');

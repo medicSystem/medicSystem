@@ -17,9 +17,9 @@ import Patients from "../../pages/patients/patients";
 import History from "../../pages/history/history";
 import DoctorTickets from "../doctor-tickets/doctor-tickets";
 import PatientTickets from "../patient-tickets/patient-tickets";
+import doctors from "../../pages/doctors/doctors";
 
 const drawerWidth = 240;
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -67,7 +67,7 @@ const doctor = (
 const patient = (
   <List>
     <UserMenuList role="Patient" link="/patient" icon="user" />
-    <UserMenuList role="Doctor" link="/patient" icon="patients" />
+    <UserMenuList role="Doctor" link="/patient/doctors" icon="patients" />
     <UserMenuList role="Medcard" link="/patient" icon="tickets" />
     <UserMenuList role="Tickets" link="/patient/tickets" icon="tickets" />
   </List>
@@ -174,6 +174,7 @@ class UserMenu extends Component {
           <Route path="/doctor/history/:id" component={History} />
           <Route path="/doctor/tickets" component={DoctorTickets} />
           <Route path="/patient/tickets" component={PatientTickets} />
+          <Route path="/patient/doctors" component={doctors} />
         </main>
       </div>
     );

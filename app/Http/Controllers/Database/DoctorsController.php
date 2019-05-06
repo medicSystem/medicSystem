@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Doctor;
 use App\Validate_doctor;
 use Illuminate\Support\Facades\Auth;
-use App\Doctor_type;
 use App\Coupon;
 use Illuminate\Support\Facades\DB;
 
@@ -31,14 +30,10 @@ class DoctorsController extends Controller
         }
     }
 
-    public function getDoctors($type_name)
+    public function getDoctors()
     {
-        $doctor_types_id = Doctor_type::where('type_name', $type_name)->get();
-        foreach ($doctor_types_id as $item) {
-            $type_id = $item->id;
-        }
-        $doctors = Doctor::where('doctor_types_id', $type_id)->get();
-        $encodeDoctors = json_encode($doctors);
+        $doctors = new Doctor();
+        $encodeDoctors = json_encode($doctors->getDoctors());
         return $encodeDoctors;
     }
 
@@ -89,7 +84,7 @@ class DoctorsController extends Controller
         foreach ($coupons as $coupon) {
             if (date('Y-m-d', strtotime($coupon->date)) == $needDate) {
                 $dateTime[$i] = $coupon->date;
-                $patients_id [$i] = $coupon->patients_id;
+                $patients_id[$i] = $coupon->patients_id;
                 $i++;
             }
         }
@@ -142,7 +137,7 @@ class DoctorsController extends Controller
         $arr = array_keys($freeTime);
         for ($i = 0; $i < count($arr); $i++) {
             $strDate[$i] = $needDate . ' ' . $freeTime[$arr[$i]];
-            $date[$i] = date('Y-m-d H:i', strtotime($strDate[$i]));
+            $date[$i] = array("time" => date('Y-m-d H:i', strtotime($strDate[$i])), "id" => $i);
         }
         $encodeResult = json_encode($date);
         return $encodeResult;

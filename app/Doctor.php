@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Doctor extends Model
 {
@@ -51,5 +52,22 @@ class Doctor extends Model
         } else {
             return true;
         }
+    }
+
+    public function getDoctors()
+    {
+        $result = null;
+        $i = 0;
+        $doctors = DB::table('doctors')->join('doctor_types', 'doctors.doctor_types_id', '=', 'doctor_types.id')
+            ->join('users', 'doctors.users_id', '=', 'users.id')
+            ->select('doctors.*', 'users.last_name', 'users.first_name', 'users.email', 'users.avatar', 'users.birthday',
+                'doctor_types.type_name')->get();
+        foreach ($doctors as $doctor) {
+            $result[$i++] = array('id' => $doctor->id, 'patent' => $doctor->patent, 'experience' => $doctor->experience,
+                'work_time' => $doctor->work_time, 'doctor_types_id' => $doctor->doctor_types_id, 'users_id' => $doctor->users_id,
+                'last_name' => $doctor->last_name, 'first_name' => $doctor->first_name, 'email' => $doctor->email,
+                'avatar' => $doctor->avatar, 'birthday' => $doctor->birthday, 'type_name' => $doctor->type_name);
+        }
+        return $result;
     }
 }
