@@ -89,6 +89,10 @@ class FloatingActionButtonZoom extends React.Component {
           >
             <TabContainer dir={theme.direction}>
               <form className="NewsDeck">
+                <label htmlFor="NewsImage">Pick photo for news
+                </label>
+                <br/>
+                <input id="NewsImage" type="file"/>
                 <input placeholder='News Name' type='text'/>
                 <textarea rows='8' placeholder='News Content'/>
                 <IconButton color='primary'><Send/></IconButton>
@@ -96,6 +100,10 @@ class FloatingActionButtonZoom extends React.Component {
             </TabContainer>
             <TabContainer dir={theme.direction}>
               <form className="NewsDeck">
+                <label htmlFor="NewsImage">Pick photo for news
+                </label>
+                <br/>
+                <input id="NewsImage" type="file"/>
                 <input placeholder='News Name' type='text'/>
                 <textarea rows='8' placeholder='News Content'/>
                 <IconButton color='primary'><Send/></IconButton>

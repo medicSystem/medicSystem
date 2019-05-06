@@ -61,8 +61,6 @@ const doctor = (
     <UserMenuList role="Doctor" link="/doctor" icon="user" />
     <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
     <UserMenuList role="Tickets" link="/doctor/tickets" icon="tickets" />
-    <UserMenuList role="Chat" link="/doctor" icon="chat" />
-    <UserMenuList role="Support" link="/doctor" icon="support" />
   </List>
 );
 
@@ -72,8 +70,6 @@ const patient = (
     <UserMenuList role="Doctor" link="/patient" icon="patients" />
     <UserMenuList role="Medcard" link="/patient" icon="tickets" />
     <UserMenuList role="Tickets" link="/patient/tickets" icon="tickets" />
-    <UserMenuList role="Chat" link="/patient" icon="chat" />
-    <UserMenuList role="Support" link="/patient" icon="support" />
   </List>
 );
 
@@ -82,8 +78,6 @@ const admin = (
     <UserMenuList role="Doctor" link="/doctor" icon="user" />
     <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
     <UserMenuList role="Tickets" link="/doctor" icon="tickets" />
-    <UserMenuList role="Chat" link="/doctor" icon="chat" />
-    <UserMenuList role="Support" link="/doctor" icon="support" />
   </List>
 );
 class UserMenu extends Component {
