@@ -58,16 +58,16 @@ const styles = theme => ({
 
 const doctor = (
   <List>
-    <UserMenuList role="Doctor" link="/doctor" icon="user" />
     <UserMenuList role="Patients" link="/doctor/patients" icon="patients" />
+    <UserMenuList role="Doctor" link="/doctor" icon="user" />
     <UserMenuList role="Tickets" link="/doctor/tickets" icon="tickets" />
   </List>
 );
 
 const patient = (
   <List>
-    <UserMenuList role="Patient" link="/patient" icon="user" />
     <UserMenuList role="Doctor" link="/patient/doctors" icon="patients" />
+    <UserMenuList role="Patient" link="/patient" icon="user" />
     <UserMenuList role="Medcard" link="/patient" icon="tickets" />
     <UserMenuList role="Tickets" link="/patient/tickets" icon="tickets" />
   </List>
