@@ -8,6 +8,7 @@ import PatientsIcon from "@material-ui/icons/SupervisorAccount";
 import TicketsIcon from "@material-ui/icons/Receipt";
 import ChatIcon from "@material-ui/icons/Chat";
 import UserIcon from "@material-ui/icons/Person";
+import MedcardIcon from "@material-ui/icons/Folder";
 
 class UserMenuList extends Component {
   choseIcon() {
@@ -20,6 +21,8 @@ class UserMenuList extends Component {
         return <TicketsIcon />;
       case "patients":
         return <PatientsIcon />;
+      case "medcard":
+        return <MedcardIcon />;
       case "support":
         return <SupportIcon />;
       default:

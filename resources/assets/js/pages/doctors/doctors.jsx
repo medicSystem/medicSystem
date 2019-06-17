@@ -21,7 +21,7 @@ const styles = theme => ({
         overflowX: "auto"
     },
     table: {
-        minWidth: 700
+        minWidth: 500,
     }
 });
 
@@ -70,7 +70,6 @@ class InteractiveList extends React.Component {
                             <TableCell numeric>First name</TableCell>
                             <TableCell numeric>Email</TableCell>
                             <TableCell numeric>Date</TableCell>
-                            <TableCell>Patent</TableCell>
                             <TableCell numeric>Experience</TableCell>
                             <TableCell numeric>Work time</TableCell>
                             <TableCell numeric>Type name</TableCell>
@@ -82,16 +81,13 @@ class InteractiveList extends React.Component {
                             return (
                                 <TableRow key={patientsList.id}>
                                     <TableCell component="th" scope="row">
-                                        <Avatar src={`/upload/user/${patientsList.avatar}`} />
+                                        <Avatar src={`/images/${patientsList.avatar}`} />
                                     </TableCell>
                                     <TableCell numeric>{patientsList.last_name}</TableCell>
                                     <TableCell numeric>{patientsList.first_name}</TableCell>
                                     <TableCell numeric>{patientsList.email}</TableCell>
                                     <TableCell numeric>
                                         {patientsList.birthday.replace(/-/gi, ".")}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        <Avatar src={`/upload/patents/${patientsList.patent}`} />
                                     </TableCell>
                                     <TableCell numeric>{patientsList.experience}</TableCell>
                                     <TableCell numeric>{patientsList.work_time}</TableCell>

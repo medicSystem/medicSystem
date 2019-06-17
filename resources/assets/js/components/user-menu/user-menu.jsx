@@ -68,7 +68,7 @@ const patient = (
   <List>
     <UserMenuList role="Doctor" link="/patient/doctors" icon="patients" />
     <UserMenuList role="Patient" link="/patient" icon="user" />
-    <UserMenuList role="Medcard" link="/patient" icon="tickets" />
+    <UserMenuList role="Medcard" link="/patient" icon="medcard" />
     <UserMenuList role="Tickets" link="/patient/tickets" icon="tickets" />
   </List>
 );
