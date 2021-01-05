@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@material-ui/icons": "^2.0.1",
-        "axios": "^0.17",
+        "axios": "^0.21",
         "babel-preset-react": "^6.23.0",
         "bootstrap": "^4.0.0-beta",
         "bootstrap-sass": "^3.3.7",
